@@ -1,0 +1,13 @@
+train: /mnt/c/Users/haddo/ultralytics/datasets/peixos/multiclass_con_fondos/train/images
+val: /mnt/c/Users/haddo/ultralytics/datasets/peixos/multiclass_con_fondos/valid/images
+test: /mnt/c/Users/haddo/ultralytics/datasets/peixos/multiclass_con_fondos/test/images
+
+nc: 15
+names: ['Chromis chromis', 'Coris julis', 'Dentex dentex', 'Diplodus annularis', 'Diplodus sargus', 'Diplodus vulgaris', 'Lithognathus mormyrus', 'Mugilidae prob Chelon', 'Oblada melanura', 'Pomatous salator', 'Seriola dumerili', 'Serranus', 'Spicara maena', 'Spondyliosoma cantharus', 'Symphodus sp-']
+
+roboflow:
+  workspace: fish-od-2
+  project: dataset-binario-y-no-tan-variado
+  version: 4
+  license: CC BY 4.0
+  url: https://universe.roboflow.com/fish-od-2/dataset-binario-y-no-tan-variado/dataset/4
