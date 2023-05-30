@@ -102,17 +102,17 @@ if do_train:
         dataset_yaml = path_to_dataset_base + str(ds_v) + "/fish_" + str(ds_v) + ".yaml"
         # # k fold 
         for i in range(1, k+1):
-        #     for f in range(1, k+1):
-        #         if f == i:
-        #             print("copying val files to: ", ds_path + "/val/")
-        #             for img, lbl in zip(glob.glob(ds_path + "/" + str(f) + "/images/*"), glob.glob(ds_path + "/" + str(f) + "/labels/*")):
-        #                 shutil.copyfile(img, ds_path + "/val/" + img.split("/")[-1])
-        #                 shutil.copyfile(lbl, ds_path + "/val/" + img.split("/")[-1])
-        #         else:
-        #             print("copying train files to ", ds_path + "/train/")
-        #             for img, lbl in zip(glob.glob(ds_path + "/" + str(f) + "/images/*"), glob.glob(ds_path + "/" + str(f) + "/labels/*")):
-        #                 shutil.copyfile(img, ds_path + "/train/" + img.split("/")[-1])
-        #                 shutil.copyfile(lbl, ds_path + "/train/" + img.split("/")[-1])
+            for f in range(1, k+1):
+                if f == i:
+                    print("copying val files to: ", ds_path + "/val/")
+                    for img, lbl in zip(glob.glob(ds_path + "/" + str(f) + "/images/*"), glob.glob(ds_path + "/" + str(f) + "/labels/*")):
+                        shutil.copyfile(img, ds_path + "/val/" + img.split("/")[-1])
+                        shutil.copyfile(lbl, ds_path + "/val/" + img.split("/")[-1])
+                else:
+                    print("copying train files to ", ds_path + "/train/")
+                    for img, lbl in zip(glob.glob(ds_path + "/" + str(f) + "/images/*"), glob.glob(ds_path + "/" + str(f) + "/labels/*")):
+                        shutil.copyfile(img, ds_path + "/train/" + img.split("/")[-1])
+                        shutil.copyfile(lbl, ds_path + "/train/" + img.split("/")[-1])
 
 
             for model_size in model_sizes.keys():
@@ -130,8 +130,12 @@ if do_train:
                         
                         # yolo segment train data={} model={} epochs=200 imgsz=640 seed={} cfg={} lr0={} project={} name={}
                         train_instruction_formatted=train_instruction.format(os.path.join(path_to_yamls,config),dataset_yaml,model_size,str(seed),str(lr),project_name,run_name) 
-                        val_instruction_formatted =val_instruction.format(os.path.join(path_to_yamls,config),dataset_yaml,os.path.join(project_name,run_name,"weights"+"best_weight.pt"),project_name,run_name) 
-                        test_instruction_formatted =test_instruction.format(os.path.join(path_to_yamls,config),dataset_yaml,os.path.join(project_name,run_name,"weights"+"best_weight.pt"),project_name,run_name) 
+                        
+                        # val_instruction = "yolo segment val cfg={} data={} model={}  project={} name={} split=val"
+                        # test_instruction = "yolo segment val  cfg={} data={} model={} project={} name={} split=test"
+
+                        val_instruction_formatted =val_instruction.format(os.path.join(path_to_yamls,config),dataset_yaml,os.path.join(project_name,run_name,"weights/"+"best_weight.pt"),project_name,run_name) 
+                        test_instruction_formatted =test_instruction.format(os.path.join(path_to_yamls,config),dataset_yaml,os.path.join(project_name,run_name,"weights/"+"best_weight.pt"),project_name,run_name) 
                         
                         print(train_instruction_formatted)
                         # Use the formatted instructions
