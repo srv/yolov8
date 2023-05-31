@@ -8,10 +8,11 @@ from clearml import Task
 from natsort import natsorted
 import random
 
-path_to_yamls = "/mnt/c/Users/haddo/Desktop/data/PLOME/"
+
 path_to_project = "/mnt/c/Users/haddo/yolov8/peixos/"
 path_to_dataset_base = "/mnt/c/Users/haddo/yolov8/datasets/Instance_con_SAM_"
 tmp_suffixes = ["train/images/", "train/labels/", "val/images", "val/labels"]
+
 
 def create_empty_temp_dirs(base_path):
     print("Base path is:", base_path)
@@ -25,17 +26,14 @@ def create_empty_temp_dirs(base_path):
 
 # CREATE FOLDS
 ds_versions = [5, 11, 16]
+do_train = True
+folds_created = True
+k = 5
 
 for v in ds_versions:
     path_to_dataset = path_to_dataset_base + str(v) + "/"
     if not os.path.exists(path_to_dataset):
         os.mkdir(path_to_dataset)
-    k = 5
-    input_imgs_path = "/mnt/c/Users/haddo/yolov5/datasets/halimeda/kfold/images/"
-    input_labels_path = "/mnt/c/Users/haddo/yolov5/datasets/halimeda/kfold/labels/"
-
-    do_train = True
-    folds_created = True
 
     if not folds_created:
         # PART 1: Create k-folds
@@ -87,7 +85,7 @@ if do_train:
     test_instruction = "yolo segment val  cfg={} data={} model={} project={} name={} split=test"
 
     lrs = [0.03, 0.01, 0.0033, 0.00011, 0.00037]
-    model_sizes = {"yolov8m.pt": "medium", "yolov8s.pt": "large"}
+    model_sizes = {"yolov8m-seg.pt": "medium", "yolov8l-seg.pt": "large"}
     configs=["/mnt/c/Users/haddo/yolov8/ultralytics/yolo/cfg/da.yaml","/mnt/c/Users/haddo/yolov8/ultralytics/yolo/cfg/no_da.yaml"]
 
     batch = 12
@@ -95,6 +93,7 @@ if do_train:
     for ds_v in ds_versions:
         # Tidy train-val splits from k-fold
         ds_path = path_to_dataset_base + str(ds_v) + "/folds/"
+        
         # create temp train and val (or empty them)
         print("DS PATH: ", ds_path)
         create_empty_temp_dirs(ds_path)
@@ -121,25 +120,30 @@ if do_train:
                     for config in configs: #DA no DA
                         da=config.split("/")[-1].split(".")[0]
                         seed=random.randint(0,100)
-
-                        
-                        run_name=os.path.join(project_name,str(ds_v)+"_species","lr_"+str(lr),da,"seed_"+str(seed))
-                        # run_name=os.path.join(project_name,"_species","lr_",da,"seed_")
-                        
+   
+                        run_name=os.path.join(project_name,str(ds_v)+"_species","lr_"+str(lr),da,"fold_"+str(i)+"_seed_"+str(seed))
+        
                         task = Task.init(project_name='PLOME_SHALLOW', task_name=run_name)
                         
-                        # yolo segment train data={} model={} epochs=200 imgsz=640 seed={} cfg={} lr0={} project={} name={}
-                        train_instruction_formatted=train_instruction.format(os.path.join(path_to_yamls,config),dataset_yaml,model_size,str(seed),str(lr),project_name,run_name) 
+                        # train_instruction = "yolo segment train cfg={} data={} model={} epochs=200 imgsz=640 seed={}  lr0={} project={} name={}"
+                        train_instruction_formatted=train_instruction.format(config,dataset_yaml,model_size,str(seed),str(lr),project_name,run_name) 
                         
-                        # val_instruction = "yolo segment val cfg={} data={} model={}  project={} name={} split=val"
+                        # val_instruction = "yolo segment val cfg={} data={} model={}  project={} name={} split=val sa"
                         # test_instruction = "yolo segment val  cfg={} data={} model={} project={} name={} split=test"
 
-                        val_instruction_formatted =val_instruction.format(os.path.join(path_to_yamls,config),dataset_yaml,os.path.join(project_name,run_name,"weights/"+"best_weight.pt"),project_name,run_name) 
-                        test_instruction_formatted =test_instruction.format(os.path.join(path_to_yamls,config),dataset_yaml,os.path.join(project_name,run_name,"weights/"+"best_weight.pt"),project_name,run_name) 
+                        val_instruction_formatted =val_instruction.format(config,dataset_yaml,os.path.join(project_name,run_name,"weights/"+"best_weight.pt"),project_name,run_name+"/validation") 
+                        test_instruction_formatted =test_instruction.format(config,dataset_yaml,os.path.join(project_name,run_name,"weights/"+"best_weight.pt"),project_name,run_name+"/test") 
                         
+                        with open('/mnt/c/Users/haddo/yolov8/calls.txt', 'a+') as f:
+                            f.write(train_instruction_formatted)
+                            f.write(val_instruction_formatted)
+                            f.write(test_instruction_formatted)
+                            f.write("------------------------------------------------------------- \n")
+
                         print(train_instruction_formatted)
                         # Use the formatted instructions
                         os.system(train_instruction_formatted)
                         os.system(val_instruction_formatted)
                         os.system(test_instruction_formatted)
                         task.close()
+
