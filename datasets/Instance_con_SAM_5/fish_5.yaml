@@ -1,0 +1,14 @@
+
+train: /mnt/c/Users/haddo/Desktop/data/PLOME/Instance_con_SAM_5/train/images
+val: /mnt/c/Users/haddo/Desktop/data/PLOME/Instance_con_SAM_5/valid/images
+test: /mnt/c/Users/haddo/Desktop/data/PLOME/Instance_con_SAM_5/test/images
+
+nc: 5
+names: ['Chromis chromis', 'Diplodus', 'Oblada melanura', 'Seriola dumerili', 'Spondyliosoma cantharus']
+
+roboflow:
+  workspace: fish-dl
+  project: instance-con-sam
+  version: 11
+  license: CC BY 4.0
+  url: https://universe.roboflow.com/fish-dl/instance-con-sam/dataset/11
