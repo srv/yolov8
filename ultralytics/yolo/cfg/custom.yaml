@@ -5,8 +5,8 @@ task: detect  # YOLO task, i.e. detect, segment, classify, pose
 mode: train  # YOLO mode, i.e. train, val, predict, export, track, benchmark
 
 # Train settings -------------------------------------------------------------------------------------------------------
-# model:  # path to model file, i.e. yolov8n.pt, yolov8n.yaml
-# data:  # path to data file, i.e. coco128.yaml
+model:  # path to model file, i.e. yolov8n.pt, yolov8n.yaml
+data:  # path to data file, i.e. coco128.yaml
 epochs: 100  # number of epochs to train for
 patience: 50  # epochs to wait for no observable improvement for early stopping of training
 batch: 16  # number of images per batch (-1 for AutoBatch)
@@ -57,7 +57,7 @@ save_crop: False  # save cropped images with results
 show_labels: True  # show object labels in plots
 show_conf: True  # show object confidence scores in plots
 vid_stride: 1  # video frame-rate stride
-line_thickness: 3  # bounding box thickness (pixels)
+line_width:   # line width of the bounding boxes
 visualize: False  # visualize model features
 augment: False  # apply image augmentation to prediction sources
 agnostic_nms: False  # class-agnostic NMS
@@ -77,7 +77,7 @@ workspace: 4  # TensorRT: workspace size (GB)
 nms: False  # CoreML: add NMS
 
 # Hyperparameters ------------------------------------------------------------------------------------------------------
-lr0: 0.002  # initial learning rate (i.e. SGD=1E-2, Adam=1E-3)
+lr0: 0.01  # initial learning rate (i.e. SGD=1E-2, Adam=1E-3)
 lrf: 0.01  # final learning rate (lr0 * lrf)
 momentum: 0.937  # SGD momentum/Adam beta1
 weight_decay: 0.0005  # optimizer weight decay 5e-4
@@ -91,18 +91,18 @@ pose: 12.0  # pose loss gain
 kobj: 1.0  # keypoint obj loss gain
 label_smoothing: 0.0  # label smoothing (fraction)
 nbs: 64  # nominal batch size
-hsv_h: 0.015  # image HSV-Hue augmentation (fraction)
-hsv_s: 0.8  # image HSV-Saturation augmentation (fraction)
-hsv_v: 0.5  # image HSV-Value augmentation (fraction)
-degrees: 0.1  # image rotation (+/- deg)
-translate: 0.2  # image translation (+/- fraction)
-scale: 0.7  # image scale (+/- gain)
-shear: 0.01  # image shear (+/- deg)
-perspective: 0.001  # image perspective (+/- fraction), range 0-0.001
-flipud: 1  # image flip up-down (probability)
-fliplr: 1  # image flip left-right (probability)
-mosaic: 1.0  # image mosaic (probability)
-mixup: 1.0  # image mixup (probability)
+hsv_h: 0.0  # image HSV-Hue augmentation (fraction)
+hsv_s: 0.0  # image HSV-Saturation augmentation (fraction)
+hsv_v: 0.0  # image HSV-Value augmentation (fraction)
+degrees: 0.0  # image rotation (+/- deg)
+translate: 0.0  # image translation (+/- fraction)
+scale: 0.0  # image scale (+/- gain)
+shear: 0.0  # image shear (+/- deg)
+perspective: 0.0  # image perspective (+/- fraction), range 0-0.001
+flipud: 0.0  # image flip up-down (probability)
+fliplr: 0.0  # image flip left-right (probability)
+mosaic: 0.0  # image mosaic (probability)
+mixup: 0.0  # image mixup (probability)
 copy_paste: 0.0  # segment copy-paste (probability)
 
 # Custom config.yaml ---------------------------------------------------------------------------------------------------

@@ -7,7 +7,7 @@ import shutil
 from clearml import Task
 from natsort import natsorted
 import random
-
+import time
 
 path_to_project = "/mnt/c/Users/haddo/yolov8/peixos/"
 path_to_dataset_base = "/mnt/c/Users/haddo/yolov8/datasets/Instance_con_SAM_"
@@ -27,10 +27,11 @@ def create_empty_temp_dirs(base_path):
 # CREATE FOLDS
 # ds_versions = [5, 11, 16]
 
-ds_versions = [16, 11]
+ds_versions = [16]
 do_train = True
 folds_created = True
 k = 5
+seed=42
 
 for v in ds_versions:
     path_to_dataset = path_to_dataset_base + str(v) + "/"
@@ -84,12 +85,13 @@ if do_train:
     # 2 Instructions
     train_instruction = "yolo segment train cfg={} data={} model={} epochs=200 imgsz=640 seed={}  lr0={} project={} name={}"
     val_instruction = "yolo segment val data={} model={}  project={} name={} split=val"
-    test_instruction = "yolo segment val data={} model={} project={} name={} split=test"
+    # test_instruction = "yolo segment val data={} model={} project={} name={} split=test"
 
     lrs = [0.03, 0.01, 0.0033, 0.00011, 0.00037]
-    model_sizes = {"yolov8m-seg.pt": "medium", "yolov8l-seg.pt": "large"}
-    # model_sizes = {"yolov8m-seg.pt": "medium"}
-    configs=["/mnt/c/Users/haddo/yolov8/ultralytics/yolo/cfg/da.yaml","/mnt/c/Users/haddo/yolov8/ultralytics/yolo/cfg/no_da.yaml"]
+    # model_sizes = {"yolov8m-seg.pt": "medium", "yolov8l-seg.pt": "large"}
+    model_sizes = {"yolov8n-seg.pt": "nano"}
+    configs=["/mnt/c/Users/haddo/yolov8/ultralytics/yolo/cfg/da.yaml"]
+    # configs=["/mnt/c/Users/haddo/yolov8/ultralytics/yolo/cfg/da.yaml","/mnt/c/Users/haddo/yolov8/ultralytics/yolo/cfg/no_da.yaml"]
 
     batch = 12
     k = 5  # num folds
@@ -117,7 +119,7 @@ if do_train:
                         shutil.copyfile(lbl, ds_path + "/train/labels/" + lbl.split("/")[-1])
 
             
-            seed=random.randint(0,100)
+            # seed=random.randint(0,100)
             for model_size in model_sizes.keys():
                 project_name=path_to_project+"/"+model_sizes[model_size] +"/"  
                 for lr in lrs:
@@ -126,24 +128,28 @@ if do_train:
                         
                         run_name=os.path.join(project_name,str(ds_v)+"_species","lr_"+str(lr),da,"fold_"+str(i)+"_seed_"+str(seed))
         
-                        task = Task.init(project_name='PEIXOS_16', task_name=run_name)
+                        task = Task.init(project_name='PEIXOS_16_nano', task_name=run_name)
                         
-                        # train_instruction = "yolo segment train cfg={} data={} model={} epochs=200 imgsz=640 seed={}  lr0={} project={} name={}"
+                        train_instruction = "yolo segment train cfg={} data={} model={} epochs=200 imgsz=640 seed={}  lr0={} project={} name={}"
                         train_instruction_formatted=train_instruction.format(config,dataset_yaml,model_size,str(seed),str(lr),project_name,run_name) 
                         
                         val_instruction_formatted =val_instruction.format(dataset_yaml,os.path.join(project_name,run_name,"weights/"+"best.pt"),project_name,run_name+"/validation") 
-                        test_instruction_formatted =test_instruction.format(dataset_yaml,os.path.join(project_name,run_name,"weights/"+"best.pt"),project_name,run_name+"/test") 
+                        # test_instruction_formatted =test_instruction.format(dataset_yaml,os.path.join(project_name,run_name,"weights/"+"best.pt"),project_name,run_name+"/test") 
                         
-                        with open('/mnt/c/Users/haddo/yolov8/calls2.txt', 'a+') as f:
+                        with open('/mnt/c/Users/haddo/yolov8/calls_nano_16.txt', 'a+') as f:
                             f.write(train_instruction_formatted)
+                            f.write("\n")
                             f.write(val_instruction_formatted)
-                            f.write(test_instruction_formatted)
+                            f.write("\n")
+                            # f.write(test_instruction_formatted)
                             f.write("------------------------------------------------------------- \n")
+                            f.write("\n")
 
                         print(train_instruction_formatted)
                         # Use the formatted instructions
                         os.system(train_instruction_formatted)
-                        # os.system(val_instruction_formatted)
+                        os.system(val_instruction_formatted)
                         # os.system(test_instruction_formatted)
                         task.close()
+                        time.sleep(300)
 
