@@ -89,7 +89,7 @@ if do_train:
 
     lrs = [0.03, 0.01, 0.0033, 0.00011, 0.00037]
     # model_sizes = {"yolov8m-seg.pt": "medium", "yolov8l-seg.pt": "large"}
-    model_sizes = {"yolov8n-seg.pt": "nano"}
+    model_sizes = {"yolov8s-seg.pt": "small"}
     configs=["/mnt/c/Users/haddo/yolov8/ultralytics/yolo/cfg/da.yaml"]
     # configs=["/mnt/c/Users/haddo/yolov8/ultralytics/yolo/cfg/da.yaml","/mnt/c/Users/haddo/yolov8/ultralytics/yolo/cfg/no_da.yaml"]
 
@@ -128,7 +128,7 @@ if do_train:
                         
                         run_name=os.path.join(project_name,str(ds_v)+"_species","lr_"+str(lr),da,"fold_"+str(i)+"_seed_"+str(seed))
         
-                        task = Task.init(project_name='PEIXOS_16_nano', task_name=run_name)
+                        task = Task.init(project_name='PEIXOS_16_small', task_name=run_name)
                         
                         train_instruction = "yolo segment train cfg={} data={} model={} epochs=200 imgsz=640 seed={}  lr0={} project={} name={}"
                         train_instruction_formatted=train_instruction.format(config,dataset_yaml,model_size,str(seed),str(lr),project_name,run_name) 
