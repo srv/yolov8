@@ -101,7 +101,7 @@ if do_train:
 
     lrs = [0.03, 0.01, 0.0033, 0.00011, 0.00037]
     # model_sizes = {"yolov8m-seg.pt": "medium", "yolov8l-seg.pt": "large"}
-    model_sizes = {"yolov8n-seg.pt": "nano"}
+    model_sizes = {"yolov8m-seg.pt": "medium"}
     configs=["/mnt/c/Users/haddo/yolov8/ultralytics/yolo/cfg/da.yaml"]
     
     batch = 12
@@ -138,7 +138,7 @@ if do_train:
                         
                         run_name=os.path.join(project_name,str(ds_v)+"_species","lr_"+str(lr),da,"fold_"+str(i)+"_seed_"+str(seed))
         
-                        task = Task.init(project_name='PEIXOS_16_nano', task_name=run_name+"_validation")
+                        task = Task.init(project_name='PEIXOS_16_medium', task_name=run_name+"_validation")
                         
                         print("EVALUATING MODEL: ",run_name)
                         model = YOLO(run_name+'/weights/best.pt',)  # pretrained YOLOv8n model
@@ -160,7 +160,7 @@ if do_train:
         pandas_dict={"run_name":runs_names,"box_map_50_95":box_map_50_95,"box_map_50":box_map_50,"box_map_75":box_map_75,
                      "seg_map_50_95":seg_map_50_95,"seg_map_50":seg_map_50,"seg_map_75":seg_map_75}
         df = pd.DataFrame.from_dict(pandas_dict)
-        pd_path="/mnt/c/Users/haddo/yolov8/validation_metrics.csv" 
+        pd_path="/mnt/c/Users/haddo/yolov8/validation_metrics_medium.csv" 
         df.to_csv(pd_path) 
 
 
