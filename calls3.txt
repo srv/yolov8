@@ -38,3 +38,5 @@ yolo segment train cfg=/mnt/c/Users/haddo/yolov8/ultralytics/yolo/cfg/da.yaml da
 yolo segment val data=/mnt/c/Users/haddo/yolov8/datasets/Instance_con_SAM_11/fish_11.yaml model=/mnt/c/Users/haddo/yolov8/peixos//large/11_species/lr_0.00037/da/fold_3_seed_42/weights/best.pt  project=/mnt/c/Users/haddo/yolov8/peixos//large/ name=/mnt/c/Users/haddo/yolov8/peixos//large/11_species/lr_0.00037/da/fold_3_seed_42/validation split=val
 yolo segment val data=/mnt/c/Users/haddo/yolov8/datasets/Instance_con_SAM_11/fish_11.yaml model=/mnt/c/Users/haddo/yolov8/peixos//large/11_species/lr_0.00037/da/fold_3_seed_42/weights/best.pt project=/mnt/c/Users/haddo/yolov8/peixos//large/ name=/mnt/c/Users/haddo/yolov8/peixos//large/11_species/lr_0.00037/da/fold_3_seed_42/test split=test------------------------------------------------------------- 
 
+yolo segment train  data=/mnt/c/Users/haddo/yolov8/datasets/PLOME_IS_ANTONIO/data.yaml model=yolov8m-seg.pt epochs=200 imgsz=640 seed=42  lr0=0.01 \
+project=/mnt/c/Users/haddo/yolov8/test/ batch=64
