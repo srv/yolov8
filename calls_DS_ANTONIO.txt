@@ -122,3 +122,15 @@ yolo segment train data=/mnt/c/Users/haddo/yolov8/datasets/PLOME_IS_ANTONIO//dat
 yolo segment val data=/mnt/c/Users/haddo/yolov8/datasets/PLOME_IS_ANTONIO//data.yaml model=/mnt/c/Users/haddo/yolov8/peixos//small/lr_0.00037/weights/best.pt  project=/mnt/c/Users/haddo/yolov8/peixos//small/ name=/mnt/c/Users/haddo/yolov8/peixos//small/lr_0.00037/validation split=val
 ------------------------------------------------------------- 
 
+yolo segment train data=/mnt/c/Users/Uib/Documents/yolov8/peces_antonio/dataset//data.yaml model=yolov8n-seg.pt epochs=300 imgsz=640 seed=42  lr0=0.03 project=/mnt/c/Users/Uib/Documents/yolov8/peces_antonio//nano/ name=/mnt/c/Users/Uib/Documents/yolov8/peces_antonio//nano/lr_0.03/fold_1 patience=20
+yolo segment val data=/mnt/c/Users/Uib/Documents/yolov8/peces_antonio/dataset//data.yaml model=/mnt/c/Users/Uib/Documents/yolov8/peces_antonio//nano/lr_0.03/fold_1/weights/best.pt  project=/mnt/c/Users/Uib/Documents/yolov8/peces_antonio//nano/ name=/mnt/c/Users/Uib/Documents/yolov8/peces_antonio//nano/lr_0.03/fold_1/validation split=val
+------------------------------------------------------------- 
+
+yolo segment train data=/mnt/c/Users/Uib/Documents/yolov8/peces_antonio/dataset//data.yaml model=yolov8n-seg.pt epochs=300 imgsz=640 seed=42  lr0=0.01 project=/mnt/c/Users/Uib/Documents/yolov8/peces_antonio//nano/ name=/mnt/c/Users/Uib/Documents/yolov8/peces_antonio//nano/lr_0.01/fold_1 patience=20
+yolo segment val data=/mnt/c/Users/Uib/Documents/yolov8/peces_antonio/dataset//data.yaml model=/mnt/c/Users/Uib/Documents/yolov8/peces_antonio//nano/lr_0.01/fold_1/weights/best.pt  project=/mnt/c/Users/Uib/Documents/yolov8/peces_antonio//nano/ name=/mnt/c/Users/Uib/Documents/yolov8/peces_antonio//nano/lr_0.01/fold_1/validation split=val
+------------------------------------------------------------- 
+
+yolo segment train data=/mnt/c/Users/Uib/Documents/yolov8/peces_antonio/dataset//data.yaml model=yolov8n-seg.pt epochs=300 imgsz=640 seed=42  lr0=0.0033 project=/mnt/c/Users/Uib/Documents/yolov8/peces_antonio//nano/ name=/mnt/c/Users/Uib/Documents/yolov8/peces_antonio//nano/lr_0.0033/fold_1 patience=20
+yolo segment val data=/mnt/c/Users/Uib/Documents/yolov8/peces_antonio/dataset//data.yaml model=/mnt/c/Users/Uib/Documents/yolov8/peces_antonio//nano/lr_0.0033/fold_1/weights/best.pt  project=/mnt/c/Users/Uib/Documents/yolov8/peces_antonio//nano/ name=/mnt/c/Users/Uib/Documents/yolov8/peces_antonio//nano/lr_0.0033/fold_1/validation split=val
+------------------------------------------------------------- 
+

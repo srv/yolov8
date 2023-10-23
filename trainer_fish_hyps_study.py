@@ -9,8 +9,8 @@ from natsort import natsorted
 import random
 import time
 
-path_to_project = "/mnt/c/Users/haddo/yolov8/peixos/"
-path_to_dataset = "/mnt/c/Users/haddo/yolov8/datasets/PLOME_IS_ANTONIO/"
+path_to_project = "/mnt/c/Users/Uib/Documents/yolov8/peces_antonio/"
+path_to_dataset = "/mnt/c/Users/Uib/Documents/yolov8/peces_antonio/dataset/"
 tmp_suffixes = ["train/images/", "train/labels/", "valid/images", "valid/labels"]
 
 
@@ -79,21 +79,27 @@ for v in ds_versions:
 if do_train:
     # 2 Instructions
     # train_instruction = "yolo segment train cfg={} data={} model={} epochs=200 imgsz=640 seed={}  lr0={} project={} name={}"
-    train_instruction = "yolo segment train data={} model={} epochs=200 imgsz=640 seed={}  lr0={} project={} name={} seed=42"
-    val_instruction = "yolo segment val data={} model={}  project={} name={} split=val"
+    # train_instruction = "yolo segment train data={} model={} epochs=200 imgsz=640 seed={}  lr0={} project={} name={} seed=42"
+    # val_instruction = "yolo segment val data={} model={}  project={} name={} split=val"
     # test_instruction = "yolo segment val data={} model={} project={} name={} split=test"
 
-    lrs = [0.03, 0.01, 0.0033, 0.00011, 0.00037]
-    # model_sizes = {"yolov8m-seg.pt": "medium", "yolov8l-seg.pt": "large"}
+    # lrs = [0.03, 0.01, 0.0033, 0.00011, 0.00037]
+    lrs = [0]
 
-    model_sizes = {"yolov8n-seg.pt": "nano","yolov8s-seg.pt": "small"}
+    model_sizes = {
+        "n": "nano",
+        "s": "small",
+        "m": "medium",
+        "l": "large",
+        "x": "extra_large"
+    }
 
     # configs=["/mnt/c/Users/haddo/yolov8/ultralytics/yolo/cfg/da.yaml"]
     # configs=["/mnt/c/Users/haddo/yolov8/ultralytics/yolo/cfg/da.yaml","/mnt/c/Users/haddo/yolov8/ultralytics/yolo/cfg/no_da.yaml"]
-    batch_sizes=[8,16,32]
+    batch_sizes=[8]
 
     
-    k = 1  # num folds
+    k = 5  # num folds
     for batch in batch_sizes:
         # Tidy train-val splits from k-fold
         ds_path = path_to_dataset  + "/folds/"
@@ -104,56 +110,57 @@ if do_train:
         # create the k fold iteration (here to avoid doing it every time)
         dataset_yaml = path_to_dataset +  "/data.yaml"
         # # k fold 
-        # for i in range(1, k+1):
-        #     for f in range(1, k+1):
-        #         if f == i:
-        #             print("copying val files to: ", ds_path + "/valid/")
-        #             for img, lbl in zip(glob.glob(ds_path + "/" + str(f) + "/images/*"), glob.glob(ds_path + "/" + str(f) + "/labels/*")):
-        #                 shutil.copyfile(img, ds_path + "/valid/images/" + img.split("/")[-1])
-        #                 shutil.copyfile(lbl, ds_path + "/valid/labels/" + lbl.split("/")[-1])
-        #         else:
-        #             print("copying train files to ", ds_path + "/train/")
-        #             for img, lbl in zip(glob.glob(ds_path + "/" + str(f) + "/images/*"), glob.glob(ds_path + "/" + str(f) + "/labels/*")):
-        #                 shutil.copyfile(img, ds_path + "/train/images/" + img.split("/")[-1])
-        #                 shutil.copyfile(lbl, ds_path + "/train/labels/" + lbl.split("/")[-1])
+        for i in range(1, k+1):
+            for f in range(1, k+1):
+                if f == i:
+                    print("copying val files to: ", ds_path + "/valid/")
+                    for img, lbl in zip(glob.glob(ds_path + "/" + str(f) + "/images/*"), glob.glob(ds_path + "/" + str(f) + "/labels/*")):
+                        shutil.copyfile(img, ds_path + "/valid/images/" + img.split("/")[-1])
+                        shutil.copyfile(lbl, ds_path + "/valid/labels/" + lbl.split("/")[-1])
+                else:
+                    print("copying train files to ", ds_path + "/train/")
+                    for img, lbl in zip(glob.glob(ds_path + "/" + str(f) + "/images/*"), glob.glob(ds_path + "/" + str(f) + "/labels/*")):
+                        shutil.copyfile(img, ds_path + "/train/images/" + img.split("/")[-1])
+                        shutil.copyfile(lbl, ds_path + "/train/labels/" + lbl.split("/")[-1])
 
             
-        # seed=random.randint(0,100)
-        for model_size in model_sizes.keys():
-            project_name=path_to_project+"/"+model_sizes[model_size] +"/"  
-            for lr in lrs:
-                                    
-                # run_name=os.path.join(project_name,"lr_"+str(lr),"fold_"+str(i))
-                run_name=os.path.join(project_name,"lr_"+str(lr))
+            # seed=random.randint(0,100)
+            for model_size in model_sizes.keys():
+                project_name=path_to_project+"/"+model_sizes[model_size] +"/"  
+                for lr in lrs:
+                                        
+                    run_name=os.path.join(project_name,"lr_"+str(lr),"fold_"+str(i))
+                    # run_name=os.path.join(project_name,"lr_"+str(lr))
+                    
+                    instruction = f"python ./peces_antonio/clearml_log_yolov8.py --project_name 'Peces' --task_name {run_name} \
+                        --model_size {model_size} --dataset {dataset_yaml} \
+                            --optimizer 'SGD' --epochs 300 --batch {batch} --patience 20 --yolo_proj {project_name} --yolo_name {run_name} \
+                                --seed {seed}"
+                    # task = Task.init(project_name='Peces', task_name=run_name)
+                    # task.set_parameter('model_variant', model_sizes[model_size])
 
-                task = Task.init(project_name='PEIXOS_ANTONIO', task_name=run_name)
-                
-                train_instruction = "yolo segment train data={} model={} epochs=300 imgsz=640 seed=42  lr0={} project={} name={} patience=20"
-                train_instruction_formatted=train_instruction.format(dataset_yaml,model_size,str(lr),project_name,run_name) 
-                
-                val_instruction_formatted =val_instruction.format(dataset_yaml,os.path.join(project_name,run_name,"weights/"+"best.pt"),project_name,run_name+"/validation") 
-                # test_instruction_formatted =test_instruction.format(dataset_yaml,os.path.join(project_name,run_name,"weights/"+"best.pt"),project_name,run_name+"/test") 
-                
-                with open('/mnt/c/Users/haddo/yolov8/calls_DS_ANTONIO.txt', 'a+') as f:
-                    f.write(train_instruction_formatted)
-                    f.write("\n")
-                    f.write(val_instruction_formatted)
-                    f.write("\n")
-                    # f.write(test_instruction_formatted)
-                    f.write("------------------------------------------------------------- \n")
-                    f.write("\n")
+                    
+                    # train_instruction = "yolo segment train data={} model={} epochs=300 imgsz=640 seed=42  lr0={} project={} name={} patience=20"
+                    # train_instruction_formatted=train_instruction.format(dataset_yaml,model_size,str(lr),project_name,run_name) 
+                    
+                    # val_instruction_formatted =val_instruction.format(dataset_yaml,os.path.join(project_name,run_name,"weights/"+"best.pt"),project_name,run_name+"/validation") 
+                    # test_instruction_formatted =test_instruction.format(dataset_yaml,os.path.join(project_name,run_name,"weights/"+"best.pt"),project_name,run_name+"/test") 
+                    
+                    with open('/mnt/c/Users/Uib/Documents/yolov8/calls_peces_antonio.txt', 'a+') as f:
+                        f.write(instruction)
+                        # f.write(test_instruction_formatted)
+                        f.write("------------------------------------------------------------- \n")
+                        f.write("\n")
 
-                print(train_instruction_formatted)
-                # Use the formatted instructions
-                os.system(train_instruction_formatted)
-                os.system(val_instruction_formatted)
-                # os.system(test_instruction_formatted)
-                task.close()
-                time.sleep(300)
+                    print(instruction)
+                    # Use the formatted instructions
+                    os.system(instruction)
+
+                    time.sleep(300)
 
 
 
-path_to_project = "/mnt/c/Users/haddo/yolov8/peixos/"
-path_to_dataset = "/mnt/c/Users/haddo/yolov8/datasets/PLOME_IS_ANTONIO/test_sizes"
-dataset_yaml = path_to_dataset +  "/data.yaml"
-train_instruction = "yolo segment train data= model={} epochs=200 imgsz=640 seed=42 project={} name={} seed=42"
+# path_to_project = "/mnt/c/Users/haddo/yolov8/peixos/"
+# path_to_dataset = "/mnt/c/Users/haddo/yolov8/datasets/PLOME_IS_ANTONIO/test_sizes"
+# dataset_yaml = path_to_dataset +  "/data.yaml"
+# train_instruction = "yolo segment train data= model={} epochs=200 imgsz=640 seed=42 project={} name={} seed=42"

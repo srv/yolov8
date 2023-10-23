@@ -1,6 +1,6 @@
 
 import os
-path_to_project = "/mnt/c/Users/haddo/yolov8/peixos/"
+path_to_project = "/mnt/c/Users/Uib/yolov8/peixos/"
 path_to_dataset_base = "/mnt/c/Users/haddo/yolov8/datasets/PLOME_IS_ANTONIO/"
 
 model = "yolov8s-seg.pt"
