@@ -129,6 +129,6 @@ task.connect_configuration(train_args['data'], 'Dataset yaml')
 
 result = model.train(**train_args)
 
-model.val()
+model.val(project=yolo_proj, name=f'{yolo_name}_val')
 
 task.close()
