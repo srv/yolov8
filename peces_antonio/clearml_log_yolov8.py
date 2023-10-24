@@ -27,7 +27,7 @@ parser.add_argument('--pre_trained', help='Wheter to use YOLO pretrained weights
 parser.add_argument('--config', help='config.yaml path', default=None)
 parser.add_argument('--dataset', help='dataset.yaml path')
 parser.add_argument('--epochs', help='Number of epochs to train the model', type=int)
-parser.add_argument('--optimizer', help='Optimizer to use during training')
+parser.add_argument('--optimizer', help='Optimizer to use during training', default=None)
 parser.add_argument('--batch', help='Batch size during training', type=int)
 parser.add_argument('--patience', help='Patience during training', default=None, type=int)
 parser.add_argument('--yolo_proj', help='YOLOv8 project name where train will be saved')
@@ -113,6 +113,9 @@ train_args =  dict(
     name=yolo_name,
     seed=seed
 )
+
+if optimizer is not None: 
+    train_args['optimizer'] = optimizer
 if config is not None:
     train_args['cfg'] = config
     task.connect_configuration(train_args['cfg'], 'Config_file')

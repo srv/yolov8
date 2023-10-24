@@ -8,6 +8,7 @@ from clearml import Task
 from natsort import natsorted
 import random
 import time
+from datetime import datetime, timedelta
 
 path_to_project = "/mnt/c/Users/Uib/Documents/yolov8/peces_antonio/"
 path_to_dataset = "/mnt/c/Users/Uib/Documents/yolov8/peces_antonio/dataset/"
@@ -129,13 +130,16 @@ if do_train:
                 project_name=path_to_project+"/"+model_sizes[model_size] +"/"  
                 for lr in lrs:
                                         
-                    run_name=os.path.join(project_name,"lr_"+str(lr),"fold_"+str(i))
+                    run_name=os.path.join(project_name,"fold_"+str(i))
                     # run_name=os.path.join(project_name,"lr_"+str(lr))
                     
-                    instruction = f"python ./peces_antonio/clearml_log_yolov8.py --project_name 'Peces' --task_name {run_name} \
+                    instruction = f"python ./peces_antonio/clearml_log_yolov8.py --project_name 'Pecesv8' --task_name {run_name} \
                         --model_size {model_size} --dataset {dataset_yaml} \
-                            --optimizer 'SGD' --epochs 300 --batch {batch} --patience 20 --yolo_proj {project_name} --yolo_name {run_name} \
+                            --epochs 300 --batch {batch} --patience 20 --yolo_proj {project_name} --yolo_name {run_name} \
                                 --seed {seed}"
+                    
+                        # Also available to add --config, --lr, --optimizer
+
                     # task = Task.init(project_name='Peces', task_name=run_name)
                     # task.set_parameter('model_variant', model_sizes[model_size])
 
@@ -146,17 +150,20 @@ if do_train:
                     # val_instruction_formatted =val_instruction.format(dataset_yaml,os.path.join(project_name,run_name,"weights/"+"best.pt"),project_name,run_name+"/validation") 
                     # test_instruction_formatted =test_instruction.format(dataset_yaml,os.path.join(project_name,run_name,"weights/"+"best.pt"),project_name,run_name+"/test") 
                     
-                    with open('/mnt/c/Users/Uib/Documents/yolov8/calls_peces_antonio.txt', 'a+') as f:
+                    with open('/mnt/c/Users/Uib/Documents/yolov8/peces_antonio/calls_peces_antonio.txt', 'a+') as f:
                         f.write(instruction)
-                        # f.write(test_instruction_formatted)
+                        f.write("\n")
                         f.write("------------------------------------------------------------- \n")
                         f.write("\n")
 
                     print(instruction)
                     # Use the formatted instructions
                     os.system(instruction)
-
-                    time.sleep(300)
+                    
+                    print('Toy durmiendo ._. zzZ')
+                    sleep_time = 5 #min
+                    print(f"Me despierto a las {(datetime.now() + timedelta(minutes=sleep_time)).strftime('%H:%M:%S')} :(")
+                    time.sleep(sleep_time*60)
 
 
 
