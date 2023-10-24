@@ -31,6 +31,7 @@ do_train = True
 folds_created = True
 k = 5
 seed=42
+random.seed(seed)
 
 for v in ds_versions:
 
@@ -57,6 +58,7 @@ for v in ds_versions:
 
         # 1.3 Copy images and labels into folds
         init_idx = 0
+        
         random.shuffle(images)
         final_idx = int(len(images) / k) + 1  # the last elem (b) is not included in [a:b] function
         print("\n num of train images is: ", len(images), "\n")
