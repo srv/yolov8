@@ -105,7 +105,6 @@ model.add_callback('on_fit_epoch_end', on_fit_epoch_end) # Add callback to uploa
 
 train_args =  dict(
     data=dataset,
-    optimizer=optimizer,
     epochs=epochs,
     patience=patience,
     batch=batch,

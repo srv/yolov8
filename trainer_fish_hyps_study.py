@@ -135,7 +135,7 @@ if do_train:
                     
                     instruction = f"python ./peces_antonio/clearml_log_yolov8.py --project_name 'Pecesv8' --task_name {run_name} \
                         --model_size {model_size} --dataset {dataset_yaml} \
-                            --epochs 300 --batch {batch} --patience 20 --yolo_proj {project_name} --yolo_name {run_name} \
+                            --epochs 300 --batch {batch} --patience 20 --yolo_proj {project_name} --yolo_name fold_{i} \
                                 --seed {seed}"
                     
                         # Also available to add --config, --lr, --optimizer
