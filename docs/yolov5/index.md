@@ -1,7 +1,7 @@
 ---
 comments: true
-description: Explore the extensive functionalities of the YOLOv5 object detection model, renowned for its speed and precision. Dive into our comprehensive guide for installation, architectural insights, use-cases, and more to unlock the full potential of YOLOv5 for your computer vision applications.
-keywords: ultralytics, yolov5, object detection, deep learning, pytorch, computer vision, tutorial, architecture, documentation, frameworks, real-time, model training, multicore, multithreading
+description: Deep dive into Ultralytics' YOLOv5. Learn about object detection model - YOLOv5, how to train it on custom data, multi-GPU training and more.
+keywords: Ultralytics, YOLOv5, Deep Learning, Object detection, PyTorch, Tutorial, Multi-GPU training, Custom data training
 ---
 
 # Comprehensive Guide to Ultralytics YOLOv5
@@ -9,7 +9,7 @@ keywords: ultralytics, yolov5, object detection, deep learning, pytorch, compute
 <div align="center">
   <p>
     <a href="https://ultralytics.com/yolov5" target="_blank">
-    <img width="100%" src="https://raw.githubusercontent.com/ultralytics/assets/main/yolov5/v70/splash.png"></a>
+    <img width="100%" src="https://raw.githubusercontent.com/ultralytics/assets/main/yolov5/v70/splash.png" alt="Ultralytics YOLOv5 v7.0 banner"></a>
   </p>
 
 <a href="https://github.com/ultralytics/yolov5/actions/workflows/ci-testing.yml"><img src="https://github.com/ultralytics/yolov5/actions/workflows/ci-testing.yml/badge.svg" alt="YOLOv5 CI"></a>
@@ -53,10 +53,10 @@ Here's a compilation of comprehensive tutorials that will guide you through diff
 
 YOLOv5 is designed to be run in the following up-to-date, verified environments, with all dependencies (including [CUDA](https://developer.nvidia.com/cuda)/[CUDNN](https://developer.nvidia.com/cudnn), [Python](https://www.python.org/), and [PyTorch](https://pytorch.org/)) pre-installed:
 
-- **Notebooks** with free
-  GPU: <a href="https://bit.ly/yolov5-paperspace-notebook"><img src="https://assets.paperspace.io/img/gradient-badge.svg" alt="Run on Gradient"></a> <a href="https://colab.research.google.com/github/ultralytics/yolov5/blob/master/tutorial.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"></a> <a href="https://www.kaggle.com/ultralytics/yolov5"><img src="https://kaggle.com/static/images/open-in-kaggle.svg" alt="Open In Kaggle"></a>
+- **Notebooks** with free GPU: <a href="https://bit.ly/yolov5-paperspace-notebook"><img src="https://assets.paperspace.io/img/gradient-badge.svg" alt="Run on Gradient"></a> <a href="https://colab.research.google.com/github/ultralytics/yolov5/blob/master/tutorial.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"></a> <a href="https://www.kaggle.com/ultralytics/yolov5"><img src="https://kaggle.com/static/images/open-in-kaggle.svg" alt="Open In Kaggle"></a>
 - **Google Cloud** Deep Learning VM. See [GCP Quickstart Guide](environments/google_cloud_quickstart_tutorial.md)
 - **Amazon** Deep Learning AMI. See [AWS Quickstart Guide](environments/aws_quickstart_tutorial.md)
+- **Azure** Azure Machine Learning. See [AzureML Quickstart Guide](environments/azureml_quickstart_tutorial.md)
 - **Docker Image**. See [Docker Quickstart Guide](environments/docker_image_quickstart_tutorial.md) <a href="https://hub.docker.com/r/ultralytics/yolov5"><img src="https://img.shields.io/docker/pulls/ultralytics/yolov5?logo=docker" alt="Docker Pulls"></a>
 
 ## Status
@@ -85,6 +85,6 @@ This badge signifies that all [YOLOv5 GitHub Actions](https://github.com/ultraly
   <a href="https://www.instagram.com/ultralytics/" style="text-decoration:none;">
     <img src="https://github.com/ultralytics/assets/raw/main/social/logo-social-instagram.png" width="3%" alt="" /></a>
   <img src="https://github.com/ultralytics/assets/raw/main/social/logo-transparent.png" width="3%" alt="" />
-  <a href="https://discord.gg/2wNGbc6g9X" style="text-decoration:none;">
+  <a href="https://ultralytics.com/discord" style="text-decoration:none;">
     <img src="https://github.com/ultralytics/assets/blob/main/social/logo-social-discord.png" width="3%" alt="" /></a>
 </div>

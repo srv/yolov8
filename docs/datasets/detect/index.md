@@ -1,7 +1,7 @@
 ---
 comments: true
-description: Explore supported dataset formats for training YOLO detection models, including Ultralytics YOLO and COCO. This guide covers various dataset formats and their specific configurations for effective object detection training.
-keywords: object detection, datasets, formats, Ultralytics YOLO, COCO, label format, dataset file format, dataset definition, YOLO dataset, model configuration
+description: Navigate through supported dataset formats, methods to utilize them and how to add your own datasets. Get insights on porting or converting label formats.
+keywords: Ultralytics, YOLO, datasets, object detection, dataset formats, label formats, data conversion
 ---
 
 # Object Detection Datasets Overview
@@ -32,17 +32,17 @@ names:
   79: toothbrush
 ```
 
-Labels for this format should be exported to YOLO format with one `*.txt` file per image. If there are no objects in an image, no `*.txt` file is required. The `*.txt` file should be formatted with one row per object in `class x_center y_center width height` format. Box coordinates must be in **normalized xywh** format (from 0 - 1). If your boxes are in pixels, you should divide `x_center` and `width` by image width, and `y_center` and `height` by image height. Class numbers should be zero-indexed (start with 0).
+Labels for this format should be exported to YOLO format with one `*.txt` file per image. If there are no objects in an image, no `*.txt` file is required. The `*.txt` file should be formatted with one row per object in `class x_center y_center width height` format. Box coordinates must be in **normalized xywh** format (from 0 to 1). If your boxes are in pixels, you should divide `x_center` and `width` by image width, and `y_center` and `height` by image height. Class numbers should be zero-indexed (start with 0).
 
-<p align="center"><img width="750" src="https://user-images.githubusercontent.com/26833433/91506361-c7965000-e886-11ea-8291-c72b98c25eec.jpg"></p>
+<p align="center"><img width="750" src="https://user-images.githubusercontent.com/26833433/91506361-c7965000-e886-11ea-8291-c72b98c25eec.jpg" alt="Example labelled image"></p>
 
 The label file corresponding to the above image contains 2 persons (class `0`) and a tie (class `27`):
 
-<p align="center"><img width="428" src="https://user-images.githubusercontent.com/26833433/112467037-d2568c00-8d66-11eb-8796-55402ac0d62f.png"></p>
+<p align="center"><img width="428" src="https://user-images.githubusercontent.com/26833433/112467037-d2568c00-8d66-11eb-8796-55402ac0d62f.png" alt="Example label file"></p>
 
 When using the Ultralytics YOLO format, organize your training and validation images and labels as shown in the example below.
 
-<p align="center"><img width="700" src="https://user-images.githubusercontent.com/26833433/134436012-65111ad1-9541-4853-81a6-f19a3468b75f.png"></p>
+<p align="center"><img width="700" src="https://user-images.githubusercontent.com/26833433/134436012-65111ad1-9541-4853-81a6-f19a3468b75f.png" alt="Example dataset directory structure"></p>
 
 ## Usage
 
@@ -51,21 +51,21 @@ Here's how you can use these formats to train your model:
 !!! example ""
 
     === "Python"
-    
+
         ```python
         from ultralytics import YOLO
-        
+
         # Load a model
         model = YOLO('yolov8n.pt')  # load a pretrained model (recommended for training)
 
         # Train the model
-        model.train(data='coco128.yaml', epochs=100, imgsz=640)
+        results = model.train(data='coco8.yaml', epochs=100, imgsz=640)
         ```
     === "CLI"
-    
+
         ```bash
         # Start training from a pretrained *.pt model
-        yolo detect train data=coco128.yaml model=yolov8n.pt epochs=100 imgsz=640
+        yolo detect train data=coco8.yaml model=yolov8n.pt epochs=100 imgsz=640
         ```
 
 ## Supported Datasets
@@ -77,6 +77,7 @@ Here is a list of the supported datasets and a brief description for each:
 - [**COCO8**](./coco8.md): A smaller subset of the COCO dataset, COCO8 is more lightweight and faster to train.
 - [**GlobalWheat2020**](./globalwheat2020.md): A dataset containing images of wheat heads for the Global Wheat Challenge 2020.
 - [**Objects365**](./objects365.md): A large-scale object detection dataset with 365 object categories and 600k images, aimed at advancing object detection research.
+- [**OpenImagesV7**](./open-images-v7.md): A comprehensive dataset by Google with 1.7M train images and 42k validation images.
 - [**SKU-110K**](./sku-110k.md): A dataset containing images of densely packed retail products, intended for retail environment object detection.
 - [**VisDrone**](./visdrone.md): A dataset focusing on drone-based images, containing various object categories like cars, pedestrians, and cyclists.
 - [**VOC**](./voc.md): PASCAL VOC is a popular object detection dataset with 20 object categories including vehicles, animals, and furniture.
@@ -92,11 +93,15 @@ If you have your own dataset and would like to use it for training detection mod
 
 You can easily convert labels from the popular COCO dataset format to the YOLO format using the following code snippet:
 
-```python
-from ultralytics.yolo.data.converter import convert_coco
+!!! example ""
 
-convert_coco(labels_dir='../coco/annotations/')
-```
+    === "Python"
+
+        ```python
+        from ultralytics.data.converter import convert_coco
+
+        convert_coco(labels_dir='path/to/coco/annotations/')
+        ```
 
 This conversion tool can be used to convert the COCO dataset or any dataset in the COCO format to the Ultralytics YOLO format.
 
