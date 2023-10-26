@@ -31,6 +31,7 @@ do_train = True
 folds_created = False
 k = 5
 seed=42
+check_imgs_array,check_lbls_array=[],[]
 random.seed(seed)
 
 for v in ds_versions:
@@ -68,14 +69,19 @@ for v in ds_versions:
             print("Copying images to the ", i, "th fold")
             print(" init idx is: ", init_idx, "\n", "final idx is: ", final_idx, "\n")
 
-            for sample in images[init_idx:final_idx]:
+            for sample_idx, sample in enumerate(images[init_idx:final_idx]):
                 shutil.copyfile(sample, folds_path + "/" + str(i) + "/images/" + sample.split("/")[-1])
-                shutil.copyfile(train_val_data[sample], folds_path + "/" + str(i) + "/labels/" + train_val_data[sample].split("/")[-1])
+                shutil.copyfile(train_val_data[sample], folds_path + "/" + str(i) + "/labels/" + train_val_data[sample].split("/")[-1])                
+                check_imgs_array.append(sample)
+                check_lbls_array.append(train_val_data[sample],)
 
             init_idx = final_idx
             final_idx = final_idx + int(len(images) / k) + 1
             if i == k - 1:
                 final_idx = len(images)
+
+if len(set(list(check_imgs_array)))!=len(check_imgs_array) or len(set(list(check_lbls_array)))!=len(check_lbls_array):
+    print("WARNING: SOMETHING HAS BEEN COPIED MORE THAN ONE TIMEEEE!!!!!!!!!!!!!!")
 
 # FOLDS CREATED
 
