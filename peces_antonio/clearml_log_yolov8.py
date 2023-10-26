@@ -55,30 +55,41 @@ seed = args.seed
 
 def on_fit_epoch_end(trainer):
     # Log loss data to ClearML
-    for loss_type in ('box_loss', 'cls_loss', 'dfl_loss'):
+    for loss_type in ('box_loss', 'cls_loss', 'dfl_loss', 'seg_loss'):
         for split, dict in zip(('train', 'val'), (trainer.label_loss_items(trainer.tloss), trainer.metrics)):
             key = f'{split}/{loss_type}'
             if key in dict.keys():
                 Logger.current_logger().report_scalar(
                     f'{loss_type}',
                     key,
-                    iteration=trainer.epoch + 1,
+                    iteration=trainer.epoch,
                     value=dict[key]
                 )
 
-    # Log F1 Score data to ClearML
-    if 'metrics/precision(B)' in trainer.metrics.keys() and 'metrics/recall(B)' in trainer.metrics.keys():
-        precision = trainer.metrics['metrics/precision(B)']
-        recall = trainer.metrics['metrics/recall(B)']
-        f1 = 2*(precision*recall)/(precision + recall)
-        Logger.current_logger().report_scalar(
-            'F1-Score',
-            'F1',
-            iteration=trainer.epoch + 1,
-            value=f1
-        )
+    for key in trainer.metrics.keys(): 
+        if 'metrics' in key:
+            metric_type = (key.split('/')[1]).split('(')[0]
+            Logger.current_logger().report_scalar(
+                metric_type,
+                key,
+                iteration=trainer.epoch,
+                value=trainer.metrics[key]
+            ) 
 
-    # Log fitness values to ClearML (it is also logged in train graphic)
+    # Log F1 Score data to ClearML
+    for tipo in ('B', 'M'):
+        if f'metrics/precision({tipo})' in trainer.metrics.keys() and f'metrics/recall({tipo})' in trainer.metrics.keys():
+            precision = trainer.metrics[f'metrics/precision({tipo})']
+            recall = trainer.metrics[f'metrics/recall({tipo})']
+            f1 = 2*(precision*recall)/(precision + recall)
+            Logger.current_logger().report_scalar(
+                'F1-Score',
+                f'F1({tipo})',
+                iteration=trainer.epoch,
+                value=f1
+            )
+
+    # Log fitness values to ClearML (it is also logged in 'train' default graphic)
     Logger.current_logger().report_scalar(
         'Fitness',
         'Fitness function',
