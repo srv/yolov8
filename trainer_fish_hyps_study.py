@@ -75,16 +75,11 @@ for v in ds_versions:
             init_idx = final_idx
             final_idx = final_idx + int(len(images) / k) + 1
             if i == k - 1:
-                final_idx = len(images) - 1
+                final_idx = len(images)
 
 # FOLDS CREATED
 
 if do_train:
-    # 2 Instructions
-    # train_instruction = "yolo segment train cfg={} data={} model={} epochs=200 imgsz=640 seed={}  lr0={} project={} name={}"
-    # train_instruction = "yolo segment train data={} model={} epochs=200 imgsz=640 seed={}  lr0={} project={} name={} seed=42"
-    # val_instruction = "yolo segment val data={} model={}  project={} name={} split=val"
-    # test_instruction = "yolo segment val data={} model={} project={} name={} split=test"
 
     # lrs = [0.03, 0.01, 0.0033, 0.00011, 0.00037]
     lrs = [0]
@@ -145,13 +140,6 @@ if do_train:
                     # task = Task.init(project_name='Peces', task_name=run_name)
                     # task.set_parameter('model_variant', model_sizes[model_size])
 
-                    
-                    # train_instruction = "yolo segment train data={} model={} epochs=300 imgsz=640 seed=42  lr0={} project={} name={} patience=20"
-                    # train_instruction_formatted=train_instruction.format(dataset_yaml,model_size,str(lr),project_name,run_name) 
-                    
-                    # val_instruction_formatted =val_instruction.format(dataset_yaml,os.path.join(project_name,run_name,"weights/"+"best.pt"),project_name,run_name+"/validation") 
-                    # test_instruction_formatted =test_instruction.format(dataset_yaml,os.path.join(project_name,run_name,"weights/"+"best.pt"),project_name,run_name+"/test") 
-                    
                     with open('/mnt/c/Users/Uib/Documents/yolov8/peces_antonio/calls_peces_antonio.txt', 'a+') as f:
                         f.write(instruction)
                         f.write("\n")
@@ -166,10 +154,3 @@ if do_train:
                     sleep_time = 5 #min
                     print(f"Me despierto a las {(datetime.now() + timedelta(minutes=sleep_time)).strftime('%H:%M:%S')} :(")
                     time.sleep(sleep_time*60)
-
-
-
-# path_to_project = "/mnt/c/Users/haddo/yolov8/peixos/"
-# path_to_dataset = "/mnt/c/Users/haddo/yolov8/datasets/PLOME_IS_ANTONIO/test_sizes"
-# dataset_yaml = path_to_dataset +  "/data.yaml"
-# train_instruction = "yolo segment train data= model={} epochs=200 imgsz=640 seed=42 project={} name={} seed=42"
