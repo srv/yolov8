@@ -10,21 +10,23 @@ import random
 import time
 from datetime import datetime, timedelta
 
-path_to_project = "/mnt/c/Users/Uib/Documents/yolov8/peces_antonio/"
-path_to_dataset = "/mnt/c/Users/Uib/Documents/yolov8/peces_antonio/dataset/"
-txt_path = "/mnt/c/Users/Uib/Documents/yolov8/peces_antonio/calls_peces_antonio.txt"
-tmp_suffixes = ["train/images/", "train/labels/", "valid/images", "valid/labels"]
+path_to_project = r"C:\Users\Uib\yolov8\peces_antonio"
+path_to_dataset = r"C:\Users\Uib\yolov8\peces_antonio\dataset"
+txt_path = r"C:\Users\Uib\yolov8\peces_antonio\calls_peces_antonio.txt"
+tmp_splits = ["train","valid"]
+file_types = ["images","labels"]
 
 
 def create_empty_temp_dirs(base_path):
     print("Base path is:", base_path)
-    for tmp_suffix in tmp_suffixes:
-        tmp_dir = os.path.join(base_path, tmp_suffix)
-        if not os.path.exists(tmp_dir):
-            os.makedirs(tmp_dir)
-        else:
-            shutil.rmtree(tmp_dir)
-            os.makedirs(tmp_dir)
+    for tmp_split in tmp_splits:
+        for file_type in file_types:
+            tmp_dir = os.path.join(base_path, tmp_split,file_type)
+            if not os.path.exists(tmp_dir):
+                os.makedirs(tmp_dir)
+            else:
+                shutil.rmtree(tmp_dir)
+                os.makedirs(tmp_dir)
 
 
 ds_versions = [16]
@@ -42,10 +44,11 @@ for v in ds_versions:
         folders = ["train", "valid"]
         images, labels = [], []
         for folder in folders:
-            images.extend(glob.glob(path_to_dataset + "/" + folder + "/images/**"))
-            labels.extend(glob.glob(path_to_dataset + "/" + folder + "/labels/**"))
+            images.extend(glob.glob(os.path.join(path_to_dataset, folder, "images","**")))
+            labels.extend(glob.glob(os.path.join(path_to_dataset, folder, "labels","**")))
             if len(images) != len(labels):
                 print("WARNING!!!: THE NUMBER OF IMAGES AND LABELS DOES NOT MATCH")
+            print("num images : ",len(images))
 
         images = natsorted(images)
         labels = natsorted(labels)
@@ -54,8 +57,8 @@ for v in ds_versions:
         # 1.2 Create folds
         folds_path = os.path.join(path_to_dataset, "folds")
         for i in range(1, k+1):
-            os.makedirs(folds_path + "/" + str(i) + "/images", exist_ok=True)
-            os.makedirs(folds_path + "/" + str(i) + "/labels", exist_ok=True)
+            os.makedirs(os.path.join(folds_path, str(i), "images"), exist_ok=True)
+            os.makedirs(os.path.join(folds_path, str(i), "labels"), exist_ok=True)
 
         # 1.3 Copy images and labels into folds
         init_idx = 0
@@ -70,8 +73,8 @@ for v in ds_versions:
             print(" init idx is: ", init_idx, "\n", "final idx is: ", final_idx, "\n")
 
             for sample_idx, sample in enumerate(images[init_idx:final_idx]):
-                shutil.copyfile(sample, folds_path + "/" + str(i) + "/images/" + sample.split("/")[-1])
-                shutil.copyfile(train_val_data[sample], folds_path + "/" + str(i) + "/labels/" + train_val_data[sample].split("/")[-1])                
+                shutil.copyfile(sample, os.path.join(folds_path, str(i), "images", os.path.split(sample)[-1]))
+                shutil.copyfile(train_val_data[sample], os.path.join(folds_path, str(i), "labels", os.path.split(train_val_data[sample])[-1]))
                 check_imgs_array.append(sample)
                 check_lbls_array.append(train_val_data[sample],)
 
@@ -80,7 +83,7 @@ for v in ds_versions:
             if i == k - 1:
                 final_idx = len(images)
 
-if len(set(list(check_imgs_array)))!=len(check_imgs_array) or len(set(list(check_lbls_array)))!=len(check_lbls_array):
+if len(set(list(check_imgs_array))) != len(check_imgs_array) or len(set(list(check_lbls_array))) != len(check_lbls_array):
     print("WARNING: SOMETHING HAS BEEN COPIED MORE THAN ONE TIMEEEE!!!!!!!!!!!!!!")
 
 # FOLDS CREATED
@@ -98,38 +101,38 @@ if do_train:
     k = 5  # num folds
     for batch in batch_sizes:
         # Tidy train-val splits from k-fold
-        ds_path = path_to_dataset  + "/folds/"
+        ds_path = os.path.join(path_to_dataset, "folds")
         
         # create temp train and val (or empty them)
         print("DS PATH: ", ds_path)
         # create the k fold iteration (here to avoid doing it every time)
-        dataset_yaml = path_to_dataset +  "/data.yaml"
+        dataset_yaml = os.path.join(path_to_dataset, "data.yaml")
         # # k fold 
         for i in range(1, k+1):
             create_empty_temp_dirs(ds_path)
             for f in range(1, k+1):
                 if f == i:
-                    print("copying val files to: ", ds_path + "/valid/")
-                    for img, lbl in zip(glob.glob(ds_path + "/" + str(f) + "/images/*"), glob.glob(ds_path + "/" + str(f) + "/labels/*")):
-                        shutil.copyfile(img, ds_path + "/valid/images/" + img.split("/")[-1])
-                        shutil.copyfile(lbl, ds_path + "/valid/labels/" + lbl.split("/")[-1])
+                    print("copying val files to: ", os.path.join(ds_path, "valid"))
+                    for img, lbl in zip(glob.glob(os.path.join(ds_path, str(f), "images","*")), glob.glob(os.path.join(ds_path, str(f), "labels","*"))):
+                        shutil.copyfile(img, os.path.join(ds_path, "valid","images", os.path.split(img)[-1]))
+                        shutil.copyfile(lbl, os.path.join(ds_path, "valid","labels", os.path.split(lbl)[-1]))
                 else:
-                    print("copying train files to ", ds_path + "/train/")
-                    for img, lbl in zip(glob.glob(ds_path + "/" + str(f) + "/images/*"), glob.glob(ds_path + "/" + str(f) + "/labels/*")):
-                        shutil.copyfile(img, ds_path + "/train/images/" + img.split("/")[-1])
-                        shutil.copyfile(lbl, ds_path + "/train/labels/" + lbl.split("/")[-1])
+                    print("copying train files to ", os.path.join(ds_path, "train"))
+                    for img, lbl in zip(glob.glob(os.path.join(ds_path, str(f), "images","*")), glob.glob(os.path.join(ds_path, str(f), "labels","*"))):
+                        shutil.copyfile(img, os.path.join(ds_path, "train","images", os.path.split(img)[-1]))
+                        shutil.copyfile(lbl, os.path.join(ds_path, "train","labels", os.path.split(lbl)[-1]))
 
             for model_size in model_sizes.keys():
-                project_name=path_to_project+"/"+model_sizes[model_size] +"/"  
+                project_name = os.path.join(path_to_project, model_sizes[model_size])
                 for lr in lrs:
-                                        
-                    run_name=os.path.join(project_name,"fold_"+str(i))
-                    # run_name=os.path.join(project_name,"lr_"+str(lr))
+                    
+                    run_name = os.path.join(project_name, "fold_"+str(i))
+                    # run_name = os.path.join(project_name, "lr_"+str(lr))
                     
                     instruction = f"python ./peces_antonio/clearml_log_yolov8.py --project_name Pecesv8 --task_name {run_name} \
                         --model_size {model_size} --dataset {dataset_yaml} \
                             --epochs 300 --batch {batch} --patience 20 --yolo_proj {project_name} --yolo_name fold_{i} \
-                                --seed {seed} --optimizer 'SGD'"
+                                --seed {seed} --optimizer SGD"
                     
                         # Also available to add --config, --lr, --optimizer
 

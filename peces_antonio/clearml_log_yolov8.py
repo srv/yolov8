@@ -97,49 +97,53 @@ def on_fit_epoch_end(trainer):
         value=trainer.fitness
     )
 
+def main():
+    task = Task.init(
+        project_name=project_name,
+        task_name=task_name,
+        output_uri=True # To upload the model and weights to ClearML.
+    )
 
-task = Task.init(
-    project_name=project_name,
-    task_name=task_name,
-    output_uri=True # To upload the model and weights to ClearML.
-)
+    # model_size = 'x'
+    model_variant = f'yolov8{model_size}-seg'
+    task.set_parameter('model_variant', model_variant)
 
-# model_size = 'x'
-model_variant = f'yolov8{model_size}-seg'
-task.set_parameter('model_variant', model_variant)
+    if pretrained: 
+        model = YOLO(f'{model_variant}.pt')
+    else:
+        model = YOLO(f'{model_variant}.yaml')
+    model.add_callback('on_fit_epoch_end', on_fit_epoch_end) # Add callback to upload metrics data to ClearML
 
-if pretrained: 
-    model = YOLO(f'{model_variant}.pt')
-else:
-    model = YOLO(f'{model_variant}.yaml')
-model.add_callback('on_fit_epoch_end', on_fit_epoch_end) # Add callback to upload metrics data to ClearML
+    train_args =  dict(
+        data=dataset,
+        epochs=epochs,
+        patience=patience,
+        batch=batch,
+        project=yolo_proj,
+        name=yolo_name,
+        seed=seed
+    )
 
-train_args =  dict(
-    data=dataset,
-    epochs=epochs,
-    patience=patience,
-    batch=batch,
-    project=yolo_proj,
-    name=yolo_name,
-    seed=seed
-)
+    if optimizer is not None: 
+        train_args['optimizer'] = optimizer
+    if config is not None:
+        train_args['cfg'] = config
+        task.connect_configuration(train_args['cfg'], 'Config_file')
+    if patience is not None:
+        train_args['patience'] = patience
+    if lr is not None: 
+        train_args['lr0'] = lr
 
-if optimizer is not None: 
-    train_args['optimizer'] = optimizer
-if config is not None:
-    train_args['cfg'] = config
-    task.connect_configuration(train_args['cfg'], 'Config_file')
-if patience is not None:
-    train_args['patience'] = patience
-if lr is not None: 
-    train_args['lr0'] = lr
+    task.connect(train_args)
 
-task.connect(train_args)
+    task.connect_configuration(train_args['data'], 'Dataset yaml')
 
-task.connect_configuration(train_args['data'], 'Dataset yaml')
+    result = model.train(**train_args)
 
-result = model.train(**train_args)
+    model.val(project=f'{yolo_proj}/{yolo_name}', name='val')
 
-model.val(project=f'{yolo_proj}/{yolo_name}', name='val')
+    task.close()
 
-task.close()
+
+if __name__=='__main__':
+    main()
