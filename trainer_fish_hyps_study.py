@@ -12,6 +12,7 @@ from datetime import datetime, timedelta
 
 path_to_project = "/mnt/c/Users/Uib/Documents/yolov8/peces_antonio/"
 path_to_dataset = "/mnt/c/Users/Uib/Documents/yolov8/peces_antonio/dataset/"
+txt_path = "/mnt/c/Users/Uib/Documents/yolov8/peces_antonio/calls_peces_antonio.txt"
 tmp_suffixes = ["train/images/", "train/labels/", "valid/images", "valid/labels"]
 
 
@@ -35,7 +36,6 @@ check_imgs_array,check_lbls_array=[],[]
 random.seed(seed)
 
 for v in ds_versions:
-
     if not folds_created:
         # PART 1: Create k-folds
         # 1.1 Create data_dict
@@ -86,10 +86,7 @@ if len(set(list(check_imgs_array)))!=len(check_imgs_array) or len(set(list(check
 # FOLDS CREATED
 
 if do_train:
-
-    # lrs = [0.03, 0.01, 0.0033, 0.00011, 0.00037]
     lrs = [0]
-
     model_sizes = {
         "n": "nano",
         "s": "small",
@@ -97,12 +94,7 @@ if do_train:
         "l": "large",
         "x": "extra_large"
     }
-
-    # configs=["/mnt/c/Users/haddo/yolov8/ultralytics/yolo/cfg/da.yaml"]
-    # configs=["/mnt/c/Users/haddo/yolov8/ultralytics/yolo/cfg/da.yaml","/mnt/c/Users/haddo/yolov8/ultralytics/yolo/cfg/no_da.yaml"]
     batch_sizes=[8]
-
-    
     k = 5  # num folds
     for batch in batch_sizes:
         # Tidy train-val splits from k-fold
@@ -110,11 +102,11 @@ if do_train:
         
         # create temp train and val (or empty them)
         print("DS PATH: ", ds_path)
-        create_empty_temp_dirs(ds_path)
         # create the k fold iteration (here to avoid doing it every time)
         dataset_yaml = path_to_dataset +  "/data.yaml"
         # # k fold 
         for i in range(1, k+1):
+            create_empty_temp_dirs(ds_path)
             for f in range(1, k+1):
                 if f == i:
                     print("copying val files to: ", ds_path + "/valid/")
@@ -127,8 +119,6 @@ if do_train:
                         shutil.copyfile(img, ds_path + "/train/images/" + img.split("/")[-1])
                         shutil.copyfile(lbl, ds_path + "/train/labels/" + lbl.split("/")[-1])
 
-            
-            # seed=random.randint(0,100)
             for model_size in model_sizes.keys():
                 project_name=path_to_project+"/"+model_sizes[model_size] +"/"  
                 for lr in lrs:
@@ -136,17 +126,14 @@ if do_train:
                     run_name=os.path.join(project_name,"fold_"+str(i))
                     # run_name=os.path.join(project_name,"lr_"+str(lr))
                     
-                    instruction = f"python ./peces_antonio/clearml_log_yolov8.py --project_name 'Pecesv8' --task_name {run_name} \
+                    instruction = f"python ./peces_antonio/clearml_log_yolov8.py --project_name Pecesv8 --task_name {run_name} \
                         --model_size {model_size} --dataset {dataset_yaml} \
                             --epochs 300 --batch {batch} --patience 20 --yolo_proj {project_name} --yolo_name fold_{i} \
                                 --seed {seed} --optimizer 'SGD'"
                     
                         # Also available to add --config, --lr, --optimizer
 
-                    # task = Task.init(project_name='Peces', task_name=run_name)
-                    # task.set_parameter('model_variant', model_sizes[model_size])
-
-                    with open('/mnt/c/Users/Uib/Documents/yolov8/peces_antonio/calls_peces_antonio.txt', 'a+') as f:
+                    with open(txt_path, 'a+') as f:
                         f.write(instruction)
                         f.write("\n")
                         f.write("------------------------------------------------------------- \n")
