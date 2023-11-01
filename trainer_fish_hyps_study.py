@@ -10,7 +10,7 @@ import random
 import time
 from datetime import datetime, timedelta
 
-path_to_project = r"C:\Users\Uib\yolov8\peces_antonio"
+path_to_project = r"C:\Users\Uib\yolov8\peces_antonio\lr0.001"
 path_to_dataset = r"C:\Users\Uib\yolov8\peces_antonio\dataset"
 txt_path = r"C:\Users\Uib\yolov8\peces_antonio\calls_peces_antonio.txt"
 tmp_splits = ["train","valid"]
@@ -31,7 +31,7 @@ def create_empty_temp_dirs(base_path):
 
 ds_versions = [16]
 do_train = True
-folds_created = False
+folds_created = True
 k = 5
 seed=42
 check_imgs_array,check_lbls_array=[],[]
@@ -129,10 +129,10 @@ if do_train:
                     run_name = os.path.join(project_name, "fold_"+str(i))
                     # run_name = os.path.join(project_name, "lr_"+str(lr))
                     
-                    instruction = f"python ./peces_antonio/clearml_log_yolov8.py --project_name Pecesv8 --task_name {run_name} \
+                    instruction = f"python ./peces_antonio/clearml_log_yolov8.py --project_name Pecesv8_lr0.001 --task_name {run_name} \
                         --model_size {model_size} --dataset {dataset_yaml} \
                             --epochs 300 --batch {batch} --patience 20 --yolo_proj {project_name} --yolo_name fold_{i} \
-                                --seed {seed} --optimizer SGD"
+                                --seed {seed} --optimizer SGD --config ./peces_antonio/configs/cfg.yaml" 
                     
                         # Also available to add --config, --lr, --optimizer
 
