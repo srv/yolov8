@@ -38,7 +38,7 @@ def overlay_segmentation_masks(image_path, label_path, output_path):
     # Create an empty mask
     mask = np.zeros((image_height, image_width), dtype=np.uint8)
     mask_image = image.copy()
-    output_image=image.copy()
+    output_image = image.copy()
     boxes = []
     classes = []
 
@@ -115,7 +115,7 @@ def overlay_segmentation_masks(image_path, label_path, output_path):
         )
 
     # Save the output image
-    output_filename=output_path+"segmented_"+image_path.split("/")[-1]
+    output_filename = os.path.join(output_path, f'segmented_{os.path.split(image_path)[-1]}')
     cv2.imwrite(output_filename, output_image)
 
     print("Saved segmented image:", output_filename)
@@ -128,9 +128,10 @@ def overlay_segmentation_masks(image_path, label_path, output_path):
 
 # Provide the paths to the image and label files
 
-images_path = '/home/antonio/yolov8/datasets/fish/PLOME_IS/train/images/'
-labels_path = '/home/antonio/yolov8/datasets/fish/PLOME_IS/train/labels/'
-output_path = '/home/antonio/Desktop/test/'
+images_path = r'C:\Users\Uib\yolov8\peces_antonio\dataset\test\images'
+labels_path = r'C:\Users\Uib\yolov8\peces_antonio\dataset\test\labels'
+output_path = r'C:\Users\Uib\yolov8\peces_antonio\seleccion_yolanda\labels_vis'
+
 if os.path.exists(output_path):
     shutil.rmtree(output_path)
 os.makedirs(output_path)
@@ -165,9 +166,9 @@ labels_list=natsorted(os.listdir(labels_path))
 for img,lbl in zip(images_list,labels_list):
     print("image is: ",img)
     print("lbl is: ",lbl)
-    image_path=images_path+img
-    label_path=labels_path+lbl
-    if img.split(".")[-2] ==lbl.split(".")[-2]:
+    image_path=os.path.join(images_path,img)
+    label_path=os.path.join(labels_path,lbl)
+    if img.split(".")[-2] == lbl.split(".")[-2]:
         # Call the function to overlay the segmentation masks on the image and save them
         overlay_segmentation_masks(image_path, label_path, output_path)
     else:
