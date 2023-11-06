@@ -168,10 +168,10 @@ for img,lbl in zip(images_list,labels_list):
     print("lbl is: ",lbl)
     image_path=os.path.join(images_path,img)
     label_path=os.path.join(labels_path,lbl)
-    if img.split(".")[-2] == lbl.split(".")[-2]:
+    if '.'.join(img.split('.')[:-1]) == '.'.join(lbl.split('.')[:-1]): 
         # Call the function to overlay the segmentation masks on the image and save them
         overlay_segmentation_masks(image_path, label_path, output_path)
     else:
         print("something is wrong from here!!!!")
-        print("img is: ",img)
-        print("lbl is: ",lbl)
+        print("img is: ",'.'.join(img.split('.')[:-1]))
+        print("lbl is: ",'.'.join(lbl.split('.')[:-1]))
