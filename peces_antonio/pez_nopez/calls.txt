@@ -1,0 +1,6 @@
+python ../clearml_log_yolov8.py --project_name Pez_nopez --task_name C:\Users\Uib\yolov8\peces_antonio\pez_nopez\nano\fold_1                     --model_size n --dataset C:\Users\Uib\yolov8\peces_antonio\pez_nopez\dataset\data.yaml                         --epochs 300 --batch 8 --patience 20 --yolo_proj C:\Users\Uib\yolov8\peces_antonio\pez_nopez\nano --yolo_name fold_1                             --seed 42 --optimizer SGD --config ../configs/cfg.yaml
+------------------------------------------------------------- 
+
+python ../clearml_log_yolov8.py --project_name Pez_nopez --task_name C:\Users\Uib\yolov8\peces_antonio\pez_nopez\small\fold_1                     --model_size s --dataset C:\Users\Uib\yolov8\peces_antonio\pez_nopez\dataset\data.yaml                         --epochs 300 --batch 8 --patience 20 --yolo_proj C:\Users\Uib\yolov8\peces_antonio\pez_nopez\small --yolo_name fold_1                             --seed 42 --optimizer SGD --config ../configs/cfg.yaml
+------------------------------------------------------------- 
+

@@ -1,0 +1,150 @@
+python ./peces_antonio/clearml_log_yolov8.py --project_name Pecesv8 --task_name C:\Users\Uib\yolov8\peces_antonio\nano\fold_1                         --model_size n --dataset C:\Users\Uib\yolov8\peces_antonio\dataset\data.yaml                             --epochs 300 --batch 8 --patience 20 --yolo_proj C:\Users\Uib\yolov8\peces_antonio\nano --yolo_name fold_1                                 --seed 42 --optimizer SGD
+------------------------------------------------------------- 
+
+python ./peces_antonio/clearml_log_yolov8.py --project_name Pecesv8 --task_name C:\Users\Uib\yolov8\peces_antonio\small\fold_1                         --model_size s --dataset C:\Users\Uib\yolov8\peces_antonio\dataset\data.yaml                             --epochs 300 --batch 8 --patience 20 --yolo_proj C:\Users\Uib\yolov8\peces_antonio\small --yolo_name fold_1                                 --seed 42 --optimizer SGD
+------------------------------------------------------------- 
+
+python ./peces_antonio/clearml_log_yolov8.py --project_name Pecesv8 --task_name C:\Users\Uib\yolov8\peces_antonio\medium\fold_1                         --model_size m --dataset C:\Users\Uib\yolov8\peces_antonio\dataset\data.yaml                             --epochs 300 --batch 8 --patience 20 --yolo_proj C:\Users\Uib\yolov8\peces_antonio\medium --yolo_name fold_1                                 --seed 42 --optimizer SGD
+------------------------------------------------------------- 
+
+python ./peces_antonio/clearml_log_yolov8.py --project_name Pecesv8 --task_name C:\Users\Uib\yolov8\peces_antonio\large\fold_1                         --model_size l --dataset C:\Users\Uib\yolov8\peces_antonio\dataset\data.yaml                             --epochs 300 --batch 8 --patience 20 --yolo_proj C:\Users\Uib\yolov8\peces_antonio\large --yolo_name fold_1                                 --seed 42 --optimizer SGD
+------------------------------------------------------------- 
+
+python ./peces_antonio/clearml_log_yolov8.py --project_name Pecesv8 --task_name C:\Users\Uib\yolov8\peces_antonio\extra_large\fold_1                         --model_size x --dataset C:\Users\Uib\yolov8\peces_antonio\dataset\data.yaml                             --epochs 300 --batch 8 --patience 20 --yolo_proj C:\Users\Uib\yolov8\peces_antonio\extra_large --yolo_name fold_1                                 --seed 42 --optimizer SGD
+------------------------------------------------------------- 
+
+python ./peces_antonio/clearml_log_yolov8.py --project_name Pecesv8 --task_name C:\Users\Uib\yolov8\peces_antonio\nano\fold_2                         --model_size n --dataset C:\Users\Uib\yolov8\peces_antonio\dataset\data.yaml                             --epochs 300 --batch 8 --patience 20 --yolo_proj C:\Users\Uib\yolov8\peces_antonio\nano --yolo_name fold_2                                 --seed 42 --optimizer SGD
+------------------------------------------------------------- 
+
+python ./peces_antonio/clearml_log_yolov8.py --project_name Pecesv8 --task_name C:\Users\Uib\yolov8\peces_antonio\small\fold_2                         --model_size s --dataset C:\Users\Uib\yolov8\peces_antonio\dataset\data.yaml                             --epochs 300 --batch 8 --patience 20 --yolo_proj C:\Users\Uib\yolov8\peces_antonio\small --yolo_name fold_2                                 --seed 42 --optimizer SGD
+------------------------------------------------------------- 
+
+python ./peces_antonio/clearml_log_yolov8.py --project_name Pecesv8 --task_name C:\Users\Uib\yolov8\peces_antonio\medium\fold_2                         --model_size m --dataset C:\Users\Uib\yolov8\peces_antonio\dataset\data.yaml                             --epochs 300 --batch 8 --patience 20 --yolo_proj C:\Users\Uib\yolov8\peces_antonio\medium --yolo_name fold_2                                 --seed 42 --optimizer SGD
+------------------------------------------------------------- 
+
+python ./peces_antonio/clearml_log_yolov8.py --project_name Pecesv8 --task_name C:\Users\Uib\yolov8\peces_antonio\large\fold_2                         --model_size l --dataset C:\Users\Uib\yolov8\peces_antonio\dataset\data.yaml                             --epochs 300 --batch 8 --patience 20 --yolo_proj C:\Users\Uib\yolov8\peces_antonio\large --yolo_name fold_2                                 --seed 42 --optimizer SGD
+------------------------------------------------------------- 
+
+python ./peces_antonio/clearml_log_yolov8.py --project_name Pecesv8 --task_name C:\Users\Uib\yolov8\peces_antonio\extra_large\fold_2                         --model_size x --dataset C:\Users\Uib\yolov8\peces_antonio\dataset\data.yaml                             --epochs 300 --batch 8 --patience 20 --yolo_proj C:\Users\Uib\yolov8\peces_antonio\extra_large --yolo_name fold_2                                 --seed 42 --optimizer SGD
+------------------------------------------------------------- 
+
+python ./peces_antonio/clearml_log_yolov8.py --project_name Pecesv8 --task_name C:\Users\Uib\yolov8\peces_antonio\nano\fold_3                         --model_size n --dataset C:\Users\Uib\yolov8\peces_antonio\dataset\data.yaml                             --epochs 300 --batch 8 --patience 20 --yolo_proj C:\Users\Uib\yolov8\peces_antonio\nano --yolo_name fold_3                                 --seed 42 --optimizer SGD
+------------------------------------------------------------- 
+
+python ./peces_antonio/clearml_log_yolov8.py --project_name Pecesv8 --task_name C:\Users\Uib\yolov8\peces_antonio\small\fold_3                         --model_size s --dataset C:\Users\Uib\yolov8\peces_antonio\dataset\data.yaml                             --epochs 300 --batch 8 --patience 20 --yolo_proj C:\Users\Uib\yolov8\peces_antonio\small --yolo_name fold_3                                 --seed 42 --optimizer SGD
+------------------------------------------------------------- 
+
+python ./peces_antonio/clearml_log_yolov8.py --project_name Pecesv8 --task_name C:\Users\Uib\yolov8\peces_antonio\medium\fold_3                         --model_size m --dataset C:\Users\Uib\yolov8\peces_antonio\dataset\data.yaml                             --epochs 300 --batch 8 --patience 20 --yolo_proj C:\Users\Uib\yolov8\peces_antonio\medium --yolo_name fold_3                                 --seed 42 --optimizer SGD
+------------------------------------------------------------- 
+
+python ./peces_antonio/clearml_log_yolov8.py --project_name Pecesv8 --task_name C:\Users\Uib\yolov8\peces_antonio\large\fold_3                         --model_size l --dataset C:\Users\Uib\yolov8\peces_antonio\dataset\data.yaml                             --epochs 300 --batch 8 --patience 20 --yolo_proj C:\Users\Uib\yolov8\peces_antonio\large --yolo_name fold_3                                 --seed 42 --optimizer SGD
+------------------------------------------------------------- 
+
+python ./peces_antonio/clearml_log_yolov8.py --project_name Pecesv8 --task_name C:\Users\Uib\yolov8\peces_antonio\extra_large\fold_3                         --model_size x --dataset C:\Users\Uib\yolov8\peces_antonio\dataset\data.yaml                             --epochs 300 --batch 8 --patience 20 --yolo_proj C:\Users\Uib\yolov8\peces_antonio\extra_large --yolo_name fold_3                                 --seed 42 --optimizer SGD
+------------------------------------------------------------- 
+
+python ./peces_antonio/clearml_log_yolov8.py --project_name Pecesv8 --task_name C:\Users\Uib\yolov8\peces_antonio\nano\fold_4                         --model_size n --dataset C:\Users\Uib\yolov8\peces_antonio\dataset\data.yaml                             --epochs 300 --batch 8 --patience 20 --yolo_proj C:\Users\Uib\yolov8\peces_antonio\nano --yolo_name fold_4                                 --seed 42 --optimizer SGD
+------------------------------------------------------------- 
+
+python ./peces_antonio/clearml_log_yolov8.py --project_name Pecesv8 --task_name C:\Users\Uib\yolov8\peces_antonio\small\fold_4                         --model_size s --dataset C:\Users\Uib\yolov8\peces_antonio\dataset\data.yaml                             --epochs 300 --batch 8 --patience 20 --yolo_proj C:\Users\Uib\yolov8\peces_antonio\small --yolo_name fold_4                                 --seed 42 --optimizer SGD
+------------------------------------------------------------- 
+
+python ./peces_antonio/clearml_log_yolov8.py --project_name Pecesv8 --task_name C:\Users\Uib\yolov8\peces_antonio\medium\fold_4                         --model_size m --dataset C:\Users\Uib\yolov8\peces_antonio\dataset\data.yaml                             --epochs 300 --batch 8 --patience 20 --yolo_proj C:\Users\Uib\yolov8\peces_antonio\medium --yolo_name fold_4                                 --seed 42 --optimizer SGD
+------------------------------------------------------------- 
+
+python ./peces_antonio/clearml_log_yolov8.py --project_name Pecesv8 --task_name C:\Users\Uib\yolov8\peces_antonio\large\fold_4                         --model_size l --dataset C:\Users\Uib\yolov8\peces_antonio\dataset\data.yaml                             --epochs 300 --batch 8 --patience 20 --yolo_proj C:\Users\Uib\yolov8\peces_antonio\large --yolo_name fold_4                                 --seed 42 --optimizer SGD
+------------------------------------------------------------- 
+
+python ./peces_antonio/clearml_log_yolov8.py --project_name Pecesv8 --task_name C:\Users\Uib\yolov8\peces_antonio\extra_large\fold_4                         --model_size x --dataset C:\Users\Uib\yolov8\peces_antonio\dataset\data.yaml                             --epochs 300 --batch 8 --patience 20 --yolo_proj C:\Users\Uib\yolov8\peces_antonio\extra_large --yolo_name fold_4                                 --seed 42 --optimizer SGD
+------------------------------------------------------------- 
+
+python ./peces_antonio/clearml_log_yolov8.py --project_name Pecesv8 --task_name C:\Users\Uib\yolov8\peces_antonio\nano\fold_5                         --model_size n --dataset C:\Users\Uib\yolov8\peces_antonio\dataset\data.yaml                             --epochs 300 --batch 8 --patience 20 --yolo_proj C:\Users\Uib\yolov8\peces_antonio\nano --yolo_name fold_5                                 --seed 42 --optimizer SGD
+------------------------------------------------------------- 
+
+python ./peces_antonio/clearml_log_yolov8.py --project_name Pecesv8 --task_name C:\Users\Uib\yolov8\peces_antonio\small\fold_5                         --model_size s --dataset C:\Users\Uib\yolov8\peces_antonio\dataset\data.yaml                             --epochs 300 --batch 8 --patience 20 --yolo_proj C:\Users\Uib\yolov8\peces_antonio\small --yolo_name fold_5                                 --seed 42 --optimizer SGD
+------------------------------------------------------------- 
+
+python ./peces_antonio/clearml_log_yolov8.py --project_name Pecesv8 --task_name C:\Users\Uib\yolov8\peces_antonio\medium\fold_5                         --model_size m --dataset C:\Users\Uib\yolov8\peces_antonio\dataset\data.yaml                             --epochs 300 --batch 8 --patience 20 --yolo_proj C:\Users\Uib\yolov8\peces_antonio\medium --yolo_name fold_5                                 --seed 42 --optimizer SGD
+------------------------------------------------------------- 
+
+python ./peces_antonio/clearml_log_yolov8.py --project_name Pecesv8 --task_name C:\Users\Uib\yolov8\peces_antonio\large\fold_5                         --model_size l --dataset C:\Users\Uib\yolov8\peces_antonio\dataset\data.yaml                             --epochs 300 --batch 8 --patience 20 --yolo_proj C:\Users\Uib\yolov8\peces_antonio\large --yolo_name fold_5                                 --seed 42 --optimizer SGD
+------------------------------------------------------------- 
+
+python ./peces_antonio/clearml_log_yolov8.py --project_name Pecesv8 --task_name C:\Users\Uib\yolov8\peces_antonio\extra_large\fold_5                         --model_size x --dataset C:\Users\Uib\yolov8\peces_antonio\dataset\data.yaml                             --epochs 300 --batch 8 --patience 20 --yolo_proj C:\Users\Uib\yolov8\peces_antonio\extra_large --yolo_name fold_5                                 --seed 42 --optimizer SGD
+------------------------------------------------------------- 
+
+python ./peces_antonio/clearml_log_yolov8.py --project_name Pecesv8_lr0.001 --task_name C:\Users\Uib\yolov8\peces_antonio\lr0.001\nano\fold_1                         --model_size n --dataset C:\Users\Uib\yolov8\peces_antonio\dataset\data.yaml                             --epochs 300 --batch 8 --patience 20 --yolo_proj C:\Users\Uib\yolov8\peces_antonio\lr0.001\nano --yolo_name fold_1                                 --seed 42 --optimizer SGD --config ./peces_antonio/configs/cfg.yaml
+------------------------------------------------------------- 
+
+python ./peces_antonio/clearml_log_yolov8.py --project_name Pecesv8_lr0.001 --task_name C:\Users\Uib\yolov8\peces_antonio\lr0.001\small\fold_1                         --model_size s --dataset C:\Users\Uib\yolov8\peces_antonio\dataset\data.yaml                             --epochs 300 --batch 8 --patience 20 --yolo_proj C:\Users\Uib\yolov8\peces_antonio\lr0.001\small --yolo_name fold_1                                 --seed 42 --optimizer SGD --config ./peces_antonio/configs/cfg.yaml
+------------------------------------------------------------- 
+
+python ./peces_antonio/clearml_log_yolov8.py --project_name Pecesv8_lr0.001 --task_name C:\Users\Uib\yolov8\peces_antonio\lr0.001\medium\fold_1                         --model_size m --dataset C:\Users\Uib\yolov8\peces_antonio\dataset\data.yaml                             --epochs 300 --batch 8 --patience 20 --yolo_proj C:\Users\Uib\yolov8\peces_antonio\lr0.001\medium --yolo_name fold_1                                 --seed 42 --optimizer SGD --config ./peces_antonio/configs/cfg.yaml
+------------------------------------------------------------- 
+
+python ./peces_antonio/clearml_log_yolov8.py --project_name Pecesv8_lr0.001 --task_name C:\Users\Uib\yolov8\peces_antonio\lr0.001\large\fold_1                         --model_size l --dataset C:\Users\Uib\yolov8\peces_antonio\dataset\data.yaml                             --epochs 300 --batch 8 --patience 20 --yolo_proj C:\Users\Uib\yolov8\peces_antonio\lr0.001\large --yolo_name fold_1                                 --seed 42 --optimizer SGD --config ./peces_antonio/configs/cfg.yaml
+------------------------------------------------------------- 
+
+python ./peces_antonio/clearml_log_yolov8.py --project_name Pecesv8_lr0.001 --task_name C:\Users\Uib\yolov8\peces_antonio\lr0.001\extra_large\fold_1                         --model_size x --dataset C:\Users\Uib\yolov8\peces_antonio\dataset\data.yaml                             --epochs 300 --batch 8 --patience 20 --yolo_proj C:\Users\Uib\yolov8\peces_antonio\lr0.001\extra_large --yolo_name fold_1                                 --seed 42 --optimizer SGD --config ./peces_antonio/configs/cfg.yaml
+------------------------------------------------------------- 
+
+python ./peces_antonio/clearml_log_yolov8.py --project_name Pecesv8_lr0.001 --task_name C:\Users\Uib\yolov8\peces_antonio\lr0.001\nano\fold_2                         --model_size n --dataset C:\Users\Uib\yolov8\peces_antonio\dataset\data.yaml                             --epochs 300 --batch 8 --patience 20 --yolo_proj C:\Users\Uib\yolov8\peces_antonio\lr0.001\nano --yolo_name fold_2                                 --seed 42 --optimizer SGD --config ./peces_antonio/configs/cfg.yaml
+------------------------------------------------------------- 
+
+python ./peces_antonio/clearml_log_yolov8.py --project_name Pecesv8_lr0.001 --task_name C:\Users\Uib\yolov8\peces_antonio\lr0.001\small\fold_2                         --model_size s --dataset C:\Users\Uib\yolov8\peces_antonio\dataset\data.yaml                             --epochs 300 --batch 8 --patience 20 --yolo_proj C:\Users\Uib\yolov8\peces_antonio\lr0.001\small --yolo_name fold_2                                 --seed 42 --optimizer SGD --config ./peces_antonio/configs/cfg.yaml
+------------------------------------------------------------- 
+
+python ./peces_antonio/clearml_log_yolov8.py --project_name Pecesv8_lr0.001 --task_name C:\Users\Uib\yolov8\peces_antonio\lr0.001\medium\fold_2                         --model_size m --dataset C:\Users\Uib\yolov8\peces_antonio\dataset\data.yaml                             --epochs 300 --batch 8 --patience 20 --yolo_proj C:\Users\Uib\yolov8\peces_antonio\lr0.001\medium --yolo_name fold_2                                 --seed 42 --optimizer SGD --config ./peces_antonio/configs/cfg.yaml
+------------------------------------------------------------- 
+
+python ./peces_antonio/clearml_log_yolov8.py --project_name Pecesv8_lr0.001 --task_name C:\Users\Uib\yolov8\peces_antonio\lr0.001\large\fold_2                         --model_size l --dataset C:\Users\Uib\yolov8\peces_antonio\dataset\data.yaml                             --epochs 300 --batch 8 --patience 20 --yolo_proj C:\Users\Uib\yolov8\peces_antonio\lr0.001\large --yolo_name fold_2                                 --seed 42 --optimizer SGD --config ./peces_antonio/configs/cfg.yaml
+------------------------------------------------------------- 
+
+python ./peces_antonio/clearml_log_yolov8.py --project_name Pecesv8_lr0.001 --task_name C:\Users\Uib\yolov8\peces_antonio\lr0.001\extra_large\fold_2                         --model_size x --dataset C:\Users\Uib\yolov8\peces_antonio\dataset\data.yaml                             --epochs 300 --batch 8 --patience 20 --yolo_proj C:\Users\Uib\yolov8\peces_antonio\lr0.001\extra_large --yolo_name fold_2                                 --seed 42 --optimizer SGD --config ./peces_antonio/configs/cfg.yaml
+------------------------------------------------------------- 
+
+python ./peces_antonio/clearml_log_yolov8.py --project_name Pecesv8_lr0.001 --task_name C:\Users\Uib\yolov8\peces_antonio\lr0.001\nano\fold_3                         --model_size n --dataset C:\Users\Uib\yolov8\peces_antonio\dataset\data.yaml                             --epochs 300 --batch 8 --patience 20 --yolo_proj C:\Users\Uib\yolov8\peces_antonio\lr0.001\nano --yolo_name fold_3                                 --seed 42 --optimizer SGD --config ./peces_antonio/configs/cfg.yaml
+------------------------------------------------------------- 
+
+python ./peces_antonio/clearml_log_yolov8.py --project_name Pecesv8_lr0.001 --task_name C:\Users\Uib\yolov8\peces_antonio\lr0.001\small\fold_3                         --model_size s --dataset C:\Users\Uib\yolov8\peces_antonio\dataset\data.yaml                             --epochs 300 --batch 8 --patience 20 --yolo_proj C:\Users\Uib\yolov8\peces_antonio\lr0.001\small --yolo_name fold_3                                 --seed 42 --optimizer SGD --config ./peces_antonio/configs/cfg.yaml
+------------------------------------------------------------- 
+
+python ./peces_antonio/clearml_log_yolov8.py --project_name Pecesv8_lr0.001 --task_name C:\Users\Uib\yolov8\peces_antonio\lr0.001\medium\fold_3                         --model_size m --dataset C:\Users\Uib\yolov8\peces_antonio\dataset\data.yaml                             --epochs 300 --batch 8 --patience 20 --yolo_proj C:\Users\Uib\yolov8\peces_antonio\lr0.001\medium --yolo_name fold_3                                 --seed 42 --optimizer SGD --config ./peces_antonio/configs/cfg.yaml
+------------------------------------------------------------- 
+
+python ./peces_antonio/clearml_log_yolov8.py --project_name Pecesv8_lr0.001 --task_name C:\Users\Uib\yolov8\peces_antonio\lr0.001\large\fold_3                         --model_size l --dataset C:\Users\Uib\yolov8\peces_antonio\dataset\data.yaml                             --epochs 300 --batch 8 --patience 20 --yolo_proj C:\Users\Uib\yolov8\peces_antonio\lr0.001\large --yolo_name fold_3                                 --seed 42 --optimizer SGD --config ./peces_antonio/configs/cfg.yaml
+------------------------------------------------------------- 
+
+python ./peces_antonio/clearml_log_yolov8.py --project_name Pecesv8_lr0.001 --task_name C:\Users\Uib\yolov8\peces_antonio\lr0.001\extra_large\fold_3                         --model_size x --dataset C:\Users\Uib\yolov8\peces_antonio\dataset\data.yaml                             --epochs 300 --batch 8 --patience 20 --yolo_proj C:\Users\Uib\yolov8\peces_antonio\lr0.001\extra_large --yolo_name fold_3                                 --seed 42 --optimizer SGD --config ./peces_antonio/configs/cfg.yaml
+------------------------------------------------------------- 
+
+python ./peces_antonio/clearml_log_yolov8.py --project_name Pecesv8_lr0.001 --task_name C:\Users\Uib\yolov8\peces_antonio\lr0.001\nano\fold_4                         --model_size n --dataset C:\Users\Uib\yolov8\peces_antonio\dataset\data.yaml                             --epochs 300 --batch 8 --patience 20 --yolo_proj C:\Users\Uib\yolov8\peces_antonio\lr0.001\nano --yolo_name fold_4                                 --seed 42 --optimizer SGD --config ./peces_antonio/configs/cfg.yaml
+------------------------------------------------------------- 
+
+python ./peces_antonio/clearml_log_yolov8.py --project_name Pecesv8_lr0.001 --task_name C:\Users\Uib\yolov8\peces_antonio\lr0.001\small\fold_4                         --model_size s --dataset C:\Users\Uib\yolov8\peces_antonio\dataset\data.yaml                             --epochs 300 --batch 8 --patience 20 --yolo_proj C:\Users\Uib\yolov8\peces_antonio\lr0.001\small --yolo_name fold_4                                 --seed 42 --optimizer SGD --config ./peces_antonio/configs/cfg.yaml
+------------------------------------------------------------- 
+
+python ./peces_antonio/clearml_log_yolov8.py --project_name Pecesv8_lr0.001 --task_name C:\Users\Uib\yolov8\peces_antonio\lr0.001\medium\fold_4                         --model_size m --dataset C:\Users\Uib\yolov8\peces_antonio\dataset\data.yaml                             --epochs 300 --batch 8 --patience 20 --yolo_proj C:\Users\Uib\yolov8\peces_antonio\lr0.001\medium --yolo_name fold_4                                 --seed 42 --optimizer SGD --config ./peces_antonio/configs/cfg.yaml
+------------------------------------------------------------- 
+
+python ./peces_antonio/clearml_log_yolov8.py --project_name Pecesv8_lr0.001 --task_name C:\Users\Uib\yolov8\peces_antonio\lr0.001\large\fold_4                         --model_size l --dataset C:\Users\Uib\yolov8\peces_antonio\dataset\data.yaml                             --epochs 300 --batch 8 --patience 20 --yolo_proj C:\Users\Uib\yolov8\peces_antonio\lr0.001\large --yolo_name fold_4                                 --seed 42 --optimizer SGD --config ./peces_antonio/configs/cfg.yaml
+------------------------------------------------------------- 
+
+python ./peces_antonio/clearml_log_yolov8.py --project_name Pecesv8_lr0.001 --task_name C:\Users\Uib\yolov8\peces_antonio\lr0.001\extra_large\fold_4                         --model_size x --dataset C:\Users\Uib\yolov8\peces_antonio\dataset\data.yaml                             --epochs 300 --batch 8 --patience 20 --yolo_proj C:\Users\Uib\yolov8\peces_antonio\lr0.001\extra_large --yolo_name fold_4                                 --seed 42 --optimizer SGD --config ./peces_antonio/configs/cfg.yaml
+------------------------------------------------------------- 
+
+python ./peces_antonio/clearml_log_yolov8.py --project_name Pecesv8_lr0.001 --task_name C:\Users\Uib\yolov8\peces_antonio\lr0.001\nano\fold_5                         --model_size n --dataset C:\Users\Uib\yolov8\peces_antonio\dataset\data.yaml                             --epochs 300 --batch 8 --patience 20 --yolo_proj C:\Users\Uib\yolov8\peces_antonio\lr0.001\nano --yolo_name fold_5                                 --seed 42 --optimizer SGD --config ./peces_antonio/configs/cfg.yaml
+------------------------------------------------------------- 
+
+python ./peces_antonio/clearml_log_yolov8.py --project_name Pecesv8_lr0.001 --task_name C:\Users\Uib\yolov8\peces_antonio\lr0.001\small\fold_5                         --model_size s --dataset C:\Users\Uib\yolov8\peces_antonio\dataset\data.yaml                             --epochs 300 --batch 8 --patience 20 --yolo_proj C:\Users\Uib\yolov8\peces_antonio\lr0.001\small --yolo_name fold_5                                 --seed 42 --optimizer SGD --config ./peces_antonio/configs/cfg.yaml
+------------------------------------------------------------- 
+
+python ./peces_antonio/clearml_log_yolov8.py --project_name Pecesv8_lr0.001 --task_name C:\Users\Uib\yolov8\peces_antonio\lr0.001\medium\fold_5                         --model_size m --dataset C:\Users\Uib\yolov8\peces_antonio\dataset\data.yaml                             --epochs 300 --batch 8 --patience 20 --yolo_proj C:\Users\Uib\yolov8\peces_antonio\lr0.001\medium --yolo_name fold_5                                 --seed 42 --optimizer SGD --config ./peces_antonio/configs/cfg.yaml
+------------------------------------------------------------- 
+
+python ./peces_antonio/clearml_log_yolov8.py --project_name Pecesv8_lr0.001 --task_name C:\Users\Uib\yolov8\peces_antonio\lr0.001\large\fold_5                         --model_size l --dataset C:\Users\Uib\yolov8\peces_antonio\dataset\data.yaml                             --epochs 300 --batch 8 --patience 20 --yolo_proj C:\Users\Uib\yolov8\peces_antonio\lr0.001\large --yolo_name fold_5                                 --seed 42 --optimizer SGD --config ./peces_antonio/configs/cfg.yaml
+------------------------------------------------------------- 
+
+python ./peces_antonio/clearml_log_yolov8.py --project_name Pecesv8_lr0.001 --task_name C:\Users\Uib\yolov8\peces_antonio\lr0.001\extra_large\fold_5                         --model_size x --dataset C:\Users\Uib\yolov8\peces_antonio\dataset\data.yaml                             --epochs 300 --batch 8 --patience 20 --yolo_proj C:\Users\Uib\yolov8\peces_antonio\lr0.001\extra_large --yolo_name fold_5                                 --seed 42 --optimizer SGD --config ./peces_antonio/configs/cfg.yaml
+------------------------------------------------------------- 
+
