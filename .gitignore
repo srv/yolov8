@@ -137,6 +137,15 @@ dmypy.json
 .pyre/
 
 # datasets and projects
+**/dataset/
+**/dataset_nb/
+**/seleccion_yolanda/
+**/nano/
+**/small/
+**/medium/
+**/large/
+**/extra_large/
+
 datasets/
 runs/
 wandb/
