@@ -1,0 +1,3 @@
+python ../clearml_log_yolov8.py --project_name Peces_16_OD --task_name C:\Users\Uib\yolov8\peces_antonio\16_classes_OD\nano                     --model_size n --dataset C:\Users\Uib\yolov8\peces_antonio\16_classes_OD\dataset\data.yaml                         --epochs 300 --batch 8 --patience 20 --yolo_proj C:\Users\Uib\yolov8\peces_antonio\16_classes_OD\nano --yolo_name C:\Users\Uib\yolov8\peces_antonio\16_classes_OD\nano                             --seed 42 --optimizer SGD
+------------------------------------------------------------- 
+

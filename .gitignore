@@ -145,6 +145,7 @@ dmypy.json
 **/medium/
 **/large/
 **/extra_large/
+**.zip
 
 datasets/
 runs/
