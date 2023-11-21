@@ -10,7 +10,7 @@ import random
 import time
 from datetime import datetime, timedelta
 
-path_to_project = r"C:\Users\Uib\yolov8\peces_antonio\pez_nopez\default"
+path_to_project = r"C:\Users\Uib\yolov8\peces_antonio\pez_nopez\default_adam"
 if not os.path.exists(path_to_project): 
     os.makedirs(path_to_project)
 clearml_project = 'Pez_nopez'
@@ -112,7 +112,7 @@ if do_train:
         print("DS PATH: ", ds_path)
         # create the k fold iteration (here to avoid doing it every time)
         # # k fold 
-        for i in range(3, k+1):
+        for i in range(1, k+1):
             create_empty_temp_dirs(ds_path)
             for f in range(1, k+1):
                 if f == i:
@@ -134,7 +134,7 @@ if do_train:
                 instruction = f"python ../clearml_log_yolov8.py --project_name {clearml_project} --task_name {run_name} \
                     --model_size {model_size} --dataset {dataset_yaml} \
                         --epochs 300 --batch {batch} --patience 20 --yolo_proj {project_name} --yolo_name fold_{i} \
-                            --seed {seed} --optimizer SGD" #--config ../configs/cfg.yaml" 
+                            --seed {seed}"# --optimizer SGD" #--config ../configs/cfg.yaml" 
                 
                     # Also available to add --config, --lr, --optimizer
 
