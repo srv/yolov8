@@ -106,6 +106,7 @@ def main():
 
     # model_size = 'x'
     model_variant = f'yolov8{model_size}-seg'
+    # model_variant = f'yolov8{model_size}'
     task.set_parameter('model_variant', model_variant)
 
     if pretrained: 
