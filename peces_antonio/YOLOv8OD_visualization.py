@@ -38,7 +38,7 @@ def overlay_segmentation_masks(image_path, label_path, output_path):
         class_index = line[0]
         classes.append(class_index)
         print(class_index)
-        
+
         print("instance of class: ", class_index," : ",fish_dict[class_index])
 
         box = compute_box(line[1:5], image_shape=(image_height, image_width))
@@ -57,20 +57,20 @@ def overlay_segmentation_masks(image_path, label_path, output_path):
         # Plot bounding box
         p1 = (int(box[0]), int(box[1]))
         p2 = (int(box[2]), int(box[3]))
-        cv2.rectangle(output_image, p1, p2, color=box_colors[class_idx], thickness=2)
+        cv2.rectangle(output_image, p1, p2, color=box_colors[class_idx], thickness=6)
 
         # Plot class name and background rectangle
         label = fish_dict[class_idx]
         font = cv2.FONT_HERSHEY_SIMPLEX
-        font_scale = 0.25
+        font_scale = 0.5
         font_thickness = 1
         (text_width, text_height) = cv2.getTextSize(label, font, fontScale=font_scale, thickness=font_thickness)[0]
 
         cv2.rectangle(
             output_image,
-            (p1[0] - 1, p1[1] - text_height - 2), 
-            (p1[0] + text_width + 1, p1[1]), 
-            box_colors[class_idx], 
+            (p1[0] - 1, p1[1] - text_height - 2),
+            (p1[0] + text_width + 1, p1[1]),
+            box_colors[class_idx],
             cv2.FILLED
         )
         cv2.putText(
@@ -84,7 +84,7 @@ def overlay_segmentation_masks(image_path, label_path, output_path):
         )
 
     # Save the output image
-    output_filename = os.path.join(output_path, image_path.split("\\")[-1])
+    output_filename = os.path.join(output_path, image_path.split("/")[-1])
     cv2.imwrite(output_filename, output_image)
 
     print("Saved segmented image:", output_filename)
@@ -97,17 +97,18 @@ def overlay_segmentation_masks(image_path, label_path, output_path):
 
 # Provide the paths to the image and label files
 
-images_path=r"C:\Users\Uib\yolov8\peces_antonio\16_classes_OD\dataset\test\images"
-
-labels_path = r"C:\Users\Uib\yolov8\peces_antonio\16_classes_OD\dataset\test\labels"
-output_path = r"C:\Users\Uib\yolov8\peces_antonio\16_classes_OD\small\test\labels"
+images_path = '/home/uib/DATA/PEIXOS/PLOME_16ESP_OD/test/images/'
+labels_path = '/home/uib/DATA/PEIXOS/PLOME_16ESP_OD/test/labels/'
+output_path = '/home/uib/DATA/PEIXOS/PLOME_16ESP_OD/test/painted_labels/'
 
 
 if os.path.exists(output_path):
     shutil.rmtree(output_path)
 os.makedirs(output_path)
 
+# fish_species= ['Chromis chromis', 'Coris julis', 'Dentex dentex', 'Diplodus annularis', 'Diplodus sargus', 'Diplodus vulgaris', 'Epinephelus marginatus', 'Lithognathus mormyrus', 'Mugilidae prob Chelon', 'Oblada melanura', 'Pomatous salator', 'Sciena umbra', 'Seriola dumerili', 'Serranus', 'Spicara maena', 'Spondyliosoma cantharus']
 fish_species= ['Chromis chromis', 'Coris julis', 'Dentex dentex', 'Diplodus annularis', 'Diplodus sargus', 'Diplodus vulgaris', 'Epinephelus marginatus', 'Lithognathus mormyrus', 'Mugilidae prob Chelon', 'Oblada melanura', 'Pomatous salator', 'Sciena umbra', 'Seriola dumerili', 'Serranus', 'Spicara maena', 'Spondyliosoma cantharus']
+
 
 idxs=list(range(0,len(fish_species)))
 box_colors = {}
