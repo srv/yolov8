@@ -25,9 +25,6 @@ def overlay_segmentation_masks(image_path, label_path, output_path):
     with open(label_path, 'r') as file:
         lines = file.readlines()
 
-    # Create an empty mask
-    mask = np.zeros((image_height, image_width), dtype=np.uint8)
-    mask_image = image.copy()
     output_image=image.copy()
     boxes = []
     classes = []

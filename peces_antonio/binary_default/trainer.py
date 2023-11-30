@@ -10,16 +10,15 @@ import random
 import time
 from datetime import datetime, timedelta
 
-path_to_project = r"C:\Users\Uib\yolov8\peces_antonio\pez_nopez\no_da"
+path_to_project = r"C:\Users\Uib\yolov8\peces_antonio\binary_default"
 if not os.path.exists(path_to_project): 
     os.makedirs(path_to_project)
-clearml_project = 'Pez_nopez'
+clearml_project = 'binary_default_v8'
 
 tmp_splits = ["train","valid"]
 file_types = ["images","labels"]
 
-# path_to_dataset = os.path.join(path_to_project, "dataset")
-path_to_dataset = os.path.join(r"C:\Users\Uib\yolov8\peces_antonio\pez_nopez", "dataset")
+path_to_dataset = os.path.join(path_to_project, "dataset")
 txt_path = os.path.join(path_to_project, "calls.txt")
 dataset_yaml = os.path.join(path_to_dataset, "data.yaml")
 
@@ -37,7 +36,7 @@ def create_empty_temp_dirs(base_path):
 
 ds_versions = [16]
 do_train = True
-folds_created = True
+folds_created = False
 k = 5
 seed=42
 check_imgs_array,check_lbls_array=[],[]
@@ -97,9 +96,9 @@ if len(set(list(check_imgs_array))) != len(check_imgs_array) or len(set(list(che
 if do_train:
     model_sizes = {
         "n": "nano",
-        # "s": "small",
-        # "m": "medium",
-        # "l": "large",
+        "s": "small",
+        "m": "medium",
+        "l": "large",
         "x": "extra_large"
     }
     batch_sizes=[8]
@@ -134,7 +133,7 @@ if do_train:
                 instruction = f"python ../clearml_log_yolov8.py --project_name {clearml_project} --task_name {run_name} \
                     --model_size {model_size} --dataset {dataset_yaml} \
                         --epochs 300 --batch {batch} --patience 20 --yolo_proj {project_name} --yolo_name fold_{i} \
-                            --seed {seed} --optimizer SGD --config ../configs/no_da.yaml" 
+                            --seed {seed}" 
                 
                     # Also available to add --config, --lr, --optimizer
 

@@ -70,3 +70,6 @@ python ../clearml_log_yolov8.py --project_name Pez_nopez --task_name C:\Users\Ui
 python ../clearml_log_yolov8.py --project_name Pez_nopez --task_name C:\Users\Uib\yolov8\peces_antonio\pez_nopez\default_adam\large\fold_5                     --model_size l --dataset C:\Users\Uib\yolov8\peces_antonio\pez_nopez\dataset\data.yaml                         --epochs 300 --batch 8 --patience 20 --yolo_proj C:\Users\Uib\yolov8\peces_antonio\pez_nopez\default_adam\large --yolo_name fold_5                             --seed 42
 ------------------------------------------------------------- 
 
+python ../clearml_log_yolov8.py --project_name Pez_nopez --task_name C:\Users\Uib\yolov8\peces_antonio\pez_nopez\default_adam\extra_large\fold_5                     --model_size x --dataset C:\Users\Uib\yolov8\peces_antonio\pez_nopez\dataset\data.yaml                         --epochs 300 --batch 8 --patience 20 --yolo_proj C:\Users\Uib\yolov8\peces_antonio\pez_nopez\default_adam\extra_large --yolo_name fold_5                             --seed 42
+------------------------------------------------------------- 
+
