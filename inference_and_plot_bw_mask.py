@@ -87,10 +87,13 @@ for img in natsorted(os.listdir(data_path)):
                 print("the colour is: ", class_colors[fish_cls] )
                 for key in fish_dict:
                     if key==fish_cls:
+                        print("THE DETECTED CLASS")
                         masked_dict[fish_cls]=masked_dict[fish_cls]+(mask_bw*class_colors[fish_cls])
                     else:
                         #debería poner las otras clases a 0 en esos pixeles por si solapan
-                        masked_dict[fish_cls]=masked_dict[fish_cls]*(mask_bw*(-1)+np.ones(mask_bw.shape))
+                        inverted_mask=(mask_bw*(-1))+np.ones(mask_bw.shape)
+                        cv2.imwrite("inverted_mask.jpg",inverted_mask*255)
+                        masked_dict[key]=masked_dict[key]*inverted_mask
 
 
                 print("CLASS Mask UNIQUE: ",np.unique(masked_dict[fish_cls]))
