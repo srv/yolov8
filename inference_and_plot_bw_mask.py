@@ -19,7 +19,7 @@ model_path="/home/uib/PLOME/fish_trained_models/yolov8/16_classes"
 out_path=data_path
 model_name="yolov8lr_medium_16cIS_f2.pt"
 
-masks_inf_folder="inference_yv8mbf"
+masks_inf_folder="inference_yv8mbf2"
 # model_name="yolov8lr_medium_BF_f2.pt.pt"
 
 # Load a pretrained YOLOv8n model
@@ -38,29 +38,12 @@ fish_dict={ 0: 'Chromis chromis', 1: 'Coris julis', 2: 'Dentex dentex', 3: 'Dipl
 
 num_classes=len(fish_dict.items())
 print("num_classes is: ",num_classes)
-# Define range of brightness in HSV
-lower_black = np.array([0,0,0])
-upper_black = np.array([0,0,1])
 
 
 def generate_IS_bwmask(mask,h,w):
     mask_raw = mask.cpu().data.numpy().transpose(1, 2, 0)
-    # mask_raw_to_paint=mask_raw*255
-    # cv2.imwrite("RAW_mask.jpg",mask_raw_to_paint)
-    # # Convert single channel grayscale to 3 channel image
-    # mask_3channel = cv2.merge((mask_raw,mask_raw,mask_raw))
-    # # Get the size of the original image (height, width, channels)
-
-    # # Resize the mask to the same size as the image (can probably be removed if image is the same size as the model)
-    # mask_bw = cv2.resize(mask_3channel, (w, h))
-    # mask_bw = cv2.inRange(mask_bw, lower_black, upper_black)
-    cv2.imwrite("Maskara.jpg", mask_raw)
-
+    # cv2.imwrite("Maskara.jpg", mask_raw)
     return np.squeeze(mask_raw)
-
-
-
-#initialize the counter of species detected in an image:
 
 # First interval should be for background class!
 class_colors=dict(zip(fish_dict.keys(),np.linspace(0,255,len(fish_dict.keys())+1,dtype=int)[1:]))
@@ -86,32 +69,37 @@ for img in natsorted(os.listdir(data_path)):
             masked = np.full( (len(fish_dict.keys()), h, w), 0)
             masked_dict=dict(zip(fish_dict.keys(),masked))
             # print(masked_dict)
+            num_masks=len(fish_masks)-1
+            #Recorrer las mascaras inversamente porque va de menor a mayor confianza
+            for i in range(num_masks):
+                print("i is ",i, " num masks. ",num_masks)
+                mask=fish_masks[num_masks-i]
+                fish_cls=int(fish_boxes.cls[num_masks-i])
+                fish_conf=float(fish_boxes.conf[num_masks-i])
 
-            for i,mask in enumerate(fish_masks):
-                fish_cls=int(fish_boxes.cls[i])
-                fish_conf=float(fish_boxes.conf[i])
                 print("##############################################################################################")
                 print("THIS FISH IS A: ",fish_dict[fish_cls],"with a confidence of : ",fish_conf)
                 mask_bw=generate_IS_bwmask(mask,h,w)
-                # mask_bw=np.squeeze(mask_bw)
+
                 print("MASK BW SHAPE:",mask_bw.shape,"UNIQUE VALS:",np.unique(mask_bw))
                 print("shape of masked_dict[fish_cls] ", masked_dict[fish_cls].shape)
                 # máscara anterior (0s or ant masks) + el nuevo pez
                 print("the colour is: ", class_colors[fish_cls] )
-                masked_dict[fish_cls]=masked_dict[fish_cls]+(mask_bw*class_colors[fish_cls])
+                for key in fish_dict:
+                    if key==fish_cls:
+                        masked_dict[fish_cls]=masked_dict[fish_cls]+(mask_bw*class_colors[fish_cls])
+                    else:
+                        #debería poner las otras clases a 0 en esos pixeles por si solapan
+                        masked_dict[fish_cls]=masked_dict[fish_cls]*(mask_bw*(-1)+np.ones(mask_bw.shape))
+
 
                 print("CLASS Mask UNIQUE: ",np.unique(masked_dict[fish_cls]))
                 print(masked_dict[fish_cls].shape)
-                # masked=masked*mask_bw
-                # cv2.imwrite("Mask_"+str(i)+".jpg", masked)
-                # Invert the mask to get everything but black
-            # mask_final = masked*(-1)+255
+
             final_masks = np.stack(list(masked_dict.values()))
 
-            #aqui s ha de fer sobre final masks!!!!!
-            ###############################################
-            for mask in final_masks:
-                print("Mask UNIQUE: ",np.unique(mask))
+            # for mask in final_masks: THIS IS A CHECK
+            #     print("Mask UNIQUE: ",np.unique(mask))
 
             mask_final=np.sum(final_masks,axis=0)
             print("FINAL MASK SHAPE: ",mask_final.shape)
