@@ -1,4 +1,5 @@
 
+from typing import final
 from ultralytics import YOLO
 import os
 from PIL import Image
@@ -17,6 +18,8 @@ model_path="/home/uib/PLOME/fish_trained_models/yolov8/16_classes"
 # out_path="/home/uib/PLOME/stereo_tests/test_stereo_andratx_interior/"
 out_path=data_path
 model_name="yolov8lr_medium_16cIS_f2.pt"
+
+masks_inf_folder="inference_yv8mbf"
 # model_name="yolov8lr_medium_BF_f2.pt.pt"
 
 # Load a pretrained YOLOv8n model
@@ -42,21 +45,27 @@ upper_black = np.array([0,0,1])
 
 def generate_IS_bwmask(mask,h,w):
     mask_raw = mask.cpu().data.numpy().transpose(1, 2, 0)
-    # Convert single channel grayscale to 3 channel image
-    mask_3channel = cv2.merge((mask_raw,mask_raw,mask_raw))
-    # Get the size of the original image (height, width, channels)
+    # mask_raw_to_paint=mask_raw*255
+    # cv2.imwrite("RAW_mask.jpg",mask_raw_to_paint)
+    # # Convert single channel grayscale to 3 channel image
+    # mask_3channel = cv2.merge((mask_raw,mask_raw,mask_raw))
+    # # Get the size of the original image (height, width, channels)
 
-    # Resize the mask to the same size as the image (can probably be removed if image is the same size as the model)
-    mask_bw = cv2.resize(mask_3channel, (w, h))
-    mask_bw = cv2.inRange(mask_bw, lower_black, upper_black)
+    # # Resize the mask to the same size as the image (can probably be removed if image is the same size as the model)
+    # mask_bw = cv2.resize(mask_3channel, (w, h))
+    # mask_bw = cv2.inRange(mask_bw, lower_black, upper_black)
+    cv2.imwrite("Maskara.jpg", mask_raw)
 
-    return mask_bw
+    return np.squeeze(mask_raw)
+
+
 
 #initialize the counter of species detected in an image:
-num_maks=dict(zip(fish_dict.keys(),np.zeros(len(fish_dict.keys()),dtype=int)))
-class_colors=dict(zip(fish_dict.keys(),np.linspace(0,255,len(fish_dict.keys()),dtype=int)))
 
-print("NUM MASKS: ",num_maks)
+# First interval should be for background class!
+class_colors=dict(zip(fish_dict.keys(),np.linspace(0,255,len(fish_dict.keys())+1,dtype=int)[1:]))
+
+
 print("MASKS COLORS: ",class_colors)
 
 #GO THROUGH THE EXTRACTED IMGS DIR
@@ -65,7 +74,7 @@ for img in natsorted(os.listdir(data_path)):
     if "left" in img:
         print("running inference on ", img)
         img_path=os.path.join(data_path,img)
-        results=model.predict(img_path,conf=0.4,project=out_path,name="inference_yv8m16c",retina_masks=True,line_width=5)
+        results=model.predict(img_path,conf=0.4,project=out_path,name=masks_inf_folder,retina_masks=True,line_width=5,boxes=False,show_labels=True,save=True,exist_ok=True)
 
         if(results[0].masks is not None):
             # fish_names=results[0].names
@@ -73,20 +82,42 @@ for img in natsorted(os.listdir(data_path)):
             fish_masks=results[0].masks
             fish_boxes=results[0].boxes
             h, w, c = results[0].orig_img.shape
-            masked=np.ones((h,w))*255
-            i=0
+            # masked=[np.ones((h,w))*255]*len(fish_dict.keys())
+            masked = np.full( (len(fish_dict.keys()), h, w), 0)
+            masked_dict=dict(zip(fish_dict.keys(),masked))
+            # print(masked_dict)
+
             for i,mask in enumerate(fish_masks):
                 fish_cls=int(fish_boxes.cls[i])
-                print("THIS FISH IS A: ",fish_dict[fish_cls])
+                fish_conf=float(fish_boxes.conf[i])
+                print("##############################################################################################")
+                print("THIS FISH IS A: ",fish_dict[fish_cls],"with a confidence of : ",fish_conf)
                 mask_bw=generate_IS_bwmask(mask,h,w)
+                # mask_bw=np.squeeze(mask_bw)
+                print("MASK BW SHAPE:",mask_bw.shape,"UNIQUE VALS:",np.unique(mask_bw))
+                print("shape of masked_dict[fish_cls] ", masked_dict[fish_cls].shape)
+                # máscara anterior (0s or ant masks) + el nuevo pez
+                print("the colour is: ", class_colors[fish_cls] )
+                masked_dict[fish_cls]=masked_dict[fish_cls]+(mask_bw*class_colors[fish_cls])
 
-                masked=masked*mask_bw
+                print("CLASS Mask UNIQUE: ",np.unique(masked_dict[fish_cls]))
+                print(masked_dict[fish_cls].shape)
+                # masked=masked*mask_bw
                 # cv2.imwrite("Mask_"+str(i)+".jpg", masked)
                 # Invert the mask to get everything but black
-                i+=1
+            # mask_final = masked*(-1)+255
+            final_masks = np.stack(list(masked_dict.values()))
 
-        mask_final = masked*(-1)+255
-        save_img_path=os.path.join(out_path,img+"_mask.jpg")
-        cv2.imwrite(save_img_path,mask_final)
-        print("Writing mask to: ",save_img_path)
+            #aqui s ha de fer sobre final masks!!!!!
+            ###############################################
+            for mask in final_masks:
+                print("Mask UNIQUE: ",np.unique(mask))
+
+            mask_final=np.sum(final_masks,axis=0)
+            print("FINAL MASK SHAPE: ",mask_final.shape)
+            print("UNIQUE VALUES:",np.unique(mask_final))
+
+            save_img_path=os.path.join(out_path,masks_inf_folder,img.split(".")[0]+"_mask.jpg")
+            cv2.imwrite(save_img_path,mask_final)
+            print("Writing mask to: ",save_img_path)
             # Show the masked part of the image
