@@ -1,0 +1,9 @@
+python ../clearml_log_yolov8.py --project_name 16_classes_default_v8_lr_study --task_name C:\Users\Uib\yolov8\peces_antonio\16_classes_default\lr_study\small\lr_0.01\fold_1                     --model_size s --dataset C:\Users\Uib\yolov8\peces_antonio\16_classes_default\lr_study\dataset\data.yaml                         --epochs 300 --batch 8 --patience 20 --yolo_proj C:\Users\Uib\yolov8\peces_antonio\16_classes_default\lr_study\small --yolo_name lr_0.01_fold_1                             --seed 42 --lr 0.01
+------------------------------------------------------------- 
+
+python ../../clearml_log_yolov8.py --project_name 16_classes_default_v8_lr_study --task_name C:\Users\Uib\yolov8\peces_antonio\16_classes_default\lr_study\small\lr_0.01\fold_1                     --model_size s --dataset C:\Users\Uib\yolov8\peces_antonio\16_classes_default\lr_study\dataset\data.yaml                         --epochs 300 --batch 8 --patience 20 --yolo_proj C:\Users\Uib\yolov8\peces_antonio\16_classes_default\lr_study\small --yolo_name lr_0.01_fold_1                             --seed 42 --lr 0.01
+------------------------------------------------------------- 
+
+python ../../clearml_log_yolov8.py --project_name 16_classes_default_v8_lr_study --task_name C:\Users\Uib\yolov8\peces_antonio\16_classes_default\lr_study\small\lr_0.01\fold_1                     --model_size s --dataset C:\Users\Uib\yolov8\peces_antonio\16_classes_default\lr_study\dataset\data.yaml                         --epochs 300 --batch 8 --patience 20 --yolo_proj C:\Users\Uib\yolov8\peces_antonio\16_classes_default\lr_study\small --yolo_name lr_0.01_fold_1                             --seed 42 --lr 0.01
+------------------------------------------------------------- 
+
