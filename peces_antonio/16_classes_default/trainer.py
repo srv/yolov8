@@ -10,10 +10,10 @@ import random
 import time
 from datetime import datetime, timedelta
 
-path_to_project = r"C:\Users\Uib\yolov8\peces_antonio\binary_default"
+path_to_project = r"C:\Users\Uib\yolov8\peces_antonio\16_classes_default"
 if not os.path.exists(path_to_project): 
     os.makedirs(path_to_project)
-clearml_project = 'binary_default_v8'
+clearml_project = '16_classes_default_v8'
 
 tmp_splits = ["train","valid"]
 file_types = ["images","labels"]
@@ -36,7 +36,7 @@ def create_empty_temp_dirs(base_path):
 
 ds_versions = [16]
 do_train = True
-folds_created = True
+folds_created = False
 k = 5
 seed=42
 check_imgs_array,check_lbls_array=[],[]
