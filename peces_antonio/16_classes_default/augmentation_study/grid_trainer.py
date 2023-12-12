@@ -1,10 +1,6 @@
-from ultralytics import YOLO
-import numpy as np
-import matplotlib.pyplot as plt
 import os
 import glob
 import shutil
-from clearml import Task
 from natsort import natsorted
 import random
 import time
@@ -96,8 +92,8 @@ if len(set(list(check_imgs_array))) != len(check_imgs_array) or len(set(list(che
 
 if do_train:
     model_sizes = {
-        # "n": "nano",
-        "s": "small",
+        "n": "nano",
+        #"s": "small",
         # "m": "medium",
         # "l": "large",
         # "x": "extra_large"
@@ -145,7 +141,7 @@ if do_train:
                 
                 instruction = f"python ../../clearml_log_yolov8.py --project_name {clearml_project} --task_name {run_name} \
                     --model_size {model_size} --dataset {dataset_yaml} \
-                        --epochs 10 --batch 32 --patience 20 --yolo_proj {project_name} --yolo_name {yolo_name}_fold_{i} \
+                        --epochs 3 --batch 32 --patience 20 --yolo_proj {project_name} --yolo_name {yolo_name}_fold_{i} \
                             --seed {seed} --lr 0.001 --optimizer SGD --config {cfg_path}" 
                 
                     # Also available to add --config, --lr, --optimizer
