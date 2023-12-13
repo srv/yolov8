@@ -1,10 +1,6 @@
-from ultralytics import YOLO
-import numpy as np
-import matplotlib.pyplot as plt
 import os
 import glob
 import shutil
-from clearml import Task
 from natsort import natsorted
 import random
 import time
@@ -32,12 +28,9 @@ def create_empty_temp_dirs(base_path):
             tmp_dir = os.path.join(base_path, tmp_split,file_type)
             if not os.path.exists(tmp_dir):
                 os.makedirs(tmp_dir)
-                print(f'Making {tmp_dir}')
             else:
                 shutil.rmtree(tmp_dir)
                 os.makedirs(tmp_dir)
-                print(f'Removing and making {tmp_dir}')
-
 
 
 do_train = True
