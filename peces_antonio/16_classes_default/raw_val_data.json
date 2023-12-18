@@ -1,0 +1,54 @@
+{
+    "nano": {
+        "fold_1": {
+            "metrics/precision(B)": 0.7358430223085048,
+            "metrics/recall(B)": 0.6772672142486731,
+            "metrics/mAP50(B)": 0.7331480631871701,
+            "metrics/mAP50-95(B)": 0.5463843137702982,
+            "metrics/precision(M)": 0.730582616163318,
+            "metrics/recall(M)": 0.6711281665835295,
+            "metrics/mAP50(M)": 0.7259331356755111,
+            "metrics/mAP50-95(M)": 0.5059639032645549
+        },
+        "fold_2": {
+            "metrics/precision(B)": 0.7924202310195746,
+            "metrics/recall(B)": 0.609360552707613,
+            "metrics/mAP50(B)": 0.730294589866411,
+            "metrics/mAP50-95(B)": 0.5363228495585024,
+            "metrics/precision(M)": 0.8023035853022793,
+            "metrics/recall(M)": 0.6028705357193835,
+            "metrics/mAP50(M)": 0.7176666887689914,
+            "metrics/mAP50-95(M)": 0.48769693559294564
+        },
+        "fold_3": {
+            "metrics/precision(B)": 0.7980773126803312,
+            "metrics/recall(B)": 0.6797558595268577,
+            "metrics/mAP50(B)": 0.7467426650218794,
+            "metrics/mAP50-95(B)": 0.5534232527819112,
+            "metrics/precision(M)": 0.7988786436540609,
+            "metrics/recall(M)": 0.6736403044693129,
+            "metrics/mAP50(M)": 0.7378965216508765,
+            "metrics/mAP50-95(M)": 0.5186100567161935
+        },
+        "fold_4": {
+            "metrics/precision(B)": 0.7325252959203181,
+            "metrics/recall(B)": 0.6539333829532541,
+            "metrics/mAP50(B)": 0.7103819332637481,
+            "metrics/mAP50-95(B)": 0.5237454374433723,
+            "metrics/precision(M)": 0.728224630077284,
+            "metrics/recall(M)": 0.6513033451604946,
+            "metrics/mAP50(M)": 0.7035543660491015,
+            "metrics/mAP50-95(M)": 0.48080250438679206
+        },
+        "fold_5": {
+            "metrics/precision(B)": 0.7593632754810058,
+            "metrics/recall(B)": 0.6869516994999162,
+            "metrics/mAP50(B)": 0.759238041553759,
+            "metrics/mAP50-95(B)": 0.557476075899626,
+            "metrics/precision(M)": 0.7895531263400974,
+            "metrics/recall(M)": 0.6681342871174158,
+            "metrics/mAP50(M)": 0.7584340900774619,
+            "metrics/mAP50-95(M)": 0.5287497249821198
+        }
+    }
+}

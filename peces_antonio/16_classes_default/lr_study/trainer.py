@@ -10,10 +10,10 @@ import random
 import time
 from datetime import datetime, timedelta
 
-path_to_project = r"C:\Users\haddo\yolov8\peces_antonio\16_classes_default\lr_study"
+path_to_project = r"C:\Users\Uib\yolov8\peces_antonio\16_classes_default\lr_study"
 if not os.path.exists(path_to_project): 
     os.makedirs(path_to_project)
-clearml_project = '16_classes_default_v8_lr_study'
+clearml_project = '16_classes_default_v8_lr_study_300'
 
 tmp_splits = ["train","valid"]
 file_types = ["images","labels"]
@@ -101,7 +101,7 @@ if do_train:
         # "l": "large",
         # "x": "extra_large"
     }
-    lrs=[0.01, 0.005, 0.001, 0.0005, 0.0001]
+    lrs=[0.05]
     k = 5  # num folds
     for lr in lrs:
         # Tidy train-val splits from k-fold
@@ -132,7 +132,7 @@ if do_train:
                 
                 instruction = f"python ../../clearml_log_yolov8.py --project_name {clearml_project} --task_name {run_name} \
                     --model_size {model_size} --dataset {dataset_yaml} \
-                        --epochs 300 --batch 32 --patience 20 --yolo_proj {project_name} --yolo_name lr_{lr}_fold_{i} \
+                        --epochs 300 --batch 32 --patience 0 --yolo_proj {project_name} --yolo_name lr_{lr}_fold_{i} \
                             --seed {seed} --lr {lr} --optimizer SGD" 
                 
                     # Also available to add --config, --lr, --optimizer

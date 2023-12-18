@@ -141,7 +141,7 @@ def main():
 
     result = model.train(**train_args)
 
-    model.val(project=f'{yolo_proj}/{yolo_name}', name='val')
+    # model.val(project=f'{yolo_proj}/{yolo_name}', name='val')
 
     task.close()
 
