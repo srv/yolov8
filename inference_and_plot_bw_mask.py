@@ -51,13 +51,13 @@ class_colors=dict(zip(fish_dict.keys(),np.linspace(0,255,len(fish_dict.keys())+1
 
 print("MASKS COLORS: ",class_colors)
 
-data_path=("/home/uib/PLOME/stereo_tests/Andratx_2023-10-11__12-57-42_5/static_image_test/")
+data_path=("/home/uib/PLOME/plome_ws/src/stereo_plome/stereo_tests/test_calamardo/")
 out_path=data_path
 
 #GO THROUGH THE EXTRACTED IMGS DIR
 for img in natsorted(os.listdir(data_path)):
     #just inference on left image
-    if "left" in img and "mask" not in img:
+    if "left" in img and "mask" not in img and "yaml" not in img:
         print("running inference on ", img)
         print("------------------------------------------------------------------------------------------------------------------------------")
         print("------------------------------------------------------------------------------------------------------------------------------")
@@ -114,7 +114,7 @@ for img in natsorted(os.listdir(data_path)):
             print("FINAL MASK SHAPE: ",mask_final.shape)
             print("UNIQUE VALUES:",np.unique(mask_final))
 
-            save_img_path=os.path.join(out_path,masks_inf_folder,img.split(".")[0]+"_mask.jpg")
+            save_img_path=os.path.join(out_path,masks_inf_folder,img.split("_left")[0]+"_masked.jpg")
             cv2.imwrite(save_img_path,mask_final)
             print("LA MASCARA FINAL!! ",np.unique(mask_final))
             print("Writing mask to: ",save_img_path)
