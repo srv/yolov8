@@ -9,7 +9,7 @@ from datetime import datetime, timedelta
 
 path_to_project = r"C:\Users\haddo\yolov8\peces_antonio\hyp_study"
 clearml_project = "hyps_study"
-best_da_cfg = r"C:\Users\haddo\yolov8\peces_antonio\hyp_study\best_da_config.yaml"
+no_da_cfg = r"C:\Users\haddo\yolov8\peces_antonio\configs\no_da.yaml"
 
 path_to_dataset = r"C:\Users\haddo\yolov8\peces_antonio\dataset"
 txt_path = os.path.join(path_to_project, "calls.txt")
@@ -120,14 +120,14 @@ if do_train:
                         shutil.copyfile(lbl, os.path.join(ds_path, "train","labels", os.path.split(lbl)[-1]))
 
             for model_size in model_sizes.keys():
-                project_name = os.path.join(path_to_project, model_sizes[model_size])
+                project_name = os.path.join(path_to_project, model_sizes[model_size] + "no_da")
                     
                 run_name = os.path.join(project_name, "fold_"+str(i))
                 
                 instruction = f"python ../clearml_log_yolov8.py --project_name {clearml_project} --task_name {run_name} \
                     --model_size {model_size} --dataset {dataset_yaml} \
                         --epochs 500 --batch {batch} --patience 0 --yolo_proj {project_name} --yolo_name fold_{i} \
-                            --seed {seed} --optimizer SGD --lr 0.01 --config {best_da_cfg}" 
+                            --seed {seed} --optimizer SGD --lr 0.01 --config {no_da_cfg}" 
                 
                     # Also available to add --config, --lr, --optimizer
 
