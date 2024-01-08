@@ -1,0 +1,6 @@
+<launch>
+    <rosparam command="load" file="$(find stereo_plome)/config/plome_config.yaml"/>
+    <node pkg="stereo_plome" type="camera_lights_sync.py" name="auto_mode">
+        <param name="dir" value="/home/plomenuc/plome_ws/data"/>
+    </node>
+</launch>

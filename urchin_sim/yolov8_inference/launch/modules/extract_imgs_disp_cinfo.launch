@@ -1,0 +1,147 @@
+<?xml version="1.0"?>
+<!--
+Software License Agreement (BSD)
+
+\file      stereo.launch
+\authors   Michael Hosmar <mhosmar@clearpathrobotics.com>
+\copyright Copyright (c) 2018, Clearpath Robotics, Inc., All rights reserved.
+
+Redistribution and use in source and binary forms, with or without modification, are permitted provided that
+the following conditions are met:
+ * Redistributions of source code must retain the above copyright notice, this list of conditions and the
+   following disclaimer.
+ * Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the
+   following disclaimer in the documentation and/or other materials provided with the distribution.
+ * Neither the name of Clearpath Robotics nor the names of its contributors may be used to endorse or promote
+   products derived from this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WAR-
+RANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, IN-
+DIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT
+OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+<launch>
+  <!-- Common parameters -->
+  <arg name="camera_name"                default="stereo_ch3" />
+  <arg name="calibration"                default="water" />
+  <arg name="disparity_params"           default="$(find spinnaker_camera_driver)/config/ch3/disparity_params_x2.yaml"/>
+  <arg name="enable_decimate_x1"         default="true"/>
+  <arg name="enable_decimate_x2"         default="true"/>
+  <arg name="enable_decimate_x4"         default="false"/>
+
+  <param name="/use_sim_time"            value="true"/>
+
+  <!-- IDS -->
+  <arg name="left_camera_serial"         default="22416604" /> <!-- MASTER (also 16401228)-->
+  <arg name="right_camera_serial"        default="22416601" /> <!-- SLAVE (also 16401229)-->
+  <arg name="rate" default="0.1 " />
+
+  <!-- images extraction -->
+  <arg name="image" default="image_rect_color" />
+  <!-- <arg name="out_dir"         default="/home/uib/PLOME/datasets/Andratx_28_06_2023/13_55/"/> -->
+  <!-- <arg name="out_dir"         default="/home/uib/DATA/PEIXOS/LANDER_UIB/Andratx_28_06_2023/14_09/"/> -->
+  <arg name="out_dir"         default="/home/uib/DATA/PEIXOS/LANTY/pool_calamar/"/>
+  <arg name="format" default="frame%06i.png" />
+  <arg name="sec_per_frame" default="0.0" />
+
+
+
+  <arg name="bagfile" default="/home/uib/bagfiles/PLOME/Pool_calamardo/2023_11_20__13_38/13_38_42/stereo_camera_images_2023-11-20-13-38-43_0.bag"/> -->
+  <!-- <arg name="bagfile" default="/home/uib/bagfiles/PLOME/Andratx_10_11_2023/stereo_camera_images_2023-10-11-12-54-55_4.bag"/> --> -->
+
+  <!-- playback the data -->
+  <node pkg="rosbag" type="play" name="player" args="-d 1 -r $(arg rate) $(arg bagfile)" required="true" />
+
+  <!-- grab images to disk -->
+  <node pkg="image_view" type="extract_images" name="extractor_left" output="screen" >
+    <!-- <remap from="image" to="$(arg camera_name)/left/$(arg image)" /> -->
+    <!-- <remap from="image" to="$(arg camera_name)/left/image_rect_color/compressed" /> -->
+    <!-- <remap from="image" to="$(arg camera_name)/left/$(arg image)" /> -->
+    <remap from="image" to="/stereo_ch3/scaled_x2/left/image_rect_color" />
+    <!-- <remap from="image" to="/stereo_ch3/left/image_rect_color" /> -->
+
+    <param name="filename_format" value="$(arg out_dir)/left_$(arg format)" />
+    <!-- only grab image if sec_per_frame passed between two images -->
+    <param name="sec_per_frame" value="$(arg sec_per_frame)" />
+  </node>
+
+  <node pkg="image_view" type="extract_images" name="extractor_right" output="screen" >
+    <param name="filename_format" value="$(arg out_dir)/right_$(arg format)" />
+    <!-- <remap from="image" to="/stereo_ch3/right/image_rect_color" /> -->
+    <!-- <remap from="image" to="/stereo_ch3/right/image_rect_color/compressed" /> -->
+    <remap from="image" to="/stereo_ch3/scaled_x2/right/image_rect_color" />
+    <param name="sec_per_frame" value="$(arg sec_per_frame)" />
+  </node>
+
+  <!-- Nodelet manager -->
+  <!-- Both cameras are not loaded into one nodelet manager to avoid the namespacing issue. -->
+  <node pkg="nodelet" type="nodelet" name="camera_nodelet_manager" args="manager" output="screen"/>
+
+  <!-- disparity_saver.launch -->
+  <node name="disparity_saver_node" pkg="stereo_plome" type="disparity_saver.py" output="screen">
+    <param name="output_folder" type="string" value="$(arg out_dir)"/>
+  </node>
+
+  <group ns="$(arg camera_name)" >
+    <group ns="left" >
+      <!-- Camera nodelet -->
+      <rosparam command="load" file="$(find spinnaker_camera_driver)/config/ch3/CM3-U3-31S4C_$(arg left_camera_serial)/params.yaml" ns="camera_nodelet"/>
+
+
+      <!-- Debayering nodelet -->
+      <node pkg="nodelet" type="nodelet" name="image_proc_debayer" args="load image_proc/debayer /camera_nodelet_manager"/>
+    </group>
+
+    <group ns="right" >
+      <!-- Camera nodelet -->
+
+      <!-- Debayering nodelet -->
+      <node pkg="nodelet" type="nodelet" name="image_proc_debayer" args="load image_proc/debayer /camera_nodelet_manager"/>
+    </group>
+
+    <!-- Stereo image processing nodelet -->
+    <group if="$(arg enable_decimate_x1)">
+      <node pkg="stereo_image_proc" type="stereo_image_proc" name="stereo_image_proc" respawn="true" output="screen">
+        <rosparam file="$(arg disparity_params)"/>
+        <param name="approximate_sync" value="true"/>
+      </node>
+    </group>
+  </group>
+
+     <!-- x2 decimate -->
+    <group if="$(arg enable_decimate_x2)">
+      <include file="$(find spinnaker_camera_driver)/launch/stereo_crop_decimate.launch" >
+        <arg name="stereo" value="$(arg camera_name)" />
+        <arg name="decimation" value="2" />
+        <arg name="launch_in_nuc" value="false" />
+      </include>
+        <group ns="$(arg camera_name)/scaled_x2" >
+          <node pkg="stereo_image_proc" type="stereo_image_proc" name="stereo_image_proc" respawn="true" output="screen">
+            <rosparam file="$(arg disparity_params)"/>
+            <param name="approximate_sync" value="true" />
+          </node>
+        </group>
+    </group>
+
+    <!-- x4 decimate -->
+    <group if="$(arg enable_decimate_x4)">
+      <include file="$(find spinnaker_camera_driver)/launch/stereo_crop_decimate.launch" >
+        <arg name="stereo" value="$(arg camera_name)" />
+        <arg name="decimation" value="4" />
+        <arg name="launch_in_nuc" value="false" />
+      </include>
+        <group ns="$(arg camera_name)/scaled_x4" >
+          <node pkg="stereo_image_proc" type="stereo_image_proc" name="stereo_image_proc" respawn="true" output="screen">
+            <rosparam file="$(arg disparity_params)"/>
+            <param name="approximate_sync" value="true" />
+          </node>
+        </group>
+    </group>
+
+
+
+
+</launch>

@@ -1,0 +1,12 @@
+
+pathWeights: '/home/uib/yolov8/trained_models/urchin.pt'
+confidenceThreshold : 0.005
+writeFileResults: '/home/uib/yolov8/ROS_inference/urchins/'
+project_path: '/home/uib/yolov8/ROS_inference/urchins/'
+project_name: 'out'
+robot_name: 'xiroi'
+period : 0.6
+decimation: 4
+
+
+

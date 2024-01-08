@@ -1,0 +1,20 @@
+<launch>
+
+  	<arg name="camera" default="/stereo_down"/>
+	<arg name="decimation" default="2" />
+	<arg name="node_name" default="inference_yolov8_OD" />
+	<arg name="robot_name" default="xiroi" />
+
+	 <!-- load parameters -->
+	<rosparam command="load" file="/home/uib/PLOME/plome_ws/src/yolov8_inference/config/yolov8_OD_config.yaml"/>
+	<!-- detect image -->
+	<node name= "$(arg node_name)" pkg="yolov8_inference" type="sea_urchin_detection.py" output="screen">
+		<param name="robot_name" value="$(arg robot_name)"/>
+		<!-- <remap from="image_rect_color" to="/$(arg robot_name)/left/image_raw"/> -->
+		<remap from="image_rect_color" to="/$(arg robot_name)/left/image_color"/>
+        <remap from="camera_info" to="/$(arg robot_name)/left/camera_info"/>
+		<remap from="navigator/navigation" to="/$(arg robot_name)/navigator/navigation"/>
+	</node>
+</launch>
+
+

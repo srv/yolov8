@@ -1,0 +1,12 @@
+
+pathWeights: '/home/plomenuc/yolov5/fish_model/yolov8_nano_IS.pt'
+confidenceThreshold : 0.5
+writeFileResults: '/home/plomenuc/plome_ws/src/stereo_plome/images/'
+project_path: '/home/plomenuc/plome_ws/src/stereo_plome/images/'
+project_name: 'out'
+robot_name: 'lanty'
+period : 0.6
+decimation: 4
+
+
+

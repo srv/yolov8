@@ -1,0 +1,9 @@
+plome/dir: /home/plomenuc/plome_ws/data
+plome/image_topics: [
+/stereo_ch3/left/image_raw,
+/stereo_ch3/right/image_raw,
+/stereo_ch3/left/camera_info,
+/stereo_ch3/right/camera_info
+]
+cycle_time: 1800 # Time in seconds
+recording_time: 120 # Time in seconds

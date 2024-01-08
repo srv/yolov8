@@ -1,0 +1,45 @@
+<launch>
+
+	<arg name="manager" /> <!-- Must be globally qualified -->
+	<arg name="respawn" default="false" />
+	<arg name="left" default="left" />
+	<arg name="right" default="right" />
+	<arg name="downsampling_factor" value="1" />
+	<arg name="approximate_sync" default="false" />
+
+  	<arg name="folder" default="/home/uib/PLOME/plome_ws/src/stereo_plome/stereo_tests/test_calamardo/"/>
+  	<arg name="pointcloud_size" default="[1024,768]"/>
+	<arg name="disparity_params" default="$(find spinnaker_camera_driver)/config/ch3/disparity_params_x2.yaml"/>
+
+
+	<!-- Publish images, disp, camera_info from folder -->
+	<node name= "imgs_and_disp_publisher" pkg="stereo_plome" type="publisher_disp_cinfo_from_folder.py" output="screen">
+		<param name="folder" value="$(arg folder)"/>
+	</node>
+
+	<!-- Segment Pointcloud -->
+	<node name= "pointcloud_segmenter" pkg="stereo_plome" type="segment_pointcloud_ros.py" output="screen">
+		<param name="pointcloud_size" value="$(arg pointcloud_size)"/>
+	</node>
+
+	<!-- Original Pointcloud -->
+	<!-- <node name= "pointcloud_publisher" pkg="stereo_plome" type="publish_original_pc.py" output="screen">
+		<param name="pointcloud_size" value="$(arg pointcloud_size)"/>
+	</node> -->
+
+	<!-- <node pkg="stereo_image_proc" type="stereo_image_proc" name="stereo_image_proc" respawn="true" output="screen">
+		<rosparam file="$(arg disparity_params)"/>
+		<param name="approximate_sync" value="true"/>
+    </node> -->
+
+	  <!-- PointCloud2 -->
+	<!-- <node pkg="nodelet" type="nodelet" name="point_cloud2"
+			args="load stereo_image_proc/point_cloud2 $(arg manager) $(arg bond)"
+		respawn="$(arg respawn)" >
+		<param name="approximate_sync" value="$(arg approximate_sync)" />
+	</node> -->
+
+
+
+
+</launch>
