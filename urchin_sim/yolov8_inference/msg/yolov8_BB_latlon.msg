@@ -6,6 +6,9 @@ string imageName #name of the stored image
 
 int64 num_detections
 
+#altitude
+float32 alt
+
 #Detections
 det_bb[] dets #Detected instances (bounding boxs with corresponding score, class and lat lon)
 
