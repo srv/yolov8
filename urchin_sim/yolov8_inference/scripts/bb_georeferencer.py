@@ -250,10 +250,12 @@ class image_georeferencer:
         # img_bounds1: poses of corners of img1 (left up,right up,right down,left down)
         # img_bounds2: poses of corners of img2 (left up,right up,right down,left down)
         # returns [overlap,overlap_proportion]
-        # overlap: True if there is more overlap than the threshold, false otherwise
-        # overlap proportion: overlap ratio of the 2 images
+            # overlap: True if there is more overlap than the threshold, false otherwise
+            # overlap proportion: overlap ratio of the 2 images
 
-        bounds1=[]corner_transformed
+        bounds1=[]
+        bounds2=[]
+        # convert to (x,y) points
         for bound1,bound2 in zip(img_bounds1,img_bounds2):
             bounds1.append([bound1.pose.position.x,bound1.pose.position.y])
             bounds2.append([bound2.pose.position.x,bound2.pose.position.y])
