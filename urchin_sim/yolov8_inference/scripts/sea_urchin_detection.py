@@ -220,7 +220,7 @@ class Object_detection:
           ros_infered_image.header.stamp = rospy.Time.now()
           ros_infered_image.height = self.height
           ros_infered_image.width = self.width
-          ros_infered_image.encoding = "rgb8"  # Adjust the encoding based on your image format
+          ros_infered_image.encoding = "bgr8"  # Adjust the encoding based on your image format
           # ros_infered_image.is_bigendian = False
           ros_infered_image.step = 3 * self.width  # Assuming 3 channels (RGB)
 

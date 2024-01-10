@@ -52,7 +52,7 @@ class image_georeferencer:
         if scaling==8:
             img_topic="/stereo_down/scaled_x8/left/image_color"
 
-        dir = rospy.get_param('~saving_dir', default='/home/tintin/simulation_ws/src/yolov8_inference')
+        self.dir = rospy.get_param('~saving_dir', default='/home/tintin/yolov8/urchin_sim/fouhnd_urchins_info/')
         self.dir_save_bagfiles = dir + 'CSV_TESTS/'
 
         #create directory
@@ -169,7 +169,7 @@ class image_georeferencer:
                 bounds=[urchin_latlon[1][0],urchin_latlon[1][1],urchin_latlon[3][0],urchin_latlon[3][1]]
                 lat_diff = abs(urchin_latlon[3][0] - urchin_latlon[1][0])
                 lon_diff = abs(urchin_latlon[3][1] - urchin_latlon[1][1])
-                self.geotiff(self,filename, self.cv_image,bounds,lat_diff,lon_diff)
+                self.geotiff(filename, self.cv_image,bounds,lat_diff,lon_diff)
 
         else:
             for urchin,urchinlatlon in zip(self.urchins_in_image,self.urchins_in_image_latlon):
@@ -183,7 +183,7 @@ class image_georeferencer:
                         bounds=[urchinlatlon[1][0],urchinlatlon[1][1],urchinlatlon[3][0],urchinlatlon[3][1]]
                         lat_diff = abs(urchinlatlon[3][0] - urchinlatlon[1][0])
                         lon_diff = abs(urchinlatlon[3][1] - urchinlatlon[1][1])
-                        self.geotiff(self,filename, self.cv_image,bounds,lat_diff,lon_diff)
+                        self.geotiff(filename, self.cv_image,bounds,lat_diff,lon_diff)
                         #guardar los 4
                         for lat_lon,xy in zip(urchin,urchinlatlon):
                             self.export_to_csv(self.image_name, lat_lon[0], lat_lon[1],self.altitude,xy.pose.position.x,xy.pose.position.y,"_not_repeated_urchins.csv")
@@ -220,6 +220,7 @@ class image_georeferencer:
     def geotiff(self,filename, image,bounds,lat_diff,lon_diff):
 
         print("filename: ",filename)
+        filename=os.path.join(self.dir,filename)
         ny=image.shape[0] #img height 1440
         nx=image.shape[1] #img width 1920
         xres = lon_diff / float(nx)
@@ -233,6 +234,7 @@ class image_georeferencer:
         srs.ImportFromEPSG(4326)                # WGS84 lat/long
 
         if len(image.shape) == 3:
+            print("WRITING: ",filename)
             dst_ds = gdal.GetDriverByName('GTiff').Create(filename, nx, ny, 3, gdal.GDT_Byte)
             # dst_ds = gdal.GetDriverByName('GTiff').Create(filename, ny, nx, 3, gdal.GDT_Float64)
             dst_ds.SetGeoTransform(geotransform)    # specify coords
