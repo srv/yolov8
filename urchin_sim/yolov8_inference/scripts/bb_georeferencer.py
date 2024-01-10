@@ -64,6 +64,7 @@ class image_georeferencer:
         self.skip_n_imgs=1    #save img every skip_n_imgs
         self.rows=0
         self.listener = tf.TransformListener()
+        self.bridge = CvBridge()
 
         # FOV de la camera extret de excel de framerate i exposicio -> modificar
 
@@ -95,11 +96,18 @@ class image_georeferencer:
         self.altitude = urchin_bb.alt
         self.image_width=urchin_bb.original_image.width
         self.image_height=urchin_bb.original_image.height
+        self.image_name=urchin_bb.imageName
+
+        self.cv_image = self.bridge.imgmsg_to_cv2(urchin_bb.infered_image, desired_encoding="bgr8")
 
         #Image pixel dimensions (tan function uses rad)
         self.pixel_x_dim_img = (2*self.altitude*tan(self.FOV_x/2))/self.image_width #width
         self.pixel_y_dim_img = (2*self.altitude*tan(self.FOV_y/2))/self.image_height #height
         print("IMG_DIM: ",self.pixel_x_dim_img," y_:",self.pixel_y_dim_img)
+
+
+        self.urchins_in_image=[]
+        self.urchins_in_image_latlon=[]
 
         for urchin_det in urchin_bb.dets:
             #det_bb x,y,w,h
@@ -111,8 +119,6 @@ class image_georeferencer:
             pose_corner_l_up = PoseStamped()
             pose_corner_r_down = PoseStamped()
             pose_corner_l_down = PoseStamped()
-
-            corner_list=[pose_corner_l_up, pose_corner_r_up, pose_corner_r_down,pose_corner_l_down]
 
             #Corners of img referenced to img_center (restar la mitad porque yolo referencia a la esquina superior izq crec)
             #Corners of img referenced to img_center:
@@ -127,6 +133,8 @@ class image_georeferencer:
 
             pose_corner_l_down.pose.position.x= ((-self.image_width/2) +(x-w/2))*self.pixel_x_dim_img
             pose_corner_l_down.pose.position.y= ((-self.image_height/2 )+(y-h/2))*self.pixel_y_dim_img
+
+            corner_list=[pose_corner_l_up, pose_corner_r_up, pose_corner_r_down,pose_corner_l_down]
 
             self.bb_corners=[] #
             self.bb_corners_latlon=[]
@@ -145,17 +153,50 @@ class image_georeferencer:
                 point_lat,point_lon,_ =self.ned.ned2geodetic([corner_transformed.pose.position.x, corner_transformed.pose.position.y, 0.0])
                 print("LAT: ",point_lat," LON ",point_lon)
                 self.bb_corners_latlon.append([point_lat,point_lon])
-                self.export_to_csv( int(urchin_bb.header.seq), point_lat, point_lon,self.altitude)
+                self.export_to_csv(self.image_name, point_lat, point_lon,self.altitude,corner_transformed.pose.position.x,corner_transformed.pose.position.y)
+
+            self.urchins_in_image.append(self.bb_corners)
+            self.urchins_in_image_latlon.append(self.bb_corners_latlon)
+
+        filename=self.image_name.split(".")[0]+".tiff"
+        if self.counter==0:
+            self.prev_img_urchins=self.urchins_in_image[:]
+
+            # lat lon pxl right up and pixel left down
+            # bounds=[pxl_lat_up, pxl_lon_up,pxl_lat_down, pxl_lon_down]
+            #Save the first image urchins
+            for urchin_latlon in self.urchins_in_image_latlon:
+                bounds=[urchin_latlon[1][0],urchin_latlon[1][1],urchin_latlon[3][0],urchin_latlon[3][1]]
+                lat_diff = abs(urchin_latlon[3][0] - urchin_latlon[1][0])
+                lon_diff = abs(urchin_latlon[3][1] - urchin_latlon[1][1])
+                self.geotiff(self,filename, self.cv_image,bounds,lat_diff,lon_diff)
+
+        else:
+            for urchin,urchinlatlon in zip(self.urchins_in_image,self.urchins_in_image_latlon):
+                for prev_urchin in self.prev_img_urchins:
+                    #the 4 corners in global pose xy
+                    is_overlaping,overlap = self.get_overlapping(urchin[0:-1],prev_urchin[0:-1])
+                    print("OVERLAP: ",overlap)
+                    #The urchins are different so we save them
+                    if is_overlaping==False:
+                        # lat lon pxl right up and pixel left down (bounds=[pxl_lat_up, pxl_lon_up,pxl_lat_down, pxl_lon_down] )
+                        bounds=[urchinlatlon[1][0],urchinlatlon[1][1],urchinlatlon[3][0],urchinlatlon[3][1]]
+                        lat_diff = abs(urchinlatlon[3][0] - urchinlatlon[1][0])
+                        lon_diff = abs(urchinlatlon[3][1] - urchinlatlon[1][1])
+                        self.geotiff(self,filename, self.cv_image,bounds,lat_diff,lon_diff)
+                        #guardar los 4
+                        for lat_lon,xy in zip(urchin,urchinlatlon):
+                            self.export_to_csv(self.image_name, lat_lon[0], lat_lon[1],self.altitude,xy.pose.position.x,xy.pose.position.y,"_not_repeated_urchins.csv")
 
 
 
-    def export_to_csv(self, seq, lat, long,z):
+    def export_to_csv(self, seq, lat, long,z,world_x,world_y,csv_name='_detected_urchins_bboxes.csv'):
         print("WRITING_CSV")
-        header=["img_name","latitude","longitude","altitude"]
+        header=["img_name","latitude","longitude","altitude","global_x","global_y"]
 
-        csv_file=os.path.join(self.dir_save_bagfiles+'img_info_test0.csv')
-        seq=str(seq)+".JPG"
-        data_list = [seq,lat,long,z]
+        csv_file=os.path.join(self.dir_save_bagfiles+csv_name)
+
+        data_list = [seq,lat,long,z,world_x,world_y]
         print("witing data: ",data_list,"in file: ",csv_file)
 
         with open(csv_file, 'a+') as file:
@@ -212,9 +253,7 @@ class image_georeferencer:
         # overlap: True if there is more overlap than the threshold, false otherwise
         # overlap proportion: overlap ratio of the 2 images
 
-        bounds1=[]
-        bounds2=[]
-        # convert to (x,y) points
+        bounds1=[]corner_transformed
         for bound1,bound2 in zip(img_bounds1,img_bounds2):
             bounds1.append([bound1.pose.position.x,bound1.pose.position.y])
             bounds2.append([bound2.pose.position.x,bound2.pose.position.y])

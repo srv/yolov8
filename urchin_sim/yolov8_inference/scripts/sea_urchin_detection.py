@@ -152,7 +152,7 @@ class Object_detection:
       # img_array = img_array.reshape((self.height, self.width))  # RAW image
       img_array = img_array.reshape((self.height, self.width,3))  # COLOR image
       # Convert BGR to RGB
-      img_array = img_array[..., ::-1]
+      # img_array = img_array[..., ::-1]
 
       # Create a PIL Image from the NumPy array
       # pil_image = PIL.Image.fromarray(img_array, mode='L') # RAW IMAGE
