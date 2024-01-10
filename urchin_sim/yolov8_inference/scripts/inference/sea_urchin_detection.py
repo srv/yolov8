@@ -31,7 +31,7 @@ from cv_bridge import CvBridge
 
 #yolov8:
 from ultralytics import YOLO
-
+import csv
 
 DEVICE = torch.device('cuda') if torch.cuda.is_available() else torch.device('cpu')
 
@@ -49,6 +49,8 @@ class Object_detection:
 
     self.detections.alt=-1
     self.det = det_bb()
+    self.urchin_images_seq=0
+    self.rows=0
 
 	  # Params
     self.model_path = rospy.get_param("pathWeights")
@@ -58,6 +60,7 @@ class Object_detection:
     self.period = rospy.get_param("period")
     self.project_path = rospy.get_param("project_path")
     self.project_name = rospy.get_param("project_name")
+    self.dir_save_urchins=rospy.get_param("save_urchins_location_path",default="/home/tintin/yolov8/urchin_sim/found_urchins.csv")
     FOV_x_water=rospy.get_param('~FOV_x_water',default=34.73)
     FOV_y_water=rospy.get_param('~FOV_y_water',default=26.84)
 
@@ -66,23 +69,22 @@ class Object_detection:
     self.FOV_y=FOV_y_water*((2*pi)/360.0)
     # self.listener = tf.TransformListener()
 
-
     self.out_folder=os.path.join(self.project_path,self.project_name)
     self.inference_finished=True
 
     #LOAD MODEL:
     self.model = YOLO(self.model_path)
     # image_sub = message_filters.Subscriber('image_rect_color', Image)
-    image_sub = message_filters.Subscriber('/stereo_down/left/image_raw', Image)
-    info_sub = message_filters.Subscriber('/stereo_down/left/camera_info', CameraInfo)
-    latlon_sub = message_filters.Subscriber('/turbot/navigator/navigation', NavSts)
+    image_sub = message_filters.Subscriber(self.robot_name+'/stereo_down/left/image_color', Image)
+    info_sub = message_filters.Subscriber(self.robot_name+'/stereo_down/left/camera_info', CameraInfo)
+    latlon_sub = message_filters.Subscriber(self.robot_name+'/navigator/navigation', NavSts)
     ts = message_filters.ApproximateTimeSynchronizer([image_sub, info_sub,latlon_sub], queue_size=100, slop=0.1)
     ts.registerCallback(self.cb_image)
 
     self.inf_image_pub = rospy.Publisher('IS_image', Image, queue_size=10)
 
 	  # Set publishers
-    self.pub_fish_predictions = rospy.Publisher("fish_predictions", yolov8_BB_latlon, queue_size=4)
+    self.pub_fish_predictions = rospy.Publisher("urchin_predictions", yolov8_BB_latlon, queue_size=4)
 
 
   def cb_image(self, image, info,navstatus):
@@ -101,6 +103,26 @@ class Object_detection:
       time.sleep(self.period)
     else:
         pass
+
+  def export_to_csv(self,seq, num_dets, lat, lon,z):
+    print("WRITING_CSV")
+    header=["img_name","latitude","longitude","altitude","num_detections"]
+
+    csv_file=os.path.join(self.dir_save_urchins)
+    seq=str(seq)+".JPG"
+    data_list = [seq,lat,lon,z,num_dets]
+    print("witing data: ",data_list,"in file: ",csv_file)
+
+    with open(csv_file, 'a+') as file:
+        writer = csv.writer(file, delimiter=';')
+        if self.rows==0:
+            writer.writerow(header)
+
+        writer.writerow(data_list)
+        self.rows+=1
+        print("rows: ",self.rows)
+
+    file.close()
 
 
 
@@ -127,14 +149,14 @@ class Object_detection:
       # Convert the raw image data to a NumPy array
       img_array = np.frombuffer(self.img_data, dtype=np.uint8)
       # Reshape the NumPy array to the image dimensions
-      img_array = img_array.reshape((self.height, self.width))  # RAW image
-      # img_array = img_array.reshape((self.height, self.width,3))  # COLOR image
+      # img_array = img_array.reshape((self.height, self.width))  # RAW image
+      img_array = img_array.reshape((self.height, self.width,3))  # COLOR image
       # Convert BGR to RGB
-      # img_array = img_array[..., ::-1]
+      img_array = img_array[..., ::-1]
 
       # Create a PIL Image from the NumPy array
-      pil_image = PIL.Image.fromarray(img_array, mode='L') # RAW IMAGE
-      # pil_image = PIL.Image.fromarray(img_array,mode='RGB') # COLOR IMAGE
+      # pil_image = PIL.Image.fromarray(img_array, mode='L') # RAW IMAGE
+      pil_image = PIL.Image.fromarray(img_array,mode='RGB') # COLOR IMAGE
       #inference
       results=self.model.predict(pil_image, save=True,save_conf=True,project=self.project_path,name=self.project_name,exist_ok=True ,conf=self.confidenceThreshold)
       # print("RESULTS, ",results)
@@ -154,6 +176,14 @@ class Object_detection:
           print("ALTITUDE: ", self.alt)
           self.detections.alt=self.alt
 
+          res_plotted = results[0].plot()
+          timestamp = time.strftime("%Y%m%d-%H%M%S")
+          # image_name = "image_"+str(timestamp)+".jpg"
+          image_name = "image_"+str(self.urchin_images_seq)+".jpg"
+          self.urchin_images_seq=self.urchin_images_seq+1
+          self.detections.imageName=image_name
+          self.detections.original_image=self.image
+
           # try:
           for i in range(number_of_detections):
             object_cls=model_classes[int(detected_boxes.cls[i])]
@@ -170,21 +200,16 @@ class Object_detection:
             self.det.object_class=object_cls
             self.det.lat=self.lat
             self.det.lon=self.lon
-
-
             self.detections.dets.append(self.det)
+
+            self.export_to_csv(image_name,number_of_detections, self.lat, self.lon,self.detections.alt)
           # print("Bounding mask!!: ",fish_mask)
           print("-----------------------------------------------------------------")
           # except Exception as e:
           self.inference_finished=True
 
-          res_plotted = results[0].plot()
-          timestamp = time.strftime("%Y%m%d-%H%M%S")
-          image_name = "image_"+str(timestamp)+".jpg"
-          self.detections.imageName=image_name
-          self.detections.original_image=self.image
           # self.detections.camera_info=self.info
-          if detection_conf>0.9:
+          if detection_conf>0.1:
             cv2.imwrite(os.path.join(self.out_folder,image_name), res_plotted)
             print("Image saved to ",os.path.join(self.out_folder,image_name))
 
@@ -213,6 +238,7 @@ class Object_detection:
       else:
         print("I FIND NOTHING")
         self.inference_finished=True
+
 
 if __name__ == '__main__':
   try:

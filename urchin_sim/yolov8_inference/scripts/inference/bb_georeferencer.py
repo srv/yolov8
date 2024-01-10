@@ -52,7 +52,7 @@ class image_georeferencer:
         if scaling==8:
             img_topic="/stereo_down/scaled_x8/left/image_color"
 
-        dir = rospy.get_param('~saving_dir', default='~home/bagfiles')
+        dir = rospy.get_param('~saving_dir', default='/home/tintin/simulation_ws/src/yolov8_inference')
         self.dir_save_bagfiles = dir + 'CSV_TESTS/'
 
         #create directory
@@ -77,8 +77,8 @@ class image_georeferencer:
         self.FOV_y=26.84*((2*pi)/360.0)
 
         #Subscribers
-        self.bbox_sub=rospy.Subscriber("urchin_bb", yolov8_BB_latlon, self.urchin_callback)
-        self.latlon_sub = rospy.Subscriber('/turbot/navigator/navigation', NavSts,self.latlon_sub)
+        self.bbox_sub=rospy.Subscriber("/urchin_predictions", yolov8_BB_latlon, self.urchin_callback)
+        self.latlon_sub = rospy.Subscriber('/robot0/navigator/navigation', NavSts,self.latlon_sub)
 
     def latlon_sub(self,gps_sub):
         self.ned_origin_lat=gps_sub.origin.latitude
@@ -103,7 +103,7 @@ class image_georeferencer:
 
         for urchin_det in urchin_bb.dets:
             #det_bb x,y,w,h
-            x,y,w,h=urchin_det[0],urchin_det[1],urchin_det[2],urchin_det[3]
+            x,y,w,h=urchin_det.bbox[0],urchin_det.bbox[1],urchin_det.bbox[2],urchin_det.bbox[3]
             self.latitude = urchin_det.lat
             self.longitude = urchin_det.lon
 
@@ -116,23 +116,23 @@ class image_georeferencer:
 
             #Corners of img referenced to img_center (restar la mitad porque yolo referencia a la esquina superior izq crec)
             #Corners of img referenced to img_center:
-            pose_corner_r_up.pose.position.x= (-self.image_width/2) +(x+w/2)*self.pixel_x_dim_img
-            pose_corner_r_up.pose.position.y= (-self.image_height/2 )+(y+h/2)*self.pixel_y_dim_img
+            pose_corner_r_up.pose.position.x= ((-self.image_width/2) +(x+w/2))*self.pixel_x_dim_img
+            pose_corner_r_up.pose.position.y= ((-self.image_height/2 )+(y+h/2))*self.pixel_y_dim_img
 
-            pose_corner_l_up.pose.position.x= (-self.image_width/2) +(x-w/2)*self.pixel_x_dim_img
-            pose_corner_l_up.pose.position.y=  (-self.image_height/2 )+(y+h/2)*self.pixel_y_dim_img
+            pose_corner_l_up.pose.position.x= ((-self.image_width/2) +(x-w/2))*self.pixel_x_dim_img
+            pose_corner_l_up.pose.position.y=  ((-self.image_height/2 )+(y+h/2))*self.pixel_y_dim_img
 
-            pose_corner_r_down.pose.position.x=  (-self.image_width/2) +(x+w/2)*self.pixel_x_dim_img
-            pose_corner_r_down.pose.position.y= (-self.image_height/2 )+(y-h/2)*self.pixel_y_dim_img
+            pose_corner_r_down.pose.position.x=  ((-self.image_width/2) +(x+w/2))*self.pixel_x_dim_img
+            pose_corner_r_down.pose.position.y= ((-self.image_height/2 )+(y-h/2))*self.pixel_y_dim_img
 
-            pose_corner_l_down.pose.position.x= (-self.image_width/2) +(x-w/2)*self.pixel_x_dim_img
-            pose_corner_l_down.pose.position.y= (-self.image_height/2 )+(y-h/2)*self.pixel_y_dim_img
+            pose_corner_l_down.pose.position.x= ((-self.image_width/2) +(x-w/2))*self.pixel_x_dim_img
+            pose_corner_l_down.pose.position.y= ((-self.image_height/2 )+(y-h/2))*self.pixel_y_dim_img
 
             self.bb_corners=[] #
             self.bb_corners_latlon=[]
             #Convert corner's pose to a pose referenced to world
             for corner in corner_list:
-                corner.header=Header(stamp=urchin_bb.header.stamp, frame_id='/turbot/stereo_down/left_optical')
+                corner.header=Header(stamp=urchin_bb.header.stamp, frame_id='/robot0/stereo_down/left_optical')
                 corner.pose.position.z= 0   #self.altitude
                 corner.pose.orientation.x = 0
                 corner.pose.orientation.y = 0
@@ -145,6 +145,7 @@ class image_georeferencer:
                 point_lat,point_lon,_ =self.ned.ned2geodetic([corner_transformed.pose.position.x, corner_transformed.pose.position.y, 0.0])
                 print("LAT: ",point_lat," LON ",point_lon)
                 self.bb_corners_latlon.append([point_lat,point_lon])
+                self.export_to_csv( int(urchin_bb.header.seq), point_lat, point_lon,self.altitude)
 
 
 
