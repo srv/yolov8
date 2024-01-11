@@ -1,0 +1,274 @@
+{
+    "": {
+        "_hsv_h_0.015_hsv_s_0.6_hsv_v_0.35": {
+            "metrics/precision(B)": 0.8514401940977196,
+            "metrics/recall(B)": 0.7614202107059908,
+            "metrics/mAP50(B)": 0.8445205185674562,
+            "metrics/mAP50-95(B)": 0.7078510256285202,
+            "metrics/precision(M)": 0.8449889640777744,
+            "metrics/recall(M)": 0.7527384289209853,
+            "metrics/mAP50(M)": 0.8353433675551705,
+            "metrics/mAP50-95(M)": 0.6468540898552222
+        },
+        "_hsv_h_0.015_hsv_s_0.6_hsv_v_0.4": {
+            "metrics/precision(B)": 0.8567896776905376,
+            "metrics/recall(B)": 0.7674520319483039,
+            "metrics/mAP50(B)": 0.8479346628616731,
+            "metrics/mAP50-95(B)": 0.7195740662747209,
+            "metrics/precision(M)": 0.849837815937883,
+            "metrics/recall(M)": 0.757254387452436,
+            "metrics/mAP50(M)": 0.8373672278464286,
+            "metrics/mAP50-95(M)": 0.6516021265253931
+        },
+        "_hsv_h_0.015_hsv_s_0.6_hsv_v_0.45": {
+            "metrics/precision(B)": 0.8630741126904282,
+            "metrics/recall(B)": 0.7599469296742893,
+            "metrics/mAP50(B)": 0.8399340849433887,
+            "metrics/mAP50-95(B)": 0.7069711698874138,
+            "metrics/precision(M)": 0.857993860078549,
+            "metrics/recall(M)": 0.7526520292959692,
+            "metrics/mAP50(M)": 0.8314056697978495,
+            "metrics/mAP50-95(M)": 0.6393554055344196
+        },
+        "_hsv_h_0.015_hsv_s_0.7_hsv_v_0.35": {
+            "metrics/precision(B)": 0.870182015220994,
+            "metrics/recall(B)": 0.7534482603062335,
+            "metrics/mAP50(B)": 0.8422807968621788,
+            "metrics/mAP50-95(B)": 0.7145062087187201,
+            "metrics/precision(M)": 0.8642110876842111,
+            "metrics/recall(M)": 0.7479770791291755,
+            "metrics/mAP50(M)": 0.8336604564096612,
+            "metrics/mAP50-95(M)": 0.6453448971973679
+        },
+        "_hsv_h_0.015_hsv_s_0.7_hsv_v_0.4": {
+            "metrics/precision(B)": 0.8727699977318912,
+            "metrics/recall(B)": 0.7602688928430492,
+            "metrics/mAP50(B)": 0.8463295772858708,
+            "metrics/mAP50-95(B)": 0.7131989822322525,
+            "metrics/precision(M)": 0.8639094754037062,
+            "metrics/recall(M)": 0.750536937558394,
+            "metrics/mAP50(M)": 0.8362639028303105,
+            "metrics/mAP50-95(M)": 0.6443991455441053
+        },
+        "_hsv_h_0.015_hsv_s_0.7_hsv_v_0.45": {
+            "metrics/precision(B)": 0.8663319064030117,
+            "metrics/recall(B)": 0.754016239870924,
+            "metrics/mAP50(B)": 0.838888655770365,
+            "metrics/mAP50-95(B)": 0.7142707263769342,
+            "metrics/precision(M)": 0.8580551551701017,
+            "metrics/recall(M)": 0.7482112780685866,
+            "metrics/mAP50(M)": 0.8320670186134466,
+            "metrics/mAP50-95(M)": 0.648949698195407
+        },
+        "_hsv_h_0.015_hsv_s_0.8_hsv_v_0.35": {
+            "metrics/precision(B)": 0.8604066295467427,
+            "metrics/recall(B)": 0.7707854201946046,
+            "metrics/mAP50(B)": 0.8444002637199831,
+            "metrics/mAP50-95(B)": 0.7084274168466667,
+            "metrics/precision(M)": 0.8486883663070572,
+            "metrics/recall(M)": 0.7601099161307086,
+            "metrics/mAP50(M)": 0.8313823330736051,
+            "metrics/mAP50-95(M)": 0.6457915426198585
+        },
+        "_hsv_h_0.015_hsv_s_0.8_hsv_v_0.4": {
+            "metrics/precision(B)": 0.8606908863945214,
+            "metrics/recall(B)": 0.7620219282473577,
+            "metrics/mAP50(B)": 0.8415250708335074,
+            "metrics/mAP50-95(B)": 0.7124630533764849,
+            "metrics/precision(M)": 0.858930122906334,
+            "metrics/recall(M)": 0.7561136451099602,
+            "metrics/mAP50(M)": 0.8337201395209048,
+            "metrics/mAP50-95(M)": 0.6466978630244065
+        },
+        "_hsv_h_0.015_hsv_s_0.8_hsv_v_0.45": {
+            "metrics/precision(B)": 0.854169019642607,
+            "metrics/recall(B)": 0.7692487186367594,
+            "metrics/mAP50(B)": 0.8396169105291791,
+            "metrics/mAP50-95(B)": 0.7127426459494848,
+            "metrics/precision(M)": 0.8488125968225615,
+            "metrics/recall(M)": 0.7635001409907529,
+            "metrics/mAP50(M)": 0.8330210916258312,
+            "metrics/mAP50-95(M)": 0.6426731721723609
+        },
+        "_hsv_h_0.01_hsv_s_0.6_hsv_v_0.35": {
+            "metrics/precision(B)": 0.8388697457405382,
+            "metrics/recall(B)": 0.7553761313959506,
+            "metrics/mAP50(B)": 0.8322043156066746,
+            "metrics/mAP50-95(B)": 0.7058118466462414,
+            "metrics/precision(M)": 0.8609884109151431,
+            "metrics/recall(M)": 0.7273520189541294,
+            "metrics/mAP50(M)": 0.8250376417576823,
+            "metrics/mAP50-95(M)": 0.643182998598465
+        },
+        "_hsv_h_0.01_hsv_s_0.6_hsv_v_0.4": {
+            "metrics/precision(B)": 0.8390984210701931,
+            "metrics/recall(B)": 0.7798954324519825,
+            "metrics/mAP50(B)": 0.8417215411520673,
+            "metrics/mAP50-95(B)": 0.7119024655497539,
+            "metrics/precision(M)": 0.8302277937629967,
+            "metrics/recall(M)": 0.7715847332070658,
+            "metrics/mAP50(M)": 0.8333685377090929,
+            "metrics/mAP50-95(M)": 0.6432028714423585
+        },
+        "_hsv_h_0.01_hsv_s_0.6_hsv_v_0.45": {
+            "metrics/precision(B)": 0.8484944996031375,
+            "metrics/recall(B)": 0.7670355552869057,
+            "metrics/mAP50(B)": 0.8394166477122733,
+            "metrics/mAP50-95(B)": 0.712967752779843,
+            "metrics/precision(M)": 0.8612251739003878,
+            "metrics/recall(M)": 0.7441745253284352,
+            "metrics/mAP50(M)": 0.8293895297169723,
+            "metrics/mAP50-95(M)": 0.6495047215942144
+        },
+        "_hsv_h_0.01_hsv_s_0.7_hsv_v_0.35": {
+            "metrics/precision(B)": 0.8459821139500308,
+            "metrics/recall(B)": 0.7765976032336834,
+            "metrics/mAP50(B)": 0.843031459164086,
+            "metrics/mAP50-95(B)": 0.7105196907374077,
+            "metrics/precision(M)": 0.8399470594395789,
+            "metrics/recall(M)": 0.770915566002521,
+            "metrics/mAP50(M)": 0.8359230564319613,
+            "metrics/mAP50-95(M)": 0.6387758776016037
+        },
+        "_hsv_h_0.01_hsv_s_0.7_hsv_v_0.4": {
+            "metrics/precision(B)": 0.858471542212702,
+            "metrics/recall(B)": 0.75823571621666,
+            "metrics/mAP50(B)": 0.8458791305580489,
+            "metrics/mAP50-95(B)": 0.7147742934199165,
+            "metrics/precision(M)": 0.8483761261160014,
+            "metrics/recall(M)": 0.7494032041064363,
+            "metrics/mAP50(M)": 0.8366985938133599,
+            "metrics/mAP50-95(M)": 0.6477357101758787
+        },
+        "_hsv_h_0.01_hsv_s_0.7_hsv_v_0.45": {
+            "metrics/precision(B)": 0.849252489356885,
+            "metrics/recall(B)": 0.7710375151825619,
+            "metrics/mAP50(B)": 0.841210310873024,
+            "metrics/mAP50-95(B)": 0.7140319322422106,
+            "metrics/precision(M)": 0.8358307224404515,
+            "metrics/recall(M)": 0.7638466226232564,
+            "metrics/mAP50(M)": 0.829950720274759,
+            "metrics/mAP50-95(M)": 0.6447018303250412
+        },
+        "_hsv_h_0.01_hsv_s_0.8_hsv_v_0.35": {
+            "metrics/precision(B)": 0.8600076196263503,
+            "metrics/recall(B)": 0.7641324712272872,
+            "metrics/mAP50(B)": 0.8452661454616222,
+            "metrics/mAP50-95(B)": 0.7150280923074662,
+            "metrics/precision(M)": 0.8523791622938864,
+            "metrics/recall(M)": 0.754312437251709,
+            "metrics/mAP50(M)": 0.8372486214677808,
+            "metrics/mAP50-95(M)": 0.6522410378225714
+        },
+        "_hsv_h_0.01_hsv_s_0.8_hsv_v_0.4": {
+            "metrics/precision(B)": 0.8678793363703456,
+            "metrics/recall(B)": 0.761691985072543,
+            "metrics/mAP50(B)": 0.8375151524846167,
+            "metrics/mAP50-95(B)": 0.7049477571133271,
+            "metrics/precision(M)": 0.8608538723721251,
+            "metrics/recall(M)": 0.7552695315744714,
+            "metrics/mAP50(M)": 0.8286114977408424,
+            "metrics/mAP50-95(M)": 0.6384512397283234
+        },
+        "_hsv_h_0.01_hsv_s_0.8_hsv_v_0.45": {
+            "metrics/precision(B)": 0.8632356716078676,
+            "metrics/recall(B)": 0.7556425134016187,
+            "metrics/mAP50(B)": 0.8354351754366985,
+            "metrics/mAP50-95(B)": 0.7045307182392013,
+            "metrics/precision(M)": 0.8542773233090677,
+            "metrics/recall(M)": 0.7505184764735379,
+            "metrics/mAP50(M)": 0.8263208115134214,
+            "metrics/mAP50-95(M)": 0.6378219670157574
+        },
+        "_hsv_h_0.02_hsv_s_0.6_hsv_v_0.35": {
+            "metrics/precision(B)": 0.8303285731576056,
+            "metrics/recall(B)": 0.7641580181259036,
+            "metrics/mAP50(B)": 0.831873465799075,
+            "metrics/mAP50-95(B)": 0.7035815963271246,
+            "metrics/precision(M)": 0.8281540385084394,
+            "metrics/recall(M)": 0.7514463891208711,
+            "metrics/mAP50(M)": 0.8249613848400712,
+            "metrics/mAP50-95(M)": 0.6399942574041376
+        },
+        "_hsv_h_0.02_hsv_s_0.6_hsv_v_0.4": {
+            "metrics/precision(B)": 0.877464599704761,
+            "metrics/recall(B)": 0.7494809649161582,
+            "metrics/mAP50(B)": 0.8416910798410189,
+            "metrics/mAP50-95(B)": 0.712824349381038,
+            "metrics/precision(M)": 0.8462431772174088,
+            "metrics/recall(M)": 0.7635789247323863,
+            "metrics/mAP50(M)": 0.8345401730982556,
+            "metrics/mAP50-95(M)": 0.6473169382386967
+        },
+        "_hsv_h_0.02_hsv_s_0.6_hsv_v_0.45": {
+            "metrics/precision(B)": 0.8853771854828556,
+            "metrics/recall(B)": 0.7402100319325174,
+            "metrics/mAP50(B)": 0.8403360106915535,
+            "metrics/mAP50-95(B)": 0.7089010714672342,
+            "metrics/precision(M)": 0.8778882074891159,
+            "metrics/recall(M)": 0.7336412651512773,
+            "metrics/mAP50(M)": 0.8325630307224936,
+            "metrics/mAP50-95(M)": 0.6439750370207378
+        },
+        "_hsv_h_0.02_hsv_s_0.7_hsv_v_0.35": {
+            "metrics/precision(B)": 0.8267959588281526,
+            "metrics/recall(B)": 0.7888117097221152,
+            "metrics/mAP50(B)": 0.841267093863979,
+            "metrics/mAP50-95(B)": 0.7121800746150482,
+            "metrics/precision(M)": 0.8226284155623749,
+            "metrics/recall(M)": 0.7773250672596098,
+            "metrics/mAP50(M)": 0.8339746973934633,
+            "metrics/mAP50-95(M)": 0.6465098594969619
+        },
+        "_hsv_h_0.02_hsv_s_0.7_hsv_v_0.4": {
+            "metrics/precision(B)": 0.8654611194353119,
+            "metrics/recall(B)": 0.7734328753716908,
+            "metrics/mAP50(B)": 0.8442173274277096,
+            "metrics/mAP50-95(B)": 0.7131499346551864,
+            "metrics/precision(M)": 0.8562003930902069,
+            "metrics/recall(M)": 0.7643937821285572,
+            "metrics/mAP50(M)": 0.8335219543535473,
+            "metrics/mAP50-95(M)": 0.6449674076964624
+        },
+        "_hsv_h_0.02_hsv_s_0.7_hsv_v_0.45": {
+            "metrics/precision(B)": 0.8538731611245243,
+            "metrics/recall(B)": 0.7654052121587419,
+            "metrics/mAP50(B)": 0.8386156647340994,
+            "metrics/mAP50-95(B)": 0.7116292227755959,
+            "metrics/precision(M)": 0.8525903994925026,
+            "metrics/recall(M)": 0.7576203011231977,
+            "metrics/mAP50(M)": 0.8320405916339515,
+            "metrics/mAP50-95(M)": 0.6456923679493949
+        },
+        "_hsv_h_0.02_hsv_s_0.8_hsv_v_0.35": {
+            "metrics/precision(B)": 0.8832895539675545,
+            "metrics/recall(B)": 0.7358828311009007,
+            "metrics/mAP50(B)": 0.8387866147919477,
+            "metrics/mAP50-95(B)": 0.7078499137712827,
+            "metrics/precision(M)": 0.8773711301767816,
+            "metrics/recall(M)": 0.7308241960926937,
+            "metrics/mAP50(M)": 0.8332692671160731,
+            "metrics/mAP50-95(M)": 0.6449557204583485
+        },
+        "_hsv_h_0.02_hsv_s_0.8_hsv_v_0.4": {
+            "metrics/precision(B)": 0.867159532206479,
+            "metrics/recall(B)": 0.7633229911045638,
+            "metrics/mAP50(B)": 0.8460481744918733,
+            "metrics/mAP50-95(B)": 0.7177007968016148,
+            "metrics/precision(M)": 0.8640982070747409,
+            "metrics/recall(M)": 0.7560499428756181,
+            "metrics/mAP50(M)": 0.8385503891541903,
+            "metrics/mAP50-95(M)": 0.6508739061110591
+        },
+        "_hsv_h_0.02_hsv_s_0.8_hsv_v_0.45": {
+            "metrics/precision(B)": 0.8492427047317603,
+            "metrics/recall(B)": 0.7712121595312358,
+            "metrics/mAP50(B)": 0.8398726498032553,
+            "metrics/mAP50-95(B)": 0.7041378671059324,
+            "metrics/precision(M)": 0.8801758663828481,
+            "metrics/recall(M)": 0.7365533105998932,
+            "metrics/mAP50(M)": 0.832927097125505,
+            "metrics/mAP50-95(M)": 0.6381495487244659
+        }
+    }
+}
