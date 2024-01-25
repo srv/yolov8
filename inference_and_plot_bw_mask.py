@@ -10,7 +10,8 @@ import matplotlib.pyplot as plt
 from natsort import natsorted
 import shutil
 # data_path="/home/uib/DATA/PEIXOS/PLOME_16ESP_OD/test/images/"
-data_path="/home/uib/DATA/PEIXOS/LANTY/pool_plastic_fish/"
+data_path="/home/uib/DATA/PEIXOS/LANTY/Andratx_28_06_2023/13_55/"
+# data_path="/home/uib/DATA/PEIXOS/LANTY/Andratx_10_11_2023"
 
 # model_path="/home/uib/PLOME/fish_trained_models/yolov8/binary_fish/"
 model_path="/home/uib/PLOME/fish_trained_models/yolov8/16_classes/"
@@ -54,7 +55,6 @@ class_colors=dict(zip(fish_dict.keys(),np.linspace(0,255,len(fish_dict.keys())+1
 
 print("MASKS COLORS: ",class_colors)
 
-
 out_path=os.path.join(data_path,"out")
 if os.path.exists(out_path):
     shutil.rmtree(out_path)
@@ -73,17 +73,18 @@ for img in natsorted(os.listdir(data_path)):
         print("------------------------------------------------------------------------------------------------------------------------------")
         print("------------------------------------------------------------------------------------------------------------------------------")
         img_path=os.path.join(data_path,img)
-        results=model.predict(img_path,conf=0.15,project=out_path,name=masks_inf_folder,retina_masks=True,line_width=5,boxes=False,show_labels=True,save=True,exist_ok=True)
+        results=model.predict(img_path,conf=0.15,project=out_path,name=masks_inf_folder,retina_masks=True,line_width=1,
+                            boxes=True,show_labels=False,save=True,exist_ok=True,agnostic_nms=True,max_det=250)
 
         if(results[0].masks is not None):
             # fish_names=results[0].names
-
             fish_masks=results[0].masks
             fish_boxes=results[0].boxes
             h, w, c = results[0].orig_img.shape
             # masked=[np.ones((h,w))*255]*len(fish_dict.keys())
             masked = np.full( (len(fish_dict.keys()), h, w), 0)
             masked_dict=dict(zip(fish_dict.keys(),masked))
+            mask_id=np.zeros((h,w))
             # print(masked_dict)
             num_masks=len(fish_masks)-1
             #Recorrer las mascaras inversamente porque va de menor a mayor confianza
@@ -101,13 +102,23 @@ for img in natsorted(os.listdir(data_path)):
                 print("shape of masked_dict[fish_cls] ", masked_dict[fish_cls].shape)
                 # máscara anterior (0s or ant masks) + el nuevo pez
                 print("the colour is: ", class_colors[fish_cls] )
+                print("the id is: ", i)
+
+                inverted_mask=(mask_bw*(-1))+np.ones(mask_bw.shape)
+                #Poner a 0 esos píxeles por si solapa con algún pez anterior
+                mask_id=mask_id*inverted_mask
+                #sumar la máscara
+                mask_id=mask_id+mask_bw*i
+
                 for key in fish_dict:
                     if key==fish_cls:
                         print("THE DETECTED CLASS")
+                        #posar a 0 per les màscares que tenen overlap
+                        masked_dict[key]=masked_dict[key]*inverted_mask
                         masked_dict[fish_cls]=masked_dict[fish_cls]+(mask_bw*class_colors[fish_cls])
                     else:
                         #debería poner las otras clases a 0 en esos pixeles por si solapan
-                        inverted_mask=(mask_bw*(-1))+np.ones(mask_bw.shape)
+                        #las confianzas están ordenadas de menor a mayor
                         cv2.imwrite("inverted_mask.jpg",inverted_mask*255)
                         masked_dict[key]=masked_dict[key]*inverted_mask
 
@@ -124,8 +135,14 @@ for img in natsorted(os.listdir(data_path)):
             print("FINAL MASK SHAPE: ",mask_final.shape)
             print("UNIQUE VALUES:",np.unique(mask_final))
 
+            print("ID MASK SHAPE: ",mask_id.shape)
+            print("ID MASK UNIQUE VALUES:",np.unique(mask_id))
+
             save_img_path=os.path.join(out_path,masks_inf_folder,img.split("_left")[0]+"_masked.jpg")
+            save_idmask_path=os.path.join(out_path,masks_inf_folder,img.split("_left")[0]+"_class_ids.jpg")
             cv2.imwrite(save_img_path,mask_final)
+            cv2.imwrite(save_idmask_path,mask_id)
             print("LA MASCARA FINAL!! ",np.unique(mask_final))
             print("Writing mask to: ",save_img_path)
+            print("Writing mask with ids to: ",save_idmask_path)
             # Show the masked part of the image
