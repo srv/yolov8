@@ -8,17 +8,18 @@ import numpy as np
 # Load a model
 import matplotlib.pyplot as plt
 from natsort import natsorted
-
+import shutil
 # data_path="/home/uib/DATA/PEIXOS/PLOME_16ESP_OD/test/images/"
-data_path="/home/uib/PLOME/stereo_tests/Andratx_2023-10-11__12-57-42_5/left/"
+data_path="/home/uib/DATA/PEIXOS/LANTY/pool_plastic_fish/"
 
 # model_path="/home/uib/PLOME/fish_trained_models/yolov8/binary_fish/"
-model_path="/home/uib/PLOME/fish_trained_models/yolov8/16_classes"
+model_path="/home/uib/PLOME/fish_trained_models/yolov8/16_classes/"
 
 # out_path="/home/uib/PLOME/stereo_tests/test_stereo_andratx_interior/"
 out_path=data_path
-model_name="yolov8lr_medium_16cIS_f2.pt"
-
+# model_name="yolov8lr_XL_BF_f2.pt"
+model_name="yolov8lr_large_16cIS_f2.pt"
+model_name="yolov8_small_16cIS_f2.pt"
 masks_inf_folder="inference_yv8mbf2"
 # model_name="yolov8lr_medium_BF_f2.pt.pt"
 
@@ -36,6 +37,8 @@ fish_dict={ 0: 'Chromis chromis', 1: 'Coris julis', 2: 'Dentex dentex', 3: 'Dipl
             9: 'Oblada melanura', 10: 'Pomatous salator', 11: 'Sciena umbra', 12: 'Seriola dumerili',
             13: 'Serranus', 14: 'Spicara maena', 15: 'Spondyliosoma cantharus'}
 
+# fish_dict={ 0: 'fish'}
+
 num_classes=len(fish_dict.items())
 print("num_classes is: ",num_classes)
 
@@ -51,8 +54,15 @@ class_colors=dict(zip(fish_dict.keys(),np.linspace(0,255,len(fish_dict.keys())+1
 
 print("MASKS COLORS: ",class_colors)
 
-data_path=("/home/uib/PLOME/plome_ws/src/stereo_plome/stereo_tests/test_calamardo/")
-out_path=data_path
+
+out_path=os.path.join(data_path,"out")
+if os.path.exists(out_path):
+    shutil.rmtree(out_path)
+    os.makedirs(out_path)
+
+else:
+    os.makedirs(out_path)
+
 
 #GO THROUGH THE EXTRACTED IMGS DIR
 for img in natsorted(os.listdir(data_path)):
@@ -77,7 +87,7 @@ for img in natsorted(os.listdir(data_path)):
             # print(masked_dict)
             num_masks=len(fish_masks)-1
             #Recorrer las mascaras inversamente porque va de menor a mayor confianza
-            for i in range(num_masks):
+            for i in range(num_masks+1):
                 print("i is ",i, " num masks. ",num_masks)
                 mask=fish_masks[num_masks-i]
                 fish_cls=int(fish_boxes.cls[num_masks-i])
