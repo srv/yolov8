@@ -10,8 +10,8 @@ import matplotlib.pyplot as plt
 from natsort import natsorted
 import shutil
 # data_path="/home/uib/DATA/PEIXOS/PLOME_16ESP_OD/test/images/"
-data_path="/home/uib/DATA/PEIXOS/LANTY/Andratx_28_06_2023/13_55/"
-# data_path="/home/uib/DATA/PEIXOS/LANTY/Andratx_10_11_2023"
+# data_path="/home/uib/DATA/PEIXOS/LANTY/Andratx_28_06_2023/13_55/"
+data_path="/home/uib/DATA/PEIXOS/LANTY/Andratx_10_11_2023"
 
 # model_path="/home/uib/PLOME/fish_trained_models/yolov8/binary_fish/"
 model_path="/home/uib/PLOME/fish_trained_models/yolov8/16_classes/"
@@ -37,6 +37,8 @@ fish_dict={ 0: 'Chromis chromis', 1: 'Coris julis', 2: 'Dentex dentex', 3: 'Dipl
             5: 'Diplodus vulgaris', 6: 'Epinephelus marginatus', 7: 'Lithognathus mormyrus', 8: 'Mugilidae prob Chelon',
             9: 'Oblada melanura', 10: 'Pomatous salator', 11: 'Sciena umbra', 12: 'Seriola dumerili',
             13: 'Serranus', 14: 'Spicara maena', 15: 'Spondyliosoma cantharus'}
+
+class_colors=dict(zip(fish_dict.keys(),np.linspace(0,255,len(fish_dict.keys())+1,dtype=int)[1:]))
 
 # fish_dict={ 0: 'fish'}
 
@@ -119,7 +121,7 @@ for img in natsorted(os.listdir(data_path)):
                     else:
                         #debería poner las otras clases a 0 en esos pixeles por si solapan
                         #las confianzas están ordenadas de menor a mayor
-                        cv2.imwrite("inverted_mask.jpg",inverted_mask*255)
+                        cv2.imwrite("inverted_mask.png",inverted_mask*255)
                         masked_dict[key]=masked_dict[key]*inverted_mask
 
 
@@ -138,8 +140,8 @@ for img in natsorted(os.listdir(data_path)):
             print("ID MASK SHAPE: ",mask_id.shape)
             print("ID MASK UNIQUE VALUES:",np.unique(mask_id))
 
-            save_img_path=os.path.join(out_path,masks_inf_folder,img.split("_left")[0]+"_masked.jpg")
-            save_idmask_path=os.path.join(out_path,masks_inf_folder,img.split("_left")[0]+"_class_ids.jpg")
+            save_img_path=os.path.join(out_path,masks_inf_folder,img.split("_left")[0]+"_masked.png")
+            save_idmask_path=os.path.join(out_path,masks_inf_folder,img.split("_left")[0]+"_class_ids.png")
             cv2.imwrite(save_img_path,mask_final)
             cv2.imwrite(save_idmask_path,mask_id)
             print("LA MASCARA FINAL!! ",np.unique(mask_final))
