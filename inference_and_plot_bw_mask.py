@@ -11,17 +11,17 @@ from natsort import natsorted
 import shutil
 # data_path="/home/uib/DATA/PEIXOS/PLOME_16ESP_OD/test/images/"
 # data_path="/home/uib/DATA/PEIXOS/LANTY/Andratx_28_06_2023/13_55/"
-data_path="/home/uib/DATA/PEIXOS/LANTY/Andratx_10_11_2023"
+data_path="/home/uib/DATA/PEIXOS/LANTY/pool_plastic_fish/"
 
 # model_path="/home/uib/PLOME/fish_trained_models/yolov8/binary_fish/"
-model_path="/home/uib/PLOME/fish_trained_models/yolov8/16_classes/"
+model_path="/home/uib/yolov8/trained_models/"
 
 # out_path="/home/uib/PLOME/stereo_tests/test_stereo_andratx_interior/"
 out_path=data_path
 # model_name="yolov8lr_XL_BF_f2.pt"
 model_name="yolov8lr_large_16cIS_f2.pt"
-model_name="yolov8_small_16cIS_f2.pt"
-masks_inf_folder="inference_yv8mbf2"
+model_name="plastic_fish.pt"
+masks_inf_folder="inference_yv8spf"
 # model_name="yolov8lr_medium_BF_f2.pt.pt"
 
 # Load a pretrained YOLOv8n model
@@ -37,6 +37,11 @@ fish_dict={ 0: 'Chromis chromis', 1: 'Coris julis', 2: 'Dentex dentex', 3: 'Dipl
             5: 'Diplodus vulgaris', 6: 'Epinephelus marginatus', 7: 'Lithognathus mormyrus', 8: 'Mugilidae prob Chelon',
             9: 'Oblada melanura', 10: 'Pomatous salator', 11: 'Sciena umbra', 12: 'Seriola dumerili',
             13: 'Serranus', 14: 'Spicara maena', 15: 'Spondyliosoma cantharus'}
+
+fish_dict={1:"fish"}
+
+fish_dict=model.names
+print("Model classes: ",fish_dict)
 
 class_colors=dict(zip(fish_dict.keys(),np.linspace(0,255,len(fish_dict.keys())+1,dtype=int)[1:]))
 
@@ -75,8 +80,8 @@ for img in natsorted(os.listdir(data_path)):
         print("------------------------------------------------------------------------------------------------------------------------------")
         print("------------------------------------------------------------------------------------------------------------------------------")
         img_path=os.path.join(data_path,img)
-        results=model.predict(img_path,conf=0.15,project=out_path,name=masks_inf_folder,retina_masks=True,line_width=1,
-                            boxes=True,show_labels=False,save=True,exist_ok=True,agnostic_nms=True,max_det=250)
+        results=model.predict(img_path,conf=0.05,project=out_path,name=masks_inf_folder,retina_masks=True,line_width=1,
+                            boxes=True,show_labels=True,save=True,exist_ok=True,agnostic_nms=True,max_det=250)
 
         if(results[0].masks is not None):
             # fish_names=results[0].names
