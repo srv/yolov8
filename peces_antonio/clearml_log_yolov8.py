@@ -34,7 +34,6 @@ parser.add_argument('--yolo_proj', help='YOLOv8 project name where train will be
 parser.add_argument('--yolo_name', help='YOLOv8 save folder name')
 parser.add_argument('--lr', help='Initial learning rate', type=float, default=None)
 parser.add_argument('--seed', help='Seed during training', type=int, default=42)
-parser.add_argument('--imgsz', help='Image size during training', type=int, default=640)
 
 args = parser.parse_args()
 
@@ -52,7 +51,6 @@ yolo_proj = args.yolo_proj
 yolo_name = args.yolo_name
 lr = args.lr
 seed = args.seed
-imgsz = args.imgsz
 
 
 def on_fit_epoch_end(trainer):
@@ -124,8 +122,7 @@ def main():
         batch=batch,
         project=yolo_proj,
         name=yolo_name,
-        seed=seed, 
-        imgsz=imgsz
+        seed=seed
     )
 
     if optimizer is not None: 
