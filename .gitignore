@@ -137,7 +137,9 @@ dmypy.json
 .pyre/
 
 # datasets and projects
-**/dataset/
+**/urchin_sim/**
+**/dataset**
+**/dataset_all/
 **/dataset_nb/
 **/seleccion_yolanda/
 **/nano/

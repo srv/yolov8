@@ -1,0 +1,22 @@
+names:
+- Chromis chromis
+- Coris julis
+- Dentex dentex
+- Diplodus annularis
+- Diplodus sargus
+- Diplodus vulgaris
+- Epinephelus marginatus
+- Lithognathus mormyrus
+- Mugilidae prob Chelon
+- Oblada melanura
+- Pomatous salator
+- Sciaena umbra
+- Seriola dumerili
+- Serranus
+- Spicara maena
+- Spondyliosoma cantharus
+nc: 16
+path: C:\Users\haddo\yolov8\peces_antonio\dataset
+test: ../test/images
+train: ''
+val: folds/1/images

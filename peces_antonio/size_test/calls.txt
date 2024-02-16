@@ -1,0 +1,45 @@
+python ../train_yolov8.py                      --model_size l --dataset C:\Users\haddo\yolov8\peces_antonio\dataset\data_5_fold.yaml                         --epochs 400 --batch 8 --patience 0 --yolo_proj C:\Users\haddo\yolov8\peces_antonio\size_test\large\lr_0.001 --yolo_name fold_1                             --seed 42 --lr 0.001 --optimizer SGD --config C:\Users\haddo\yolov8\peces_antonio\hyp_study\best_da_config.yaml --imgsz 1120
+------------------------------------------------------------- 
+
+python ../train_yolov8.py                      --model_size l --dataset C:\Users\haddo\yolov8\peces_antonio\dataset\data_5_fold.yaml                         --epochs 400 --batch 8 --patience 0 --yolo_proj C:\Users\haddo\yolov8\peces_antonio\size_test\large\lr_0.001 --yolo_name fold_2                             --seed 42 --lr 0.001 --optimizer SGD --config C:\Users\haddo\yolov8\peces_antonio\hyp_study\best_da_config.yaml --imgsz 1120
+------------------------------------------------------------- 
+
+python ../train_yolov8.py                      --model_size l --dataset C:\Users\haddo\yolov8\peces_antonio\dataset\data_5_fold.yaml                         --epochs 400 --batch 8 --patience 0 --yolo_proj C:\Users\haddo\yolov8\peces_antonio\size_test\large\lr_0.001 --yolo_name fold_3                             --seed 42 --lr 0.001 --optimizer SGD --config C:\Users\haddo\yolov8\peces_antonio\hyp_study\best_da_config.yaml --imgsz 1120
+------------------------------------------------------------- 
+
+python ../train_yolov8.py                      --model_size l --dataset C:\Users\haddo\yolov8\peces_antonio\dataset\data_5_fold.yaml                         --epochs 400 --batch 8 --patience 0 --yolo_proj C:\Users\haddo\yolov8\peces_antonio\size_test\large\lr_0.001 --yolo_name fold_4                             --seed 42 --lr 0.001 --optimizer SGD --config C:\Users\haddo\yolov8\peces_antonio\hyp_study\best_da_config.yaml --imgsz 1120
+------------------------------------------------------------- 
+
+python ../train_yolov8.py                      --model_size l --dataset C:\Users\haddo\yolov8\peces_antonio\dataset\data_5_fold.yaml                         --epochs 400 --batch 8 --patience 0 --yolo_proj C:\Users\haddo\yolov8\peces_antonio\size_test\large\lr_0.001 --yolo_name fold_5                             --seed 42 --lr 0.001 --optimizer SGD --config C:\Users\haddo\yolov8\peces_antonio\hyp_study\best_da_config.yaml --imgsz 1120
+------------------------------------------------------------- 
+
+python ../train_yolov8.py                      --model_size x --dataset C:\Users\haddo\yolov8\peces_antonio\dataset\data_5_fold.yaml                         --epochs 400 --batch 4 --patience 0 --yolo_proj C:\Users\haddo\yolov8\peces_antonio\size_test\extra_large\lr_0.001 --yolo_name fold_1                             --seed 42 --lr 0.001 --optimizer SGD --config C:\Users\haddo\yolov8\peces_antonio\hyp_study\best_da_config.yaml --imgsz 1280
+------------------------------------------------------------- 
+
+python ../train_yolov8.py                      --model_size x --dataset C:\Users\haddo\yolov8\peces_antonio\dataset\data_5_fold.yaml                         --epochs 400 --batch 4 --patience 0 --yolo_proj C:\Users\haddo\yolov8\peces_antonio\size_test\extra_large\lr_0.001 --yolo_name fold_1                             --seed 42 --lr 0.001 --optimizer SGD --config C:\Users\haddo\yolov8\peces_antonio\hyp_study\best_da_config.yaml --imgsz 1280
+------------------------------------------------------------- 
+
+python ../train_yolov8.py                      --model_size x --dataset C:\Users\haddo\yolov8\peces_antonio\dataset\data_5_fold.yaml                         --epochs 400 --batch 5 --patience 0 --yolo_proj C:\Users\haddo\yolov8\peces_antonio\size_test\extra_large\lr_0.001 --yolo_name fold_1                             --seed 42 --lr 0.001 --optimizer SGD --config C:\Users\haddo\yolov8\peces_antonio\hyp_study\best_da_config.yaml --imgsz 1280
+------------------------------------------------------------- 
+
+python ../train_yolov8.py                      --model_size x --dataset C:\Users\haddo\yolov8\peces_antonio\dataset\data_5_fold.yaml                         --epochs 400 --batch 5 --patience 0 --yolo_proj C:\Users\haddo\yolov8\peces_antonio\size_test\extra_large\lr_0.001 --yolo_name fold_1                             --seed 42 --lr 0.001 --optimizer SGD --config C:\Users\haddo\yolov8\peces_antonio\hyp_study\best_da_config.yaml --imgsz 1280
+------------------------------------------------------------- 
+
+python ../train_yolov8.py                      --model_size x --dataset C:\Users\haddo\yolov8\peces_antonio\dataset\data_5_fold.yaml                         --epochs 400 --batch 5 --patience 0 --yolo_proj C:\Users\haddo\yolov8\peces_antonio\size_test\extra_large\lr_0.001 --yolo_name fold_2                             --seed 42 --lr 0.001 --optimizer SGD --config C:\Users\haddo\yolov8\peces_antonio\hyp_study\best_da_config.yaml --imgsz 1280
+------------------------------------------------------------- 
+
+python ../train_yolov8.py                      --model_size x --dataset C:\Users\haddo\yolov8\peces_antonio\dataset\data_5_fold.yaml                         --epochs 400 --batch 5 --patience 0 --yolo_proj C:\Users\haddo\yolov8\peces_antonio\size_test\extra_large\lr_0.001 --yolo_name fold_1                             --seed 42 --lr 0.001 --optimizer SGD --config C:\Users\haddo\yolov8\peces_antonio\hyp_study\best_da_config.yaml --imgsz 1280
+------------------------------------------------------------- 
+
+python ../train_yolov8.py                      --model_size x --dataset C:\Users\haddo\yolov8\peces_antonio\dataset\data_5_fold.yaml                         --epochs 400 --batch 5 --patience 0 --yolo_proj C:\Users\haddo\yolov8\peces_antonio\size_test\extra_large\lr_0.001 --yolo_name fold_2                             --seed 42 --lr 0.001 --optimizer SGD --config C:\Users\haddo\yolov8\peces_antonio\hyp_study\best_da_config.yaml --imgsz 1280
+------------------------------------------------------------- 
+
+python ../train_yolov8.py                      --model_size x --dataset C:\Users\haddo\yolov8\peces_antonio\dataset\data_5_fold.yaml                         --epochs 400 --batch 5 --patience 0 --yolo_proj C:\Users\haddo\yolov8\peces_antonio\size_test\extra_large\lr_0.001 --yolo_name fold_3                             --seed 42 --lr 0.001 --optimizer SGD --config C:\Users\haddo\yolov8\peces_antonio\hyp_study\best_da_config.yaml --imgsz 1280
+------------------------------------------------------------- 
+
+python ../train_yolov8.py                      --model_size x --dataset C:\Users\haddo\yolov8\peces_antonio\dataset\data_5_fold.yaml                         --epochs 400 --batch 5 --patience 0 --yolo_proj C:\Users\haddo\yolov8\peces_antonio\size_test\extra_large\lr_0.001 --yolo_name fold_4                             --seed 42 --lr 0.001 --optimizer SGD --config C:\Users\haddo\yolov8\peces_antonio\hyp_study\best_da_config.yaml --imgsz 1280
+------------------------------------------------------------- 
+
+python ../train_yolov8.py                      --model_size x --dataset C:\Users\haddo\yolov8\peces_antonio\dataset\data_5_fold.yaml                         --epochs 400 --batch 5 --patience 0 --yolo_proj C:\Users\haddo\yolov8\peces_antonio\size_test\extra_large\lr_0.001 --yolo_name fold_5                             --seed 42 --lr 0.001 --optimizer SGD --config C:\Users\haddo\yolov8\peces_antonio\hyp_study\best_da_config.yaml --imgsz 1280
+------------------------------------------------------------- 
+
