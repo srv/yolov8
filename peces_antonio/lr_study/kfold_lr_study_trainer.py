@@ -10,7 +10,7 @@ import random
 import time
 from datetime import datetime, timedelta
 
-path_to_project = r"/home/antonio/yolov8/peces_antonio/lr_study"
+path_to_project = r"C:\Users\haddo\yolov8\peces_antonio\lr_study"
 if not os.path.exists(path_to_project): 
     os.makedirs(path_to_project)
 clearml_project = 'lr_study'
@@ -127,14 +127,14 @@ if do_train:
                         shutil.copyfile(lbl, os.path.join(ds_path, "train","labels", os.path.split(lbl)[-1]))
 
             for model_size in model_sizes.keys():
-                project_name = os.path.join(path_to_project, model_sizes[model_size])
+                project_name = os.path.join(path_to_project, model_sizes[model_size], "lr_"+str(lr))
                     
-                run_name = os.path.join(project_name, "lr_"+str(lr), "fold_"+str(i))
+                run_name = os.path.join(project_name, "fold_"+str(i))
                 
                 instruction = f"python ../clearml_log_yolov8.py --project_name {clearml_project} --task_name {run_name} \
                     --model_size {model_size} --dataset {dataset_yaml} \
-                        --epochs 500 --batch 8 --patience 0 --yolo_proj {project_name} --yolo_name lr_{lr}_fold_{i} \
-                            --seed {seed} --lr {lr} --optimizer SGD --cfg {best_da_cfg}" 
+                        --epochs 500 --batch 8 --patience 0 --yolo_proj {project_name} --yolo_name fold_{i} \
+                            --seed {seed} --lr {lr} --optimizer SGD --config {best_da_cfg}" 
                 
                 with open(txt_path, 'a+') as f:
                     f.write(instruction)
