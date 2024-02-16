@@ -1,0 +1,264 @@
+{
+    "extra_large": {
+        "lr_0.0001": {
+            "fold_1": {
+                "metrics/precision(B)": 0.7990277416221263,
+                "metrics/recall(B)": 0.7506636980065717,
+                "metrics/mAP50(B)": 0.8153960607613471,
+                "metrics/mAP50-95(B)": 0.6756507117988715,
+                "metrics/precision(M)": 0.8000584685406125,
+                "metrics/recall(M)": 0.7401117497229919,
+                "metrics/mAP50(M)": 0.806922422132911,
+                "metrics/mAP50-95(M)": 0.5971105556269831
+            },
+            "fold_2": {
+                "metrics/precision(B)": 0.7940804467111515,
+                "metrics/recall(B)": 0.7419693820175726,
+                "metrics/mAP50(B)": 0.8068901994307287,
+                "metrics/mAP50-95(B)": 0.6522416465221035,
+                "metrics/precision(M)": 0.7803640142190861,
+                "metrics/recall(M)": 0.7241802179681343,
+                "metrics/mAP50(M)": 0.7883102582312496,
+                "metrics/mAP50-95(M)": 0.5710482001769067
+            },
+            "fold_3": {
+                "metrics/precision(B)": 0.845067471876886,
+                "metrics/recall(B)": 0.7109301357920261,
+                "metrics/mAP50(B)": 0.8185215849349341,
+                "metrics/mAP50-95(B)": 0.655664825232585,
+                "metrics/precision(M)": 0.847822879561987,
+                "metrics/recall(M)": 0.7037663262259832,
+                "metrics/mAP50(M)": 0.8104540494961675,
+                "metrics/mAP50-95(M)": 0.587899273948245
+            },
+            "fold_4": {
+                "metrics/precision(B)": 0.8067302279663139,
+                "metrics/recall(B)": 0.7324591316557778,
+                "metrics/mAP50(B)": 0.8034241847875563,
+                "metrics/mAP50-95(B)": 0.6550410098914141,
+                "metrics/precision(M)": 0.7938124056952354,
+                "metrics/recall(M)": 0.7323974757118394,
+                "metrics/mAP50(M)": 0.7953031193334217,
+                "metrics/mAP50-95(M)": 0.580763405459885
+            },
+            "fold_5": {
+                "metrics/precision(B)": 0.8213269595081983,
+                "metrics/recall(B)": 0.7359684187004512,
+                "metrics/mAP50(B)": 0.8168662713007215,
+                "metrics/mAP50-95(B)": 0.6717914777818421,
+                "metrics/precision(M)": 0.8198636386174522,
+                "metrics/recall(M)": 0.7341735389089954,
+                "metrics/mAP50(M)": 0.8138628571117148,
+                "metrics/mAP50-95(M)": 0.604207296387119
+            }
+        },
+        "lr_0.0005": {
+            "fold_1": {
+                "metrics/precision(B)": 0.7894327099904408,
+                "metrics/recall(B)": 0.7573593491022704,
+                "metrics/mAP50(B)": 0.8282992889198544,
+                "metrics/mAP50-95(B)": 0.688056951049731,
+                "metrics/precision(M)": 0.7965583194699006,
+                "metrics/recall(M)": 0.7314160104885392,
+                "metrics/mAP50(M)": 0.8141488010699023,
+                "metrics/mAP50-95(M)": 0.6161178573639724
+            },
+            "fold_2": {
+                "metrics/precision(B)": 0.8505442169216505,
+                "metrics/recall(B)": 0.7275669461603196,
+                "metrics/mAP50(B)": 0.8315188857029547,
+                "metrics/mAP50-95(B)": 0.6958028694853612,
+                "metrics/precision(M)": 0.8429105203402487,
+                "metrics/recall(M)": 0.7212491153940429,
+                "metrics/mAP50(M)": 0.8177733395933257,
+                "metrics/mAP50-95(M)": 0.610172753450813
+            },
+            "fold_3": {
+                "metrics/precision(B)": 0.8349763872026693,
+                "metrics/recall(B)": 0.728372432385423,
+                "metrics/mAP50(B)": 0.8101970068107028,
+                "metrics/mAP50-95(B)": 0.6711298598956241,
+                "metrics/precision(M)": 0.8223190602733164,
+                "metrics/recall(M)": 0.7272248643858974,
+                "metrics/mAP50(M)": 0.8046886121421957,
+                "metrics/mAP50-95(M)": 0.6105507704184772
+            },
+            "fold_4": {
+                "metrics/precision(B)": 0.8392630161877355,
+                "metrics/recall(B)": 0.7436282393255305,
+                "metrics/mAP50(B)": 0.8218357951821313,
+                "metrics/mAP50-95(B)": 0.6871360778813431,
+                "metrics/precision(M)": 0.8368023384829653,
+                "metrics/recall(M)": 0.7404528177683389,
+                "metrics/mAP50(M)": 0.8173235944443071,
+                "metrics/mAP50-95(M)": 0.622148318281068
+            },
+            "fold_5": {
+                "metrics/precision(B)": 0.8268741402783045,
+                "metrics/recall(B)": 0.7734992689296023,
+                "metrics/mAP50(B)": 0.8359640629915077,
+                "metrics/mAP50-95(B)": 0.706632101112354,
+                "metrics/precision(M)": 0.8234641041975834,
+                "metrics/recall(M)": 0.7705725835539554,
+                "metrics/mAP50(M)": 0.8341146202688049,
+                "metrics/mAP50-95(M)": 0.6441619934735322
+            }
+        },
+        "lr_0.001": {
+            "fold_1": {
+                "metrics/precision(B)": 0.8334403195517117,
+                "metrics/recall(B)": 0.7497225927341122,
+                "metrics/mAP50(B)": 0.8385708060280521,
+                "metrics/mAP50-95(B)": 0.7076511951187465,
+                "metrics/precision(M)": 0.8215481295809317,
+                "metrics/recall(M)": 0.7430977181001543,
+                "metrics/mAP50(M)": 0.8264969455167595,
+                "metrics/mAP50-95(M)": 0.6323451556514195
+            },
+            "fold_2": {
+                "metrics/precision(B)": 0.8801867816987676,
+                "metrics/recall(B)": 0.7163296058115998,
+                "metrics/mAP50(B)": 0.8315340333990852,
+                "metrics/mAP50-95(B)": 0.7034575293162606,
+                "metrics/precision(M)": 0.8730465480463065,
+                "metrics/recall(M)": 0.7127091438887032,
+                "metrics/mAP50(M)": 0.8252344551213425,
+                "metrics/mAP50-95(M)": 0.6222930662196764
+            },
+            "fold_3": {
+                "metrics/precision(B)": 0.8402744632810065,
+                "metrics/recall(B)": 0.7218520396594349,
+                "metrics/mAP50(B)": 0.8140493109903147,
+                "metrics/mAP50-95(B)": 0.6787371989489495,
+                "metrics/precision(M)": 0.8361693579133865,
+                "metrics/recall(M)": 0.7180754017411768,
+                "metrics/mAP50(M)": 0.8083991544390353,
+                "metrics/mAP50-95(M)": 0.6210135230894851
+            },
+            "fold_4": {
+                "metrics/precision(B)": 0.8563418532429091,
+                "metrics/recall(B)": 0.7283266773953543,
+                "metrics/mAP50(B)": 0.8229842171055468,
+                "metrics/mAP50-95(B)": 0.6930149689057983,
+                "metrics/precision(M)": 0.8530976490384119,
+                "metrics/recall(M)": 0.721706119054598,
+                "metrics/mAP50(M)": 0.8171449334775607,
+                "metrics/mAP50-95(M)": 0.6264414735678427
+            },
+            "fold_5": {
+                "metrics/precision(B)": 0.8705042587198454,
+                "metrics/recall(B)": 0.7447974769057497,
+                "metrics/mAP50(B)": 0.8467514660802169,
+                "metrics/mAP50-95(B)": 0.7215746873976208,
+                "metrics/precision(M)": 0.8676884648315053,
+                "metrics/recall(M)": 0.7422668759366247,
+                "metrics/mAP50(M)": 0.842256206444072,
+                "metrics/mAP50-95(M)": 0.6588427915059707
+            }
+        },
+        "lr_0.005": {
+            "fold_1": {
+                "metrics/precision(B)": 0.8232998296128479,
+                "metrics/recall(B)": 0.7538176333906185,
+                "metrics/mAP50(B)": 0.8220828576763191,
+                "metrics/mAP50-95(B)": 0.6974330681948114,
+                "metrics/precision(M)": 0.8189101221000857,
+                "metrics/recall(M)": 0.7482916610635381,
+                "metrics/mAP50(M)": 0.8151720272514478,
+                "metrics/mAP50-95(M)": 0.6258658150682501
+            },
+            "fold_2": {
+                "metrics/precision(B)": 0.8783779389811089,
+                "metrics/recall(B)": 0.6959827630887325,
+                "metrics/mAP50(B)": 0.8171535777627894,
+                "metrics/mAP50-95(B)": 0.6898030571323422,
+                "metrics/precision(M)": 0.8663626445791612,
+                "metrics/recall(M)": 0.6849104919034135,
+                "metrics/mAP50(M)": 0.8042057566813885,
+                "metrics/mAP50-95(M)": 0.6123036340324098
+            },
+            "fold_3": {
+                "metrics/precision(B)": 0.8343126314769019,
+                "metrics/recall(B)": 0.7352478690517836,
+                "metrics/mAP50(B)": 0.8185405322052477,
+                "metrics/mAP50-95(B)": 0.683489486606627,
+                "metrics/precision(M)": 0.8272826555698009,
+                "metrics/recall(M)": 0.7282094005976396,
+                "metrics/mAP50(M)": 0.8094159471844553,
+                "metrics/mAP50-95(M)": 0.6226780372276922
+            },
+            "fold_4": {
+                "metrics/precision(B)": 0.8119841187557636,
+                "metrics/recall(B)": 0.7449032323314877,
+                "metrics/mAP50(B)": 0.8115627027118676,
+                "metrics/mAP50-95(B)": 0.681062604295558,
+                "metrics/precision(M)": 0.8075741135669501,
+                "metrics/recall(M)": 0.7400066993241977,
+                "metrics/mAP50(M)": 0.8048492864584108,
+                "metrics/mAP50-95(M)": 0.6159871024378085
+            },
+            "fold_5": {
+                "metrics/precision(B)": 0.8234486758337902,
+                "metrics/recall(B)": 0.7581154864520254,
+                "metrics/mAP50(B)": 0.8457544664784219,
+                "metrics/mAP50-95(B)": 0.7221751387571318,
+                "metrics/precision(M)": 0.8302736980284542,
+                "metrics/recall(M)": 0.7491822238186601,
+                "metrics/mAP50(M)": 0.8414632889230546,
+                "metrics/mAP50-95(M)": 0.6606709739667268
+            }
+        },
+        "lr_0.01": {
+            "fold_1": {
+                "metrics/precision(B)": 0.8549600834658893,
+                "metrics/recall(B)": 0.7189494500919069,
+                "metrics/mAP50(B)": 0.8233027200172964,
+                "metrics/mAP50-95(B)": 0.6884006095540709,
+                "metrics/precision(M)": 0.8273329940828374,
+                "metrics/recall(M)": 0.7286190009142042,
+                "metrics/mAP50(M)": 0.813773216346038,
+                "metrics/mAP50-95(M)": 0.6250946180080355
+            },
+            "fold_2": {
+                "metrics/precision(B)": 0.8597859431947553,
+                "metrics/recall(B)": 0.7245374011185859,
+                "metrics/mAP50(B)": 0.8091245584081431,
+                "metrics/mAP50-95(B)": 0.6764847196689838,
+                "metrics/precision(M)": 0.8658837039814904,
+                "metrics/recall(M)": 0.7139189001532907,
+                "metrics/mAP50(M)": 0.8049882689531329,
+                "metrics/mAP50-95(M)": 0.603114334423814
+            },
+            "fold_3": {
+                "metrics/precision(B)": 0.8374090899882058,
+                "metrics/recall(B)": 0.7400294761401434,
+                "metrics/mAP50(B)": 0.8128520835114741,
+                "metrics/mAP50-95(B)": 0.6800532341467086,
+                "metrics/precision(M)": 0.8295768946962314,
+                "metrics/recall(M)": 0.732872259327932,
+                "metrics/mAP50(M)": 0.8013930343521555,
+                "metrics/mAP50-95(M)": 0.6200859076091312
+            },
+            "fold_4": {
+                "metrics/precision(B)": 0.8304303887428327,
+                "metrics/recall(B)": 0.7410457465048017,
+                "metrics/mAP50(B)": 0.8162347862385021,
+                "metrics/mAP50-95(B)": 0.6774086278114633,
+                "metrics/precision(M)": 0.8203268152677968,
+                "metrics/recall(M)": 0.7319778402116963,
+                "metrics/mAP50(M)": 0.8030952227642745,
+                "metrics/mAP50-95(M)": 0.6092363431263036
+            },
+            "fold_5": {
+                "metrics/precision(B)": 0.8410544491183813,
+                "metrics/recall(B)": 0.7556741148417092,
+                "metrics/mAP50(B)": 0.8477991758013135,
+                "metrics/mAP50-95(B)": 0.7216338772135782,
+                "metrics/precision(M)": 0.8426678804320633,
+                "metrics/recall(M)": 0.7511783167750596,
+                "metrics/mAP50(M)": 0.8439674904378558,
+                "metrics/mAP50-95(M)": 0.6600931592861123
+            }
+        }
+    }
+}
