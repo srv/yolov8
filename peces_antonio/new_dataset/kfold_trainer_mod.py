@@ -10,7 +10,7 @@ import time
 from datetime import datetime, timedelta
 
 imgsz = 1280
-batch = 5
+batch = 10
 path_to_project = r"C:\Users\haddo\yolov8\peces_antonio\new_dataset\copypaste"
 if not os.path.exists(path_to_project): 
     os.makedirs(path_to_project)
@@ -98,9 +98,9 @@ if do_train:
     model_sizes = {
         # "n": "nano",
         # "s": "small",
-        # "m": "medium",
+        "m": "medium",
         # "l": "large",
-        "x": "extra_large"
+        # "x": "extra_large"
     }
     lrs=[0.001]
     k = 5  # num folds
@@ -133,7 +133,7 @@ if do_train:
                 
                 instruction = f"python ../train_yolov8.py  \
                     --model_size {model_size} --dataset {dataset_yaml} \
-                        --epochs 400 --batch {batch} --patience 0 --yolo_proj {project_name} --yolo_name fold_{i} \
+                        --epochs 350 --batch {batch} --patience 0 --yolo_proj {project_name} --yolo_name fold_{i} \
                             --seed {seed} --lr {lr} --optimizer SGD --config {best_da_cfg} --imgsz {imgsz}" 
                 
                 with open(txt_path, 'a+') as f:
