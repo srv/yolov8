@@ -9,16 +9,16 @@ import random
 import time
 from datetime import datetime, timedelta
 
-imgsz = 640
+imgsz = 1280
 batch = 5
 epochs = 300
 patience = 100
 
-path_to_project = r"D:\yolov8\peces_antonio\new_dataset\new_pipeline\kfold_large_640_default"
+path_to_project = r"C:\Users\haddo\yolov8\peces_antonio\new_dataset\new_pipeline\kfold_large_1280_default"
 if not os.path.exists(path_to_project): 
     os.makedirs(path_to_project)
 
-path_to_dataset = r"D:\yolov8\peces_antonio\new_dataset\dataset"
+path_to_dataset = r"C:\Users\haddo\yolov8\peces_antonio\new_dataset\dataset"
 txt_path = os.path.join(path_to_project, "calls.txt")
 dataset_yaml = os.path.join(path_to_dataset, "data_5_fold.yaml")
 
@@ -135,7 +135,8 @@ if do_train:
                 instruction = f"python ../../train_yolov8.py  \
                     --model_size {model_size} --dataset {dataset_yaml} \
                         --epochs {epochs} --batch {batch} --patience {patience} --yolo_proj {project_name} --yolo_name fold_{i} \
-                            --seed {seed} --imgsz {imgsz} > {os.path.join(path_to_project, 'fold_' + str(i) + '.txt')}" 
+                            --seed {seed} --imgsz {imgsz} | tee {os.path.join(path_to_project, 'fold_' + str(i) + '.txt')}" 
+
                 
                 with open(txt_path, 'a+') as f:
                     f.write(instruction)

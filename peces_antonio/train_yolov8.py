@@ -1,3 +1,6 @@
+# import os
+# os.environ['YOLO_VERBOSE'] = 'false'
+
 from ultralytics import YOLO
 from ultralytics.utils import SETTINGS
 SETTINGS['clearml'] = False
