@@ -14,7 +14,7 @@ batch = 5
 epochs = 300
 patience = 100
 
-path_to_project = r"D:\yolov8\peces_antonio\new_dataset\kfold_large_640_default"
+path_to_project = r"D:\yolov8\peces_antonio\new_dataset\new_pipeline\kfold_large_640_default"
 if not os.path.exists(path_to_project): 
     os.makedirs(path_to_project)
 
@@ -132,10 +132,10 @@ if do_train:
                     
                 run_name = os.path.join(project_name, "fold_"+str(i))
                 
-                instruction = f"python ../train_yolov8.py  \
+                instruction = f"python ../../train_yolov8.py  \
                     --model_size {model_size} --dataset {dataset_yaml} \
                         --epochs {epochs} --batch {batch} --patience {patience} --yolo_proj {project_name} --yolo_name fold_{i} \
-                            --seed {seed} --imgsz {imgsz}" 
+                            --seed {seed} --imgsz {imgsz} > {os.path.join(path_to_project, 'fold_' + str(i) + '.txt')}" 
                 
                 with open(txt_path, 'a+') as f:
                     f.write(instruction)
