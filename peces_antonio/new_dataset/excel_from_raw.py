@@ -4,8 +4,8 @@ import shutil
 import numpy as np
 import pandas as pd
 
-raw_data_path = r"C:\Users\haddo\yolov8\peces_antonio\new_dataset\raw_val_data_large.json"
-save_path = r"C:\Users\haddo\yolov8\peces_antonio\new_dataset\new_dataset_best_da_results.csv" # CSV extension pls
+raw_data_path = r"C:\Users\haddo\yolov8\peces_antonio\new_dataset\new_pipeline\kfold_large_1280_default\raw_val_data_kfold_large_1280_default.json"
+save_path = r"C:\Users\haddo\yolov8\peces_antonio\new_dataset\new_pipeline\kfold_large_1280_default\kfold_large_1280_default_results.csv" # CSV extension pls
 
 with open(raw_data_path, 'r') as file: 
     raw_data = json.load(file)
