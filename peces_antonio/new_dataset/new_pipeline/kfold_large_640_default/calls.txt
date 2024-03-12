@@ -4,3 +4,12 @@ python ../../train_yolov8.py                      --model_size l --dataset D:\yo
 python ../../train_yolov8.py                      --model_size l --dataset D:\yolov8\peces_antonio\new_dataset\dataset\data_5_fold.yaml                         --epochs 300 --batch 5 --patience 100 --yolo_proj D:\yolov8\peces_antonio\new_dataset\new_pipeline\kfold_large_640_default\large\lr_0 --yolo_name fold_2                             --seed 42 --imgsz 640 > D:\yolov8\peces_antonio\new_dataset\new_pipeline\kfold_large_640_default\fold_2.txt
 ------------------------------------------------------------- 
 
+python ../../train_yolov8.py                      --model_size l --dataset D:\yolov8\peces_antonio\new_dataset\dataset\data_5_fold.yaml                         --epochs 300 --batch 5 --patience 100 --yolo_proj D:\yolov8\peces_antonio\new_dataset\new_pipeline\kfold_large_640_default\large\lr_0 --yolo_name fold_3                             --seed 42 --imgsz 640 > D:\yolov8\peces_antonio\new_dataset\new_pipeline\kfold_large_640_default\fold_3.txt
+------------------------------------------------------------- 
+
+python ../../train_yolov8.py                      --model_size l --dataset D:\yolov8\peces_antonio\new_dataset\dataset\data_5_fold.yaml                         --epochs 300 --batch 5 --patience 100 --yolo_proj D:\yolov8\peces_antonio\new_dataset\new_pipeline\kfold_large_640_default\large\lr_0 --yolo_name fold_4                             --seed 42 --imgsz 640 > D:\yolov8\peces_antonio\new_dataset\new_pipeline\kfold_large_640_default\fold_4.txt
+------------------------------------------------------------- 
+
+python ../../train_yolov8.py                      --model_size l --dataset D:\yolov8\peces_antonio\new_dataset\dataset\data_5_fold.yaml                         --epochs 300 --batch 5 --patience 100 --yolo_proj D:\yolov8\peces_antonio\new_dataset\new_pipeline\kfold_large_640_default\large\lr_0 --yolo_name fold_5                             --seed 42 --imgsz 640 > D:\yolov8\peces_antonio\new_dataset\new_pipeline\kfold_large_640_default\fold_5.txt
+------------------------------------------------------------- 
+

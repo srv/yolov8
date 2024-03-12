@@ -10,15 +10,16 @@ import time
 from datetime import datetime, timedelta
 
 imgsz = 1280
-batch = 5
+batch = 7
 epochs = 300
 patience = 100
 
-path_to_project = r"C:\Users\haddo\yolov8\peces_antonio\new_dataset\new_pipeline\kfold_large_1280_default"
+path_to_project = r"D:\yolov8\peces_antonio\new_dataset\new_pipeline\kfold_large_1280_noda"
 if not os.path.exists(path_to_project): 
     os.makedirs(path_to_project)
 
-path_to_dataset = r"C:\Users\haddo\yolov8\peces_antonio\new_dataset\dataset"
+cfg_path = r"D:\yolov8\peces_antonio\configs\no_da.yaml"
+path_to_dataset = r"D:\yolov8\peces_antonio\new_dataset\dataset"
 txt_path = os.path.join(path_to_project, "calls.txt")
 dataset_yaml = os.path.join(path_to_dataset, "data_5_fold.yaml")
 
@@ -113,7 +114,7 @@ if do_train:
         print("DS PATH: ", ds_path)
         # create the k fold iteration (here to avoid doing it every time)
         # # k fold 
-        for i in range(1, k+1):
+        for i in range(5, k+1):
             create_empty_temp_dirs(ds_path)
             for f in range(1, k+1):
                 if f == i:
@@ -135,7 +136,7 @@ if do_train:
                 instruction = f"python ../../train_yolov8.py  \
                     --model_size {model_size} --dataset {dataset_yaml} \
                         --epochs {epochs} --batch {batch} --patience {patience} --yolo_proj {project_name} --yolo_name fold_{i} \
-                            --seed {seed} --imgsz {imgsz} | tee {os.path.join(path_to_project, 'fold_' + str(i) + '.txt')}" 
+                            --seed {seed} --imgsz {imgsz} --config {cfg_path} | tee {os.path.join(path_to_project, 'fold_' + str(i) + '.txt')}" 
 
                 
                 with open(txt_path, 'a+') as f:
