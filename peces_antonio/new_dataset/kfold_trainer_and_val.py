@@ -16,10 +16,10 @@ import time
 if __name__ == "__main__":
     device = "0"
 
-    imgsz = 300
+    imgsz = 1280
     batch = 7
-    epochs = 1
-    patience = 0
+    epochs = 400
+    patience = 100
     optimizer = 'SGD'
     lr0 = 0.001
     cfg_path = r"/home/antonio/yolov8/peces_antonio/configs/best_da_modified.yaml"
@@ -107,10 +107,10 @@ if __name__ == "__main__":
 
     if do_train:
         model_sizes = {
-            "n": "nano",
+            # "n": "nano",
             # "s": "small",
             # "m": "medium",
-            # "l": "large",
+            "l": "large",
             # "x": "extra_large"
         }
         k = 5  # num folds
