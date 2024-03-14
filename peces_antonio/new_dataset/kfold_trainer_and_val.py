@@ -16,19 +16,19 @@ import time
 if __name__ == "__main__":
     device = "0"
 
-    imgsz = 1280
+    imgsz = 300
     batch = 7
-    epochs = 400
-    patience = 100
+    epochs = 1
+    patience = 0
     optimizer = 'SGD'
     lr0 = 0.001
-    cfg_path = r"D:\yolov8\peces_antonio\configs\best_da_modified.yaml"
+    cfg_path = r"/home/antonio/yolov8/peces_antonio/configs/best_da_modified.yaml"
 
-    path_to_project = fr"D:\yolov8\peces_antonio\new_dataset\new_pipeline\kfold_large_1280_own_lr_{lr0}"
+    path_to_project = fr"/home/antonio/yolov8/peces_antonio/new_dataset/validation_test"
     if not os.path.exists(path_to_project): 
         os.makedirs(path_to_project)
 
-    path_to_dataset = r"D:\yolov8\peces_antonio\new_dataset\dataset"
+    path_to_dataset = r"/home/antonio/yolov8/peces_antonio/new_dataset/dataset"
     txt_path = os.path.join(path_to_project, "calls.txt")
     dataset_yaml = os.path.join(path_to_dataset, "data_5_fold.yaml")
 
@@ -107,10 +107,10 @@ if __name__ == "__main__":
 
     if do_train:
         model_sizes = {
-            # "n": "nano",
+            "n": "nano",
             # "s": "small",
             # "m": "medium",
-            "l": "large",
+            # "l": "large",
             # "x": "extra_large"
         }
         k = 5  # num folds
@@ -121,7 +121,7 @@ if __name__ == "__main__":
         print("DS PATH: ", ds_path)
         # create the k fold iteration (here to avoid doing it every time)
         # # k fold 
-        for i in range(1, k+1):
+        for i in range(k, k+1):
             create_empty_temp_dirs(ds_path)
             for f in range(1, k+1):
                 if f == i:
@@ -218,5 +218,5 @@ if __name__ == "__main__":
     keys.append("F1(M)")
     mean_data = {key: mean_data[key]/k for key in keys}
 
-    df = pd.DataFrame.from_dict(mean_data, orient="columns", columns=keys)
+    df = pd.DataFrame.from_dict([mean_data], orient="columns")
     df.to_csv(os.path.join(project_name, "results.csv"), index=False)
