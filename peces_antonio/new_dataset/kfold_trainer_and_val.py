@@ -14,30 +14,6 @@ python kfold_trainer_and_val.py
     --epochs 400 --patience 100 --batch 7 --imgsz 1280 --optimizer "SGD" --lr0 0.001 | tee D:\yolov8\peces_antonio\new_dataset\new_pipeline\kfold_large_1280_own_lr_0.001\log.txt
 """
 
-import sys
-from contextlib import redirect_stdout, redirect_stderr
-def duplicate_output(stream, *files):
-    """
-    Duplicate output to multiple files and a stream.
-    """
-    class Duplicate:
-        def __init__(self, stream, files):
-            self.stream = stream
-            self.files = files
-
-        def write(self, data):
-            self.stream.write(data)
-            for f in self.files:
-                f.write(data)
-                f.flush()  # Make sure data is written immediately
-
-        def flush(self):
-            self.stream.flush()
-            for f in self.files:
-                f.flush()
-
-    return Duplicate(stream, files)
-
 if __name__ == "__main__":
     import argparse
 
