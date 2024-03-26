@@ -1,22 +1,37 @@
-"""
-python kfold_trainer_and_val.py \
-    --project_path "/home/antonio/yolov8/peces_antonio/new_dataset/new_pipeline/parser_test" \
-    --dataset_path "/home/antonio/yolov8/peces_antonio/new_dataset/dataset" \
-    --dataset_yaml "/home/antonio/yolov8/peces_antonio/new_dataset/dataset/data_5_fold.yaml" \
-    --cfg "/home/antonio/yolov8/peces_antonio/configs/best_da_modified.yaml" \
-    --epochs 1 --patience 0 --batch 7 --imgsz 160 --optimizer "auto" --lr0 0.001 | tee /home/antonio/yolov8/peces_antonio/new_dataset/new_pipeline/parser_test/log.txt
+# """
+# python kfold_trainer_and_val.py \
+#     --project_path "/home/antonio/yolov8/peces_antonio/new_dataset/new_pipeline/parser_test" \
+#     --dataset_path "/home/antonio/yolov8/peces_antonio/new_dataset/dataset" \
+#     --dataset_yaml "/home/antonio/yolov8/peces_antonio/new_dataset/dataset/data_5_fold.yaml" \
+#     --cfg "/home/antonio/yolov8/peces_antonio/configs/best_da_modified.yaml" \
+#     --epochs 1 --patience 0 --batch 7 --imgsz 160 --optimizer "auto" --lr0 0.001 | tee /home/antonio/yolov8/peces_antonio/new_dataset/new_pipeline/parser_test/log.txt
+# """
 
-python kfold_trainer_and_val.py
-    --project_path "D:\yolov8\peces_antonio\new_dataset\new_pipeline\kfold_large_1280_own_lr_0.001"
-    --dataset_path "D:\yolov8\peces_antonio\new_dataset\dataset"
-    --dataset_yaml "D:\yolov8\peces_antonio\new_dataset\dataset\data_5_fold.yaml"
-    --cfg "D:\yolov8\peces_antonio\configs/best_da_modified.yaml"
-    --epochs 400 --patience 100 --batch 7 --imgsz 1280 --optimizer "SGD" --lr0 0.001 | tee D:\yolov8\peces_antonio\new_dataset\new_pipeline\kfold_large_1280_own_lr_0.001\log.txt
-"""
+# """
+# python kfold_trainer_and_val.py
+#     --project_path "D:\yolov8\peces_antonio\new_dataset\new_pipeline\kfold_large_1280_own_lr_0.001"
+#     --dataset_path "D:\yolov8\peces_antonio\new_dataset\dataset"
+#     --dataset_yaml "D:\yolov8\peces_antonio\new_dataset\dataset\data_5_fold.yaml"
+#     --cfg "D:\yolov8\peces_antonio\configs\best_da_modified.yaml"
+#     --epochs 400 --patience 100 --batch 7 --imgsz 1280 --optimizer SGD --lr0 0.001 
+#     | tee "D:\yolov8\peces_antonio\new_dataset\new_pipeline\log_kfold_large_1280_own_lr_0.001.txt"
+# """
+
+# """
+# python C:\Users\haddo\yolov8\peces_antonio\new_dataset\kfold_trainer_and_val.py
+#     --project_path "C:\Users\haddo\yolov8\peces_antonio\new_dataset\new_pipeline\kfold_large_1280_own_lr_0.0001"
+#     --dataset_path "C:\Users\haddo\yolov8\peces_antonio\new_dataset\dataset"
+#     --dataset_yaml "C:\Users\haddo\yolov8\peces_antonio\new_dataset\dataset\data_5_fold.yaml"
+#     --cfg "C:\Users\haddo\yolov8\peces_antonio\configs\best_da_modified.yaml"
+#     --epochs 400 --patience 100 --batch 7 --imgsz 1280 --optimizer SGD --lr0 0.0001
+#     | tee C:\Users\haddo\yolov8\peces_antonio\new_dataset\new_pipeline\log_kfold_large_1280_own_lr_0.0001.txt"
+# """
 
 if __name__ == "__main__":
     import argparse
 
+    from ultralytics.utils import SETTINGS
+    SETTINGS['clearml'] = False
     from ultralytics import YOLO
     import torch
     import numpy as np
@@ -253,3 +268,5 @@ if __name__ == "__main__":
 
     df = pd.DataFrame.from_dict([mean_data], orient="columns")
     df.to_csv(os.path.join(project_name, "results.csv"), index=False)
+
+    os.system(f"python ./group_fold_validation.py --project_path {project_name}")
