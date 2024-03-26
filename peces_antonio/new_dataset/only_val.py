@@ -11,9 +11,9 @@ if __name__ == "__main__":
     imgsz = 1280
     batch = 7
     device = "0"
-    project_name = r"C:\Users\haddo\yolov8\peces_antonio\new_dataset\new_pipeline\kfold_large_1280_own_lr_0.005\large"
+    project_name = r"D:\yolov8\peces_antonio\new_dataset\new_pipeline\kfold_large_1280_own_lr_0.001\large"
     fold_idx = "4"
-    dataset_yaml = r"C:\Users\haddo\yolov8\peces_antonio\new_dataset\dataset\data_5_fold.yaml"
+    dataset_yaml = r"D:\yolov8\peces_antonio\new_dataset\dataset\data_5_fold.yaml"
 
     val_dict = dict(
         data=r'{}'.format(dataset_yaml),
