@@ -7,6 +7,7 @@
 #     --epochs 1 --patience 0 --batch 7 --imgsz 160 --optimizer "auto" --lr0 0.001 | tee /home/antonio/yolov8/peces_antonio/new_dataset/new_pipeline/parser_test/log.txt
 # """
 
+<<<<<<< Updated upstream
 # """
 # python kfold_trainer_and_val.py
 #     --project_path "D:\yolov8\peces_antonio\new_dataset\new_pipeline\kfold_large_1280_own_lr_0.001"
@@ -26,6 +27,15 @@
 #     --epochs 400 --patience 100 --batch 7 --imgsz 1280 --optimizer SGD --lr0 0.0001
 #     | tee C:\Users\haddo\yolov8\peces_antonio\new_dataset\new_pipeline\log_kfold_large_1280_own_lr_0.0001.txt"
 # """
+=======
+python kfold_trainer_and_val.py
+    --project_path "D:\yolov8\peces_antonio\new_dataset\new_pipeline\kfold_large_1280_own_lr_0.001"
+    --dataset_path "D:\yolov8\peces_antonio\new_dataset\dataset"
+    --dataset_yaml "D:\yolov8\peces_antonio\new_dataset\dataset\data_5_fold.yaml"
+    --cfg "D:\yolov8\peces_antonio\configs/best_da_modified.yaml"
+    --epochs 400 --patience 100 --batch 7 --imgsz 1280 --optimizer "SGD" --lr0 0.001 | tee D:\yolov8\peces_antonio\new_dataset\new_pipeline\log_kfold_large_1280_own_lr_0.001.txt
+"""
+>>>>>>> Stashed changes
 
 if __name__ == "__main__":
     import argparse
@@ -186,7 +196,7 @@ if __name__ == "__main__":
         print("DS PATH: ", ds_path)
         # create the k fold iteration (here to avoid doing it every time)
         # # k fold 
-        for i in range(1, k+1):
+        for i in range(5, k+1):
             create_empty_temp_dirs(ds_path)
             for f in range(1, k+1):
                 if f == i:
