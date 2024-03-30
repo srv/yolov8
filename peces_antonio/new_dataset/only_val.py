@@ -11,7 +11,11 @@ if __name__ == "__main__":
     imgsz = 1280
     batch = 7
     device = "0"
+<<<<<<< Updated upstream
     project_name = r"D:\yolov8\peces_antonio\new_dataset\new_pipeline\kfold_large_1280_own_lr_0.001\large"
+=======
+    project_name = r"C:\Users\haddo\yolov8\peces_antonio\new_dataset\new_pipeline\kfold_large_1280_own_lr_0.0001\large"
+>>>>>>> Stashed changes
     fold_idx = "4"
     dataset_yaml = r"D:\yolov8\peces_antonio\new_dataset\dataset\data_5_fold.yaml"
 

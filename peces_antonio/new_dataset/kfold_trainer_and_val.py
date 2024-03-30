@@ -1,4 +1,4 @@
-# """
+# """ Serafin-Laton
 # python kfold_trainer_and_val.py \
 #     --project_path "/home/antonio/yolov8/peces_antonio/new_dataset/new_pipeline/parser_test" \
 #     --dataset_path "/home/antonio/yolov8/peces_antonio/new_dataset/dataset" \
@@ -8,7 +8,11 @@
 # """
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 # """
+=======
+# """ OLIVIA
+>>>>>>> Stashed changes
 # python kfold_trainer_and_val.py
 #     --project_path "D:\yolov8\peces_antonio\new_dataset\new_pipeline\kfold_large_1280_own_lr_0.001"
 #     --dataset_path "D:\yolov8\peces_antonio\new_dataset\dataset"
@@ -18,14 +22,14 @@
 #     | tee "D:\yolov8\peces_antonio\new_dataset\new_pipeline\log_kfold_large_1280_own_lr_0.001.txt"
 # """
 
-# """
+# """ Haddock
 # python C:\Users\haddo\yolov8\peces_antonio\new_dataset\kfold_trainer_and_val.py
-#     --project_path "C:\Users\haddo\yolov8\peces_antonio\new_dataset\new_pipeline\kfold_large_1280_own_lr_0.0001"
+#     --project_path "C:\Users\haddo\yolov8\peces_antonio\new_dataset\new_pipeline\kfold_large_1280_own_lr_0.01_cls_0.2"
 #     --dataset_path "C:\Users\haddo\yolov8\peces_antonio\new_dataset\dataset"
 #     --dataset_yaml "C:\Users\haddo\yolov8\peces_antonio\new_dataset\dataset\data_5_fold.yaml"
-#     --cfg "C:\Users\haddo\yolov8\peces_antonio\configs\best_da_modified.yaml"
-#     --epochs 400 --patience 100 --batch 7 --imgsz 1280 --optimizer SGD --lr0 0.0001
-#     | tee C:\Users\haddo\yolov8\peces_antonio\new_dataset\new_pipeline\log_kfold_large_1280_own_lr_0.0001.txt"
+#     --cfg "C:\Users\haddo\yolov8\peces_antonio\configs\best_da_cls0.2.yaml"
+#     --epochs 300 --patience 100 --batch 7 --imgsz 1280 --optimizer SGD --lr0 0.01
+#     | tee C:\Users\haddo\yolov8\peces_antonio\new_dataset\new_pipeline\log_kfold_large_1280_own_lr_0.01_cls_0.2.txt"
 # """
 =======
 python kfold_trainer_and_val.py
