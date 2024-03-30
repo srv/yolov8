@@ -7,12 +7,9 @@
 #     --epochs 1 --patience 0 --batch 7 --imgsz 160 --optimizer "auto" --lr0 0.001 | tee /home/antonio/yolov8/peces_antonio/new_dataset/new_pipeline/parser_test/log.txt
 # """
 
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
 # """
-=======
+
 # """ OLIVIA
->>>>>>> Stashed changes
 # python kfold_trainer_and_val.py
 #     --project_path "D:\yolov8\peces_antonio\new_dataset\new_pipeline\kfold_large_1280_own_lr_0.001"
 #     --dataset_path "D:\yolov8\peces_antonio\new_dataset\dataset"
@@ -31,15 +28,7 @@
 #     --epochs 300 --patience 100 --batch 7 --imgsz 1280 --optimizer SGD --lr0 0.01
 #     | tee C:\Users\haddo\yolov8\peces_antonio\new_dataset\new_pipeline\log_kfold_large_1280_own_lr_0.01_cls_0.2.txt"
 # """
-=======
-python kfold_trainer_and_val.py
-    --project_path "D:\yolov8\peces_antonio\new_dataset\new_pipeline\kfold_large_1280_own_lr_0.001"
-    --dataset_path "D:\yolov8\peces_antonio\new_dataset\dataset"
-    --dataset_yaml "D:\yolov8\peces_antonio\new_dataset\dataset\data_5_fold.yaml"
-    --cfg "D:\yolov8\peces_antonio\configs/best_da_modified.yaml"
-    --epochs 400 --patience 100 --batch 7 --imgsz 1280 --optimizer "SGD" --lr0 0.001 | tee D:\yolov8\peces_antonio\new_dataset\new_pipeline\log_kfold_large_1280_own_lr_0.001.txt
-"""
->>>>>>> Stashed changes
+
 
 if __name__ == "__main__":
     import argparse
