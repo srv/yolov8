@@ -142,11 +142,11 @@ dmypy.json
 **/dataset_all/
 **/dataset_nb/
 **/seleccion_yolanda/
-**/nano/
-**/small/
-**/medium/
-**/large/
-**/extra_large/
+# **/nano/
+# **/small/
+# **/medium/
+# **/large/
+# **/extra_large/
 **.zip
 
 datasets/
