@@ -9,24 +9,24 @@
 
 # """
 
-""" OLIVIA
-python D:\yolov8\peces_antonio\new_dataset\kfold_trainer_and_val.py
-    --project_path "D:\yolov8\peces_antonio\new_dataset\new_pipeline\kfold_large_1280_own_lr_0.01_cls8.0"
-    --dataset_path "D:\yolov8\peces_antonio\new_dataset\dataset"
-    --dataset_yaml "D:\yolov8\peces_antonio\new_dataset\dataset\data_5_fold.yaml"
-    --cfg "D:\yolov8\peces_antonio\configs\best_da_cls8.0.yaml"
-    --epochs 300 --patience 100 --batch 7 --imgsz 1280 --optimizer SGD --lr0 0.01
-    | tee "D:\yolov8\peces_antonio\new_dataset\new_pipeline\log_kfold_large_1280_own_lr_0.01_cls8.0.txt"
-"""
+# """ OLIVIA
+# python D:\yolov8\peces_antonio\new_dataset\kfold_trainer_and_val.py
+#     --project_path "D:\yolov8\peces_antonio\new_dataset\new_pipeline\kfold_large_1280_own_lr_0.01_cls8.0"
+#     --dataset_path "D:\yolov8\peces_antonio\new_dataset\dataset"
+#     --dataset_yaml "D:\yolov8\peces_antonio\new_dataset\dataset\data_5_fold.yaml"
+#     --cfg "D:\yolov8\peces_antonio\configs\best_da_cls8.0.yaml"
+#     --epochs 300 --patience 100 --batch 7 --imgsz 1280 --optimizer SGD --lr0 0.01
+#     | tee "D:\yolov8\peces_antonio\new_dataset\new_pipeline\log_kfold_large_1280_own_lr_0.01_cls8.0.txt"
+# """
 
 # """ Haddock
 # python C:\Users\haddo\yolov8\peces_antonio\new_dataset\kfold_trainer_and_val.py
-#     --project_path "C:\Users\haddo\yolov8\peces_antonio\new_dataset\new_pipeline\kfold_large_1280_own_lr_0.01_cls_2.0"
-#     --dataset_path "C:\Users\haddo\yolov8\peces_antonio\new_dataset\dataset"
-#     --dataset_yaml "C:\Users\haddo\yolov8\peces_antonio\new_dataset\dataset\data_5_fold.yaml"
-#     --cfg "C:\Users\haddo\yolov8\peces_antonio\configs\best_da_cls2.0.yaml"
+#     --project_path "C:\Users\haddo\yolov8\peces_antonio\new_dataset\new_pipeline\kfold_large_1280_own_lr_0.01_modified_dataset"
+#     --dataset_path "C:\Users\haddo\yolov8\peces_antonio\new_dataset\dataset_reduced"
+#     --dataset_yaml "C:\Users\haddo\yolov8\peces_antonio\new_dataset\dataset_reduced\data_5_fold.yaml"
+#     --cfg "C:\Users\haddo\yolov8\peces_antonio\configs\best_da_modified.yaml"
 #     --epochs 300 --patience 100 --batch 7 --imgsz 1280 --optimizer SGD --lr0 0.01
-#     | tee C:\Users\haddo\yolov8\peces_antonio\new_dataset\new_pipeline\log_kfold_large_1280_own_lr_0.01_cls_2.0.txt"
+#     | tee C:\Users\haddo\yolov8\peces_antonio\new_dataset\new_pipeline\log_kfold_large_1280_own_lr_0.01_modified_dataset.txt"
 # """
 
 if __name__ == "__main__":
@@ -116,7 +116,7 @@ if __name__ == "__main__":
                     os.makedirs(tmp_dir)
 
     do_train = True
-    folds_created = True
+    folds_created = False
     k = 5
     seed=42
     check_imgs_array,check_lbls_array=[],[]

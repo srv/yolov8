@@ -1,12 +1,12 @@
 
 # """ Haddock
 # python C:\Users\haddo\yolov8\peces_antonio\new_dataset\kfold_trainer_and_val_singlecls_multiclass.py
-#     --project_path "C:\Users\haddo\yolov8\peces_antonio\new_dataset\new_pipeline\kfold_large_1280_own_lr_0.01_singlecls_multiclass_freeze10"
+#     --project_path "C:\Users\haddo\yolov8\peces_antonio\new_dataset\new_pipeline\kfold_large_1280_own_lr_0.01_singlecls_multiclass_freeze22"
 #     --dataset_path "C:\Users\haddo\yolov8\peces_antonio\new_dataset\dataset"
 #     --dataset_yaml "C:\Users\haddo\yolov8\peces_antonio\new_dataset\dataset\data_5_fold.yaml"
 #     --cfg "C:\Users\haddo\yolov8\peces_antonio\configs\best_da_modified.yaml"
-#     --epochs 300 --patience 100 --batch 7 --imgsz 1280 --optimizer SGD --lr0 0.01 --freeze 10
-#     | tee C:\Users\haddo\yolov8\peces_antonio\new_dataset\new_pipeline\log_kfold_large_1280_own_lr_0.01_singlecls_multiclass_freeze10.txt"
+#     --epochs 300 --patience 100 --batch 7 --imgsz 1280 --optimizer SGD --lr0 0.01 --freeze 22
+#     | tee C:\Users\haddo\yolov8\peces_antonio\new_dataset\new_pipeline\log_kfold_large_1280_own_lr_0.01_singlecls_multiclass_freeze22.txt"
 # """
 
 if __name__ == "__main__":
