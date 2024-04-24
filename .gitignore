@@ -140,6 +140,7 @@ dmypy.json
 # datasets and projects
 **/urchin_sim/**
 **/dataset**
+vivo_dataset/
 **/dataset_all/
 **/dataset_nb/
 **/seleccion_yolanda/
