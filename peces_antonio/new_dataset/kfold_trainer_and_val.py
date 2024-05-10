@@ -1,32 +1,12 @@
-# """ Serafin-Laton
-# python kfold_trainer_and_val.py \
-#     --project_path "/home/antonio/yolov8/peces_antonio/new_dataset/new_pipeline/parser_test" \
-#     --dataset_path "/home/antonio/yolov8/peces_antonio/new_dataset/dataset" \
-#     --dataset_yaml "/home/antonio/yolov8/peces_antonio/new_dataset/dataset/data_5_fold.yaml" \
-#     --cfg "/home/antonio/yolov8/peces_antonio/configs/best_da_modified.yaml" \
-#     --epochs 1 --patience 0 --batch 7 --imgsz 160 --optimizer "auto" --lr0 0.001 | tee /home/antonio/yolov8/peces_antonio/new_dataset/new_pipeline/parser_test/log.txt
-# """
-
-# """
-
-# """ OLIVIA
-# python kfold_trainer_and_val.py
-#     --project_path "D:\yolov8\peces_antonio\new_dataset\new_pipeline\kfold_large_1280_own_lr_0.001"
-#     --dataset_path "D:\yolov8\peces_antonio\new_dataset\dataset"
-#     --dataset_yaml "D:\yolov8\peces_antonio\new_dataset\dataset\data_5_fold.yaml"
-#     --cfg "D:\yolov8\peces_antonio\configs\best_da_modified.yaml"
-#     --epochs 400 --patience 100 --batch 7 --imgsz 1280 --optimizer SGD --lr0 0.001 
-#     | tee "D:\yolov8\peces_antonio\new_dataset\new_pipeline\log_kfold_large_1280_own_lr_0.001.txt"
-# """
 
 # """ Haddock
 # python C:\Users\haddo\yolov8\peces_antonio\new_dataset\kfold_trainer_and_val.py
-#     --project_path "C:\Users\haddo\yolov8\peces_antonio\new_dataset\new_pipeline\kfold_large_1280_own_lr_0.01_cls_0.2"
+#     --project_path "C:\Users\haddo\yolov8\peces_antonio\new_dataset\new_pipeline\yolov9_kfold_large_1280_own_lr_0.01"
 #     --dataset_path "C:\Users\haddo\yolov8\peces_antonio\new_dataset\dataset"
 #     --dataset_yaml "C:\Users\haddo\yolov8\peces_antonio\new_dataset\dataset\data_5_fold.yaml"
-#     --cfg "C:\Users\haddo\yolov8\peces_antonio\configs\best_da_cls0.2.yaml"
+#     --cfg "C:\Users\haddo\yolov8\peces_antonio\configs\best_da_modified.yaml"
 #     --epochs 300 --patience 100 --batch 7 --imgsz 1280 --optimizer SGD --lr0 0.01
-#     | tee C:\Users\haddo\yolov8\peces_antonio\new_dataset\new_pipeline\log_kfold_large_1280_own_lr_0.01_cls_0.2.txt"
+#     | tee C:\Users\haddo\yolov8\peces_antonio\new_dataset\new_pipeline\log_yolov9_kfold_large_1280_own_lr_0.01.txt"
 # """
 
 
@@ -175,11 +155,8 @@ if __name__ == "__main__":
 
     if do_train:
         model_sizes = {
-            # "n": "nano",
-            # "s": "small",
-            # "m": "medium",
-            "l": "large",
-            # "x": "extra_large"
+            "c": "c",
+            # "e": "e"
         }
         k = 5  # num folds
         # Tidy train-val splits from k-fold
@@ -189,7 +166,7 @@ if __name__ == "__main__":
         print("DS PATH: ", ds_path)
         # create the k fold iteration (here to avoid doing it every time)
         # # k fold 
-        for i in range(5, k+1):
+        for i in range(2, k+1):
             create_empty_temp_dirs(ds_path)
             for f in range(1, k+1):
                 if f == i:
@@ -209,7 +186,7 @@ if __name__ == "__main__":
                     
                 run_name = os.path.join(project_name, "fold_"+str(i))
 
-                model = YOLO(f"yolov8{model_size}-seg.pt")
+                model = YOLO(f"yolov9{model_size}-seg.pt")
                 
                 train_dict["name"] = f"fold_{i}"
                 train_dict["project"] = project_name

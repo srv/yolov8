@@ -1,0 +1,14 @@
+{
+    "data": "C:\\Users\\haddo\\yolov8\\peces_antonio\\new_dataset\\dataset\\data_5_fold.yaml",
+    "epochs": 300,
+    "patience": 100,
+    "batch": 6,
+    "imgsz": 1280,
+    "device": "0",
+    "optimizer": "SGD",
+    "seed": 42,
+    "lr0": 0.01,
+    "cfg": "C:\\Users\\haddo\\yolov8\\peces_antonio\\configs\\best_da_modified.yaml",
+    "name": "fold_5",
+    "project": "C:\\Users\\haddo\\yolov8\\peces_antonio\\new_dataset\\new_pipeline\\yolov9_kfold_large_1280_own_lr_0.01\\c"
+}
