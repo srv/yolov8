@@ -1,0 +1,153 @@
+specie: Chromis chromis
+total: 1538
+folds\1: 272
+folds\2: 292
+folds\3: 224
+folds\4: 271
+folds\5: 319
+test: 160
+-------------------------------------------
+specie: Coris julis
+total: 851
+folds\1: 152
+folds\2: 138
+folds\3: 168
+folds\4: 150
+folds\5: 158
+test: 85
+-------------------------------------------
+specie: Dentex dentex
+total: 224
+folds\1: 39
+folds\2: 42
+folds\3: 40
+folds\4: 45
+folds\5: 33
+test: 25
+-------------------------------------------
+specie: Diplodus annularis
+total: 550
+folds\1: 121
+folds\2: 72
+folds\3: 83
+folds\4: 124
+folds\5: 102
+test: 48
+-------------------------------------------
+specie: Diplodus sargus
+total: 2467
+folds\1: 455
+folds\2: 579
+folds\3: 330
+folds\4: 289
+folds\5: 424
+test: 390
+-------------------------------------------
+specie: Diplodus vulgaris
+total: 2670
+folds\1: 445
+folds\2: 526
+folds\3: 430
+folds\4: 526
+folds\5: 488
+test: 255
+-------------------------------------------
+specie: Epinephelus marginatus
+total: 100
+folds\1: 20
+folds\2: 10
+folds\3: 26
+folds\4: 21
+folds\5: 21
+test: 2
+-------------------------------------------
+specie: Lithognathus mormyrus
+total: 547
+folds\1: 110
+folds\2: 113
+folds\3: 107
+folds\4: 90
+folds\5: 87
+test: 40
+-------------------------------------------
+specie: Mugilidae prob Chelon
+total: 602
+folds\1: 100
+folds\2: 150
+folds\3: 84
+folds\4: 118
+folds\5: 71
+test: 79
+-------------------------------------------
+specie: Oblada melanura
+total: 1023
+folds\1: 171
+folds\2: 188
+folds\3: 165
+folds\4: 188
+folds\5: 191
+test: 120
+-------------------------------------------
+specie: Pomatous salator
+total: 166
+folds\1: 25
+folds\2: 30
+folds\3: 26
+folds\4: 37
+folds\5: 24
+test: 24
+-------------------------------------------
+specie: Sciaena umbra
+total: 264
+folds\1: 46
+folds\2: 50
+folds\3: 57
+folds\4: 51
+folds\5: 34
+test: 26
+-------------------------------------------
+specie: Seriola dumerili
+total: 1188
+folds\1: 211
+folds\2: 194
+folds\3: 215
+folds\4: 185
+folds\5: 207
+test: 176
+-------------------------------------------
+specie: Serranus cabrilla
+total: 195
+folds\1: 30
+folds\2: 31
+folds\3: 31
+folds\4: 45
+folds\5: 41
+test: 17
+-------------------------------------------
+specie: Serranus scriba
+total: 319
+folds\1: 55
+folds\2: 54
+folds\3: 53
+folds\4: 64
+folds\5: 58
+test: 35
+-------------------------------------------
+specie: Spicara maena
+total: 262
+folds\1: 31
+folds\2: 55
+folds\3: 54
+folds\4: 48
+folds\5: 28
+test: 46
+-------------------------------------------
+specie: Spondyliosoma cantharus
+total: 2089
+folds\1: 368
+folds\2: 407
+folds\3: 345
+folds\4: 357
+folds\5: 410
+test: 202
+-------------------------------------------
