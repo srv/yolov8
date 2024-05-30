@@ -7,8 +7,6 @@
 #     --epochs 1 --patience 0 --batch 7 --imgsz 160 --optimizer "auto" --lr0 0.001 | tee /home/antonio/yolov8/peces_antonio/new_dataset/new_pipeline/parser_test/log.txt
 # """
 
-# """
-
 # """ OLIVIA
 # python D:\yolov8\peces_antonio\new_dataset\kfold_trainer_and_val.py
 #     --project_path "D:\yolov8\peces_antonio\new_dataset\new_pipeline\kfold_large_1280_own_lr_0.01_cls8.0"
@@ -27,6 +25,10 @@
 #     --cfg "C:\Users\haddo\yolov8\peces_antonio\configs\best_da_modified.yaml"
 #     --epochs 300 --patience 100 --batch 7 --imgsz 1280 --optimizer SGD --lr0 0.01
 #     | tee C:\Users\haddo\yolov8\peces_antonio\new_dataset\new_pipeline\log_kfold_large_1280_own_lr_0.01_modified_dataset.txt"
+# """
+
+# """ Bacterio
+# python /home/azken/antonio/yolov8/peces_antonio/new_dataset/kfold_trainer_and_val.py --project_path "/home/azken/antonio/yolov8/peces_antonio/new_dataset/new_pipeline/kfold_test_all_sizes" --dataset_path "/home/azken/antonio/yolov8/peces_antonio/new_dataset/dataset" --dataset_yaml "/home/azken/antonio/yolov8/peces_antonio/new_dataset/dataset/data_5_fold.yaml" --epochs 300 --patience 100 --batch 7 --imgsz 640 --optimizer auto --lr0 0.01 | tee "/home/azken/antonio/yolov8/peces_antonio/new_dataset/new_pipeline/log_kfold_test_all_sizes.txt"
 # """
 
 if __name__ == "__main__":
@@ -174,11 +176,11 @@ if __name__ == "__main__":
 
     if do_train:
         model_sizes = {
-            # "n": "nano",
-            # "s": "small",
-            # "m": "medium",
+            "x": "extra_large",
             "l": "large",
-            # "x": "extra_large"
+            "m": "medium",
+            "s": "small",
+            "n": "nano",
         }
         k = 5  # num folds
         # Tidy train-val splits from k-fold
@@ -212,7 +214,7 @@ if __name__ == "__main__":
                 
                 train_dict["name"] = f"fold_{i}"
                 train_dict["project"] = project_name
-                train_dict["workers"] = 4
+                # train_dict["workers"] = 4
                 
                 model.train(**train_dict)
                 del model
@@ -221,8 +223,8 @@ if __name__ == "__main__":
                     json.dump(train_dict, json_file, indent=4)
                     
                 torch.cuda.empty_cache()
-                # print("Sleeping 30 secs!")
-                # time.sleep(30)
+                print("Sleeping 30 secs!")
+                time.sleep(30)
                 
                 model = YOLO(os.path.join(project_name, f"fold_{i}", "weights", "best.pt"))
                 
