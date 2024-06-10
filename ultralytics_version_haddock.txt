@@ -1,0 +1,1 @@
+ultralytics               8.0.223                  pypi_0    pypi
