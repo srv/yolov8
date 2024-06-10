@@ -1,0 +1,13 @@
+{
+    "data": "C:\\Users\\haddo\\yolov8\\peces_antonio\\new_dataset\\dataset\\data_5_fold.yaml",
+    "epochs": 300,
+    "patience": 100,
+    "batch": 7,
+    "imgsz": 640,
+    "device": "0",
+    "optimizer": "auto",
+    "seed": 42,
+    "lr0": 0.01,
+    "name": "fold_1",
+    "project": "C:\\Users\\haddo\\yolov8\\peces_antonio\\new_dataset\\new_pipeline\\kfold_test_all_sizes_haddock\\nano"
+}
