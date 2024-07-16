@@ -6,11 +6,10 @@ import pandas as pd
 
 if __name__ == "__main__":
     split = "val"
-    imgsz = 1280
     batch = 1
     device = "0"
-    project_name = r"/home/slimbook/yolov8/peces_antonio/new_dataset/new_pipeline/kfold_large_1280_own_lr_0.01_cls8.0_good/large"
-    dataset_path = r"/home/slimbook/yolov8/peces_antonio/new_dataset/dataset"
+    project_name = r"C:\Users\haddo\yolov8\peces_antonio\new_dataset\new_pipeline\kfold_test_all_sizes_haddock\medium"
+    dataset_path = r"C:\Users\haddo\yolov8\peces_antonio\new_dataset\dataset"
     dataset_yaml = os.path.join(dataset_path, "data.yaml")
 
     name = split
@@ -32,7 +31,6 @@ if __name__ == "__main__":
 
         val_dict = dict(
             data=fold_dataset_yaml,
-            imgsz=imgsz, 
             batch=batch, 
             device=device, 
             split=split, 
