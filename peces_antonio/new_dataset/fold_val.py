@@ -37,7 +37,7 @@ if __name__ == "__main__":
             device=device, 
             split=split, 
             name=name, 
-            exist_ok=False  
+            exist_ok=True  
         )
 
         model = YOLO(os.path.join(project_name, f"fold_{fold_idx}", "weights", "best.pt"))
@@ -53,7 +53,7 @@ if __name__ == "__main__":
 
         print(json.dumps(results_data, indent=4))
 
-        with open(os.path.join(project_name, f"fold_{fold_idx}", "val", "validation_results.json"), "w") as json_file:
+        with open(os.path.join(project_name, f"fold_{fold_idx}", "val", f"batch_{batch}_validation_results.json"), "w") as json_file:
             json.dump(results_data, json_file, indent=4)
             
     
@@ -64,7 +64,7 @@ if __name__ == "__main__":
     mean_data = {key:0 for key in keys}
 
     for fold_idx in range(1, 6):
-        fold_data_path = os.path.join(project_name, f"fold_{fold_idx}", "val", "validation_results.json")
+        fold_data_path = os.path.join(project_name, f"fold_{fold_idx}", "val", f"batch_{batch}_validation_results.json")
         with open(fold_data_path, 'r') as file: 
             fold_data = json.load(file)
             
@@ -79,4 +79,4 @@ if __name__ == "__main__":
     mean_data = {key: mean_data[key]/5 for key in keys}
 
     df = pd.DataFrame.from_dict([mean_data], orient="columns")
-    df.to_csv(os.path.join(project_name, "mean_val_results.csv"), index=False)
+    df.to_csv(os.path.join(project_name, f"batch_{batch}_mean_val_results.csv"), index=False)
