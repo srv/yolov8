@@ -5,12 +5,12 @@ import yaml
 import pandas as pd
 
 if __name__ == "__main__":
-    split = "val"
+    split = "test"
     imgsz = 1280
     batch = 1
     device = "0"
-    project_name = r"/home/azken/antonio/yolov8/peces_antonio/new_dataset/new_pipeline/kfold_large_1280_own_lr_0.01_cls8.0/large"
-    dataset_path = r"/home/azken/antonio/yolov8/peces_antonio/new_dataset/dataset"
+    project_name = r"/home/slimbook/dataset_lanty/nano_best_params"
+    dataset_path = r"/home/slimbook/Descargas/dataset_lanty/extracted_dataset"
     dataset_yaml = os.path.join(dataset_path, "data.yaml")
 
     name = split
@@ -22,10 +22,11 @@ if __name__ == "__main__":
         # Generate temporal yaml for fold validation.
         with open(dataset_yaml, 'r') as file:
             data = yaml.safe_load(file)
-            
-        # Modify the parameters
-        data['train'] = "./"
-        data['val'] = os.path.join(dataset_path, "folds", str(fold_idx), "images")
+        
+        if split == "val":    
+            # Modify the parameters
+            data['train'] = "./"
+            data['val'] = os.path.join(dataset_path, "folds", str(fold_idx), "images")
         
         # Save the modified file to another path
         fold_dataset_yaml = os.path.join(dataset_path, f"{fold_idx}_data.yaml")
@@ -51,9 +52,10 @@ if __name__ == "__main__":
         metrics_keys.remove("fitness")
 
         # Get metrics for each class avoiding the fish class
-        for class_idx, class_name in model.names.items():
-           
-            class_results = results.class_result(class_idx)
+        for order_idx, class_idx in enumerate(results.ap_class_index):
+            class_name = model.names[class_idx]
+            
+            class_results = results.class_result(order_idx)
             
             if class_name not in class_metrics:
                 class_metrics[class_name] = {key: [] for key in metrics_keys}
